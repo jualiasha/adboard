@@ -1,0 +1,42 @@
+{
+  "kind": "collectionType",
+  "collectionName": "ad_board_users",
+  "info": {
+    "name": "AdBoardUsers",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "username": {
+      "type": "string",
+      "required": true,
+      "unique": true,
+      "minLength": 3
+    },
+    "email": {
+      "type": "email",
+      "required": true,
+      "unique": true,
+      "minLength": 3
+    },
+    "password": {
+      "type": "password",
+      "required": true,
+      "unique": true,
+      "minLength": 8
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "username",
+      "required": true
+    },
+    "user_ads": {
+      "collection": "user-ads"
+    }
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/ad-board-users",
+      "handler": "ad-board-users.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/ad-board-users/count",
+      "handler": "ad-board-users.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/ad-board-users/:id",
+      "handler": "ad-board-users.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/ad-board-users",
+      "handler": "ad-board-users.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/ad-board-users/:id",
+      "handler": "ad-board-users.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/ad-board-users/:id",
+      "handler": "ad-board-users.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

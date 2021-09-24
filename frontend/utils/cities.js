@@ -1,0 +1,18 @@
+export const citiesEn = [
+  "Helsinki",
+  "Vantaa",
+  "Espoo",
+  "Oulu",
+  "Turku",
+  "Tampere",
+  "Rovaniemi",
+  "Jyväskylä",
+  "Kuopio",
+  "Lahti",
+  "Pori",
+  "Kouvola",
+  "Joensuu",
+  "Lappeenranta",
+  "Hämeenlinna",
+  "Vaasa",
+]

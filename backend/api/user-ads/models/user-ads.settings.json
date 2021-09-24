@@ -1,0 +1,69 @@
+{
+  "kind": "collectionType",
+  "collectionName": "user_ads",
+  "info": {
+    "name": "UserAds"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "minLength": 5
+    },
+    "content": {
+      "type": "richtext",
+      "required": true,
+      "minLength": 5,
+      "maxLength": 1000
+    },
+    "description": {
+      "type": "text",
+      "required": true,
+      "minLength": 10,
+      "maxLength": 300
+    },
+    "cover": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
+    },
+    "gallery": {
+      "collection": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
+    },
+    "email": {
+      "type": "email"
+    },
+    "phoneNumber": {
+      "type": "string",
+      "required": true,
+      "minLength": 5
+    },
+    "subcategories": {
+      "via": "user_ads",
+      "collection": "subcategory"
+    }
+  }
+}
