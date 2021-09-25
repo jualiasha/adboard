@@ -1,0 +1,52 @@
+{
+  "collectionName": "components_custom_buttons",
+  "info": {
+    "name": "button",
+    "icon": "bold"
+  },
+  "options": {},
+  "attributes": {
+    "buttonText": {
+      "type": "string",
+      "required": true,
+      "minLength": 2,
+      "maxLength": 30
+    },
+    "buttonType": {
+      "type": "enumeration",
+      "enum": [
+        "button",
+        "reset",
+        "submit"
+      ],
+      "required": true,
+      "default": "button"
+    },
+    "disabled": {
+      "type": "boolean",
+      "default": false,
+      "required": false
+    },
+    "variant": {
+      "type": "enumeration",
+      "enum": [
+        "primary",
+        "secondary",
+        "destructive",
+        "disabled"
+      ],
+      "default": "primary",
+      "required": true
+    },
+    "size": {
+      "type": "enumeration",
+      "enum": [
+        "sm",
+        "md",
+        "lg"
+      ],
+      "default": "md",
+      "required": true
+    }
+  }
+}

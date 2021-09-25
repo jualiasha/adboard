@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_custom_category_links",
+  "info": {
+    "name": "CategoryLink",
+    "icon": "adjust"
+  },
+  "options": {},
+  "attributes": {
+    "imageSource": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": true,
+      "pluginOptions": {}
+    },
+    "categoryName": {
+      "type": "string",
+      "required": true,
+      "unique": true,
+      "minLength": 2,
+      "maxLength": 30
+    }
+  }
+}

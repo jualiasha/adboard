@@ -11,15 +11,29 @@
     "draftAndPublish": false
   },
   "attributes": {
-    "name": {
-      "type": "string"
+    "categoryName": {
+      "type": "string",
+      "required": true,
+      "minLength": 2,
+      "maxLength": 30
     },
     "slug": {
       "type": "uid",
-      "targetField": "name"
+      "targetField": "categoryName",
+      "required": true
     },
     "subcategories": {
       "collection": "subcategory"
+    },
+    "imageSource": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": true,
+      "pluginOptions": {}
     }
   }
 }

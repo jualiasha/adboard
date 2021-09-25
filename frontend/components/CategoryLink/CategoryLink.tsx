@@ -1,26 +1,24 @@
 import React, { FC } from "react"
-import { ButtonTypes } from "../../@types"
 import Link from "next/link"
+import { CategoryNames } from "../../@types"
+import NextImage from "../Image"
 
 interface ICategoryLinkProps {
-  type: ButtonTypes
-  variant: string
-  categoryText: string
+  categoryName: CategoryNames
   imageSource: string
-  categoryName: string
+  slug: string
 }
 
 const CategoryLink: FC<ICategoryLinkProps> = ({
   imageSource,
-  categoryText,
-  variant,
   categoryName,
+  slug,
 }) => {
   return (
-    <Link href={`/categories/${categoryName}`}>
+    <Link href={`/categories/${slug}`}>
       <div className="categoryLink">
-        <img src={imageSource} alt={categoryText}></img>
-        <p className={`categoryLink__${variant}`}>{categoryText}</p>
+        <NextImage media={imageSource} src={imageSource} alt={categoryName} />
+        <p className="categoryLink__text">{categoryName}</p>
       </div>
     </Link>
   )
