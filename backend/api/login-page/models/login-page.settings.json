@@ -1,8 +1,8 @@
 {
   "kind": "singleType",
-  "collectionName": "home_pages",
+  "collectionName": "login_pages",
   "info": {
-    "name": "HomePage",
+    "name": "LoginPage",
     "description": ""
   },
   "options": {
@@ -12,10 +12,15 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "Button": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "LoginForm": {
       "type": "component",
       "repeatable": false,
-      "component": "reusable.button"
+      "component": "block.login-form",
+      "required": true
     },
     "Footer": {
       "type": "component",

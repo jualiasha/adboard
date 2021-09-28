@@ -1,0 +1,53 @@
+{
+  "collectionName": "components_custom_inputs",
+  "info": {
+    "name": "Input",
+    "icon": "check",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "inputId": {
+      "type": "string",
+      "required": true,
+      "minLength": 2
+    },
+    "inputName": {
+      "type": "string",
+      "required": true,
+      "minLength": 2
+    },
+    "inputLabel": {
+      "type": "string",
+      "required": true,
+      "minLength": 2
+    },
+    "disabled": {
+      "type": "boolean",
+      "default": false
+    },
+    "readOnly": {
+      "type": "boolean",
+      "default": false
+    },
+    "inputType": {
+      "type": "enumeration",
+      "enum": [
+        "text",
+        "email",
+        "tel",
+        "password",
+        "number",
+        "url",
+        "search"
+      ],
+      "required": true,
+      "default": "text"
+    },
+    "required": {
+      "type": "boolean",
+      "default": true,
+      "required": false
+    }
+  }
+}

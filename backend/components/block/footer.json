@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_block_footers",
+  "info": {
+    "name": "Footer",
+    "icon": "align-justify"
+  },
+  "options": {},
+  "attributes": {
+    "logo": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": true,
+      "pluginOptions": {}
+    },
+    "copywrite": {
+      "type": "string",
+      "required": true,
+      "default": "Copywrite-2021"
+    }
+  }
+}

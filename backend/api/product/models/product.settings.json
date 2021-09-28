@@ -38,7 +38,7 @@
     "Custom_field": {
       "type": "component",
       "repeatable": true,
-      "component": "custom.custom-field"
+      "component": "reusable.custom-field"
     },
     "status": {
       "type": "enumeration",

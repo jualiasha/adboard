@@ -8,13 +8,15 @@ export type ButtonVariants =
   | "secondary"
   | "destructive"
   | "disabled"
-export type InputTypes =
+
+export type TextInputTypes =
   | "text"
   | "password"
   | "email"
   | "tel"
-  | "checkbox"
-  | "radio"
+  | "number"
+  | "url"
+  | "search"
 export type TargetTypes = "_blank" | "_self" | "_parent" | "_top"
 export type IconNames = "close"
 /** User and account */
@@ -51,6 +53,13 @@ export interface ICategory {
   imageSource: string
   slug: string
   _id: string
+}
+
+export interface IUserAd {
+  title: string
+  description: string
+  content: string
+  city: string
 }
 
 /** Datavbase connection */
