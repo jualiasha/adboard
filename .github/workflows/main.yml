@@ -7,10 +7,10 @@ on:
   # Triggers the workflow on push or pull request events but only for the master branch
   push:
     branches: [ master ]
-    paths: '/frontend'
+
   pull_request:
     branches: [ master ]
-    paths: '/frontend'
+    
     
 
   # Allows you to run this workflow manually from the Actions tab
@@ -35,8 +35,8 @@ jobs:
         
          # Runs npm install
       - name: Install 🏗️
-        run: npm install
+        run: cd frontend, npm install
 
       # Runs a build
       - name: Build 🏗️
-        run: npm run build
+        run: cd frontend, npm run build
