@@ -37,10 +37,10 @@ jobs:
       - name: Install 🏗️
         run: |
           cd frontend
-          yarn
+          npm install
 
       # Runs a build
       - name: Build 🏗️
         run: |
           cd frontend
-          yarn build
+          npm run build
