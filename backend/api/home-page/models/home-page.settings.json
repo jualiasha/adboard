@@ -12,21 +12,10 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "Footer": {
-      "type": "component",
-      "repeatable": false,
-      "component": "block.footer",
-      "required": true
-    },
     "SEO": {
       "type": "component",
       "repeatable": false,
       "component": "reusable.seo"
-    },
-    "Header": {
-      "type": "component",
-      "repeatable": false,
-      "component": "block.header"
     }
   }
 }

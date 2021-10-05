@@ -21,12 +21,6 @@
       "repeatable": false,
       "component": "block.login-form",
       "required": true
-    },
-    "Footer": {
-      "type": "component",
-      "repeatable": false,
-      "component": "block.footer",
-      "required": true
     }
   }
 }

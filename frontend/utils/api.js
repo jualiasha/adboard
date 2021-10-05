@@ -22,6 +22,16 @@ export async function getNavLinks() {
   return navLinks
 }
 
+export async function getFooterLinks() {
+  const footerLinks = await fetchAPI("/footer-links")
+  return footerLinks
+}
+
+export async function getLogo() {
+  const logo = await fetchAPI("/logo")
+  return logo
+}
+
 export async function getCategory(slug) {
   const categories = await fetchAPI(`/categories?slug=${slug}`)
   return categories?.[0]

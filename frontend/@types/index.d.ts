@@ -62,6 +62,25 @@ export interface IUserAd {
   city: string
 }
 
+export interface INavLink {
+  imageSource: string
+  imageName: string
+}
+
+interface Logo {
+  url: string
+}
+
+export interface ILogo {
+  logo: Logo
+
+  alt: string
+}
+
+export interface IFooterMenuLink {
+  footerLinkName: string
+  _id: string
+}
 /** Datavbase connection */
 export interface IConnectionSettings {
   user: string

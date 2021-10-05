@@ -1,13 +1,19 @@
 import App from "next/app"
 import Head from "next/head"
 import Layout from "../components/Layout"
-import { getNavLinks } from "../utils/api"
+import { getFooterLinks, getLogo, getNavLinks } from "../utils/api"
 
 import "../styles/sass/index.scss"
 
 const MyApp = ({ Component, pageProps }) => {
+  console.log(pageProps.logo)
   return (
-    <Layout logo="" copywrite="" footermenuitems={[]} navLinks={[]}>
+    <Layout
+      logo={pageProps.logo}
+      copywrite="Copywrite-2021"
+      footerMenuLinks={pageProps.footerLinks}
+      navLinks={pageProps.navLinks}
+    >
       <Head>
         <link rel="preconnect" href="https://app.snipcart.com" />
         <link rel="preconnect" href="https://cdn.snipcart.com" />
@@ -35,9 +41,11 @@ MyApp.getInitialProps = async (ctx) => {
   // Fetch global site settings from Strapi
 
   const navLinks = await getNavLinks()
+  const footerLinks = await getFooterLinks()
+  const logo = await getLogo()
   return {
     ...appProps,
-    pageProps: { navLinks, path: ctx.pathname },
+    pageProps: { navLinks, footerLinks, logo, path: ctx.pathname },
   }
 }
 

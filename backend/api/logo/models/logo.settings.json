@@ -1,10 +1,16 @@
 {
-  "collectionName": "components_block_footers",
+  "kind": "singleType",
+  "collectionName": "logos",
   "info": {
-    "name": "Footer",
-    "icon": "align-justify"
+    "name": "Logo",
+    "description": ""
   },
-  "options": {},
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
   "attributes": {
     "logo": {
       "model": "file",
@@ -16,10 +22,10 @@
       "required": true,
       "pluginOptions": {}
     },
-    "copywrite": {
+    "alt": {
       "type": "string",
       "required": true,
-      "default": "Copywrite-2021"
+      "default": "adBoard"
     }
   }
 }

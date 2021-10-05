@@ -1,0 +1,19 @@
+{
+  "kind": "collectionType",
+  "collectionName": "footer_links",
+  "info": {
+    "name": "Footer Links"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "footerLinkName": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

@@ -1,11 +1,7 @@
 import React, { FC } from "react"
+import { INavLink } from "../../@types/"
 
-interface INavLinkProps {
-  imageSource: string
-  imageName: string
-}
-
-const NavLink: FC<INavLinkProps> = ({ imageSource, imageName }) => {
+const NavLink: FC<INavLink> = ({ imageSource, imageName }) => {
   return (
     <div className="navlink">
       <img className="navlink__image" src={imageSource} alt={imageName} />
