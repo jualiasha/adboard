@@ -1,9 +1,10 @@
 import React, { FC } from "react"
 import Head from "next/head"
-
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos"
 import { getCategories, getHomePage } from "../utils/api"
 import { ICategory } from "../@types"
 import CategoryLink from "../components/CategoryLink/CategoryLink"
+import Button from "../components/Buttons/Button"
 
 const HomePage: any = ({ homePage, categories }) => {
   console.log(homePage)
@@ -24,6 +25,23 @@ const HomePage: any = ({ homePage, categories }) => {
             />
           )
         })}
+      </div>
+      <div className="ads">
+        <div className="ads__sidefeed">
+          <h3>Last Posted</h3>
+          <Button
+            type="button"
+            variant="secondary"
+            size="sm"
+            handleClick={() => {}}
+            disabled={false}
+          >
+            Filter <ArrowForwardIosIcon />
+          </Button>
+        </div>
+        <div className="ads__mainfeed">
+          <h3>Ads Feed</h3>
+        </div>
       </div>
     </>
   )
