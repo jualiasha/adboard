@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_reusable_seos",
+  "info": {
+    "name": "SEO",
+    "icon": "anchor"
+  },
+  "options": {},
+  "attributes": {
+    "metaTitle": {
+      "type": "string"
+    },
+    "metaDescription": {
+      "type": "text",
+      "maxLength": 250
+    },
+    "sharedImage": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
+    }
+  }
+}

@@ -2,7 +2,8 @@
   "kind": "collectionType",
   "collectionName": "user_ads",
   "info": {
-    "name": "UserAds"
+    "name": "UserAds",
+    "description": ""
   },
   "options": {
     "increments": true,
@@ -64,6 +65,10 @@
     "subcategories": {
       "via": "user_ads",
       "collection": "subcategory"
+    },
+    "categories": {
+      "via": "user_ads",
+      "collection": "category"
     }
   }
 }

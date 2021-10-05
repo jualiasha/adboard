@@ -1,4 +1,5 @@
 export const citiesEn = [
+  "All Finland",
   "Helsinki",
   "Vantaa",
   "Espoo",

@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "nav_links",
+  "info": {
+    "name": "NavLink"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "imageSource": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": true,
+      "pluginOptions": {}
+    },
+    "imageName": {
+      "type": "string",
+      "required": true,
+      "maxLength": 100
+    }
+  }
+}

@@ -1,9 +1,15 @@
+import React, { FC } from "react"
 import Head from "next/head"
 import { useRouter } from "next/router"
 import ProductsList from "../../components/ProductsList"
 import { getCategories, getCategory } from "../../utils/api"
+import { CategoryNames, ICategory } from "../../@types"
 
-const CategoryPage = ({ category }) => {
+interface ICategoryPageProps {
+  category: ICategory
+}
+
+const CategoryPage: FC<ICategoryPageProps> = ({ category }) => {
   const router = useRouter()
   if (router.isFallback) {
     return <div>Loading category...</div>
@@ -12,9 +18,9 @@ const CategoryPage = ({ category }) => {
   return (
     <div>
       <Head>
-        <title>{category.name} products</title>
+        <title>{category.categoryName} </title>
       </Head>
-      <ProductsList products={category.products} />
+      {/* <ProductsList products={category.products} /> */}
     </div>
   )
 }
@@ -22,12 +28,12 @@ const CategoryPage = ({ category }) => {
 export default CategoryPage
 
 export async function getStaticProps({ params }) {
-  const category = await getCategory(params.slug)
+  const category: ICategory = await getCategory(params.slug)
   return { props: { category } }
 }
 
 export async function getStaticPaths() {
-  const categories = await getCategories()
+  const categories: ICategory[] = await getCategories()
   return {
     paths: categories.map((_category) => {
       return {

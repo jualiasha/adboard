@@ -1,37 +1,51 @@
 import React, { FC } from "react"
-import Footer from "./Footer"
-import Navbar from "./Navbar"
-import CategoryLink from "../components/CategoryLink/CategoryLink"
-import { ICategory } from "../@types"
+import Search from "./Search/Search"
 
 interface LayoutProps {
-  categories: ICategory[]
+  logo: string
+  copywrite: string
+  footermenuitems: string[]
+  navLinks: string[]
 }
 
-const Layout: FC<LayoutProps> = ({ children, categories }) => {
+const Layout: FC<LayoutProps> = ({
+  children,
+  logo,
+  copywrite,
+  footermenuitems,
+  navLinks,
+}) => {
   return (
-    <div className="flex justify-center bg-gray-200">
-      <div className="max-w-screen-lg flex flex-col min-h-screen w-full">
-        <Navbar />
-        {categories.map((category: ICategory) => {
-          return (
-            <CategoryLink
-              categoryName={category.categoryName}
-              key={category._id}
-              slug={category.slug}
-              imageSource={category.imageSource}
-            />
-          )
-        })}
-        <div className="flex-grow">{children}</div>
-        <Footer />
-      </div>
+    <>
+      <header>
+        <img className="header__logo" src={logo} alt="adBoard" />
+        <Search />
+        <div className="header__navlinks">
+          {navLinks.map((navLink: string) => {
+            return navLink
+          })}
+        </div>
+      </header>
+      <main>{children}</main>
+      <footer>
+        <div className="footer__left">
+          <img className="footer__left__logo" src={logo} />
+        </div>
+        <div className="footer__right">
+          <ul className="footer__right__menu">
+            {footermenuitems.map((item: string) => {
+              return <li>{item}</li>
+            })}
+          </ul>
+        </div>
+        <p className="footer__copywrite">{copywrite}</p>
+      </footer>
       <div
         hidden
         id="snipcart"
         data-api-key="ODhhNWUxOGEtNTk0OC00OTQwLWJkOWMtM2M1ZmNjODU1ZDJhNjM3MzMyNzM0NjM1OTMyNjcz"
       />
-    </div>
+    </>
   )
 }
 

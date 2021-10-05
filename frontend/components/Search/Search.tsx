@@ -1,9 +1,9 @@
 import React, { useState } from "react"
 import { Box, InputAdornment, TextField, MenuItem } from "@mui/material"
-import { citiesEn } from "../utils/cities"
+import { citiesEn } from "../../utils/cities"
 import SearchIcon from "@mui/icons-material/Search"
 
-export default function InputWithIcon() {
+export default function Search() {
   const [city, setCity] = useState("All Finland")
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -32,9 +32,9 @@ export default function InputWithIcon() {
         onChange={handleChange}
         helperText="Select city"
       >
-        {citiesEn.map((city) => (
-          <MenuItem key={city} value={city}>
-            {city}
+        {citiesEn.map((cityname) => (
+          <MenuItem key={cityname} value={cityname}>
+            {cityname}
           </MenuItem>
         ))}
       </TextField>

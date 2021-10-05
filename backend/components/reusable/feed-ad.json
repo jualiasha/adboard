@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_reusable_feed_ads",
+  "info": {
+    "name": "FeedAd",
+    "icon": "align-center"
+  },
+  "options": {},
+  "attributes": {
+    "headingText": {
+      "type": "string",
+      "required": true,
+      "minLength": 3
+    },
+    "descriptionText": {
+      "type": "text",
+      "required": true,
+      "maxLength": 150,
+      "minLength": 5
+    }
+  }
+}

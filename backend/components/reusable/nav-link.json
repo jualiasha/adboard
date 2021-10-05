@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_reusable_nav_links",
+  "info": {
+    "name": "NavLink",
+    "icon": "angle-double-left"
+  },
+  "options": {},
+  "attributes": {
+    "imageSource": {
+      "type": "string",
+      "required": true
+    },
+    "imageName": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

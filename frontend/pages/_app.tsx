@@ -1,13 +1,13 @@
 import App from "next/app"
 import Head from "next/head"
 import Layout from "../components/Layout"
-import { getCategories } from "../utils/api"
+import { getNavLinks } from "../utils/api"
 
 import "../styles/sass/index.scss"
 
 const MyApp = ({ Component, pageProps }) => {
   return (
-    <Layout categories={pageProps.categories}>
+    <Layout logo="" copywrite="" footermenuitems={[]} navLinks={[]}>
       <Head>
         <link rel="preconnect" href="https://app.snipcart.com" />
         <link rel="preconnect" href="https://cdn.snipcart.com" />
@@ -33,9 +33,12 @@ MyApp.getInitialProps = async (ctx) => {
   // Calls page's `getInitialProps` and fills `appProps.pageProps`
   const appProps = await App.getInitialProps(ctx)
   // Fetch global site settings from Strapi
-  const categories = await getCategories()
-  // Pass the data to our page via props
-  return { ...appProps, pageProps: { categories, path: ctx.pathname } }
+
+  const navLinks = await getNavLinks()
+  return {
+    ...appProps,
+    pageProps: { navLinks, path: ctx.pathname },
+  }
 }
 
 export default MyApp

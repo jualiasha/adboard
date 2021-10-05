@@ -17,6 +17,11 @@ export async function getCategories() {
   return categories
 }
 
+export async function getNavLinks() {
+  const navLinks = await fetchAPI("/nav-links")
+  return navLinks
+}
+
 export async function getCategory(slug) {
   const categories = await fetchAPI(`/categories?slug=${slug}`)
   return categories?.[0]

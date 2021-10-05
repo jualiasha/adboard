@@ -34,6 +34,11 @@
       "plugin": "upload",
       "required": true,
       "pluginOptions": {}
+    },
+    "user_ads": {
+      "via": "categories",
+      "collection": "user-ads",
+      "dominant": true
     }
   }
 }
