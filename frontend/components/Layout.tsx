@@ -22,13 +22,14 @@ const Layout: FC<LayoutProps> = ({
       <header>
         <img className="header__logo" src={logo.logo.url} alt={logo.alt} />
         <Search />
-        <div className="header__navlinks">
+        <div className="header__navLinks">
           {navLinks.map((navLink: any) => {
             return (
               <NavLink
                 key={navLink._id}
                 imageName={navLink.imageName}
                 imageSource={navLink.imageSource.url}
+                variant="header__navLinks"
               />
             )
           })}

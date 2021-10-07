@@ -9,7 +9,22 @@ html {
 }
 
 body {
+  font-family: $notoSans;
   font-size: 1.25rem;
+  background: $linearBlueRed;
+}
+
+input,
+select {
+  font-family: $notoSans !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: $notoSansDisplay;
 }
 
 button {
@@ -29,10 +44,29 @@ a {
 }
 
 header {
-  background: linear-gradient(
-      0deg,
-      rgba(243, 243, 243, 0.8),
-      rgba(243, 243, 243, 0.8)
-    ),
-    rgba(243, 243, 243, 0.9);
+  background: $linearLight;
+  display: flex;
+  justify-content: space-between;
+  margin: 1vh 1vw 0 1vw;
+  padding: 1vw;
+  border-radius: $buttonBorders;
+  -webkit-border-radius: $buttonBorders;
+  -moz-border-radius: $buttonBorders;
+  -ms-border-radius: $buttonBorders;
+  -o-border-radius: $buttonBorders;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+main {
+  background: $linearGrey;
+  margin: 0 1vw 1vh 1vw;
+  border-radius: $buttonBorders;
+  -webkit-border-radius: $buttonBorders;
+  -moz-border-radius: $buttonBorders;
+  -ms-border-radius: $buttonBorders;
+  -o-border-radius: $buttonBorders;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  padding: 1vw;
 }

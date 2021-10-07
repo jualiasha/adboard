@@ -16,15 +16,17 @@ const CategoryLink: FC<ICategoryLinkProps> = ({
 }) => {
   return (
     <Link href={`/categories/${slug}`}>
-      <div className="categorylinks__box">
-        <NextImage
-          media={imageSource}
-          src={imageSource}
-          alt={categoryName}
-          className="categorylinks__box__image"
-        />
-        <p className="categorylinks__box__text">{categoryName}</p>
-      </div>
+      <a>
+        <div className="categorylinks__box">
+          <NextImage
+            media={imageSource}
+            src={imageSource}
+            alt={categoryName}
+            className="categorylinks__box__image"
+          />
+          <p className="categorylinks__box__text">{categoryName}</p>
+        </div>
+      </a>
     </Link>
   )
 }

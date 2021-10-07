@@ -1,0 +1,71 @@
+.header {
+  &__navLinks {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2vh;
+    &__box {
+      display: inline-block;
+      text-align: center;
+      margin: 0 1vw;
+      &__image {
+        max-height: 5vh;
+      }
+    }
+  }
+  &__searchBox {
+    display: flex;
+    border: 1px solid $blueButton;
+    height: 7.25vh;
+    border-radius: 5px;
+    margin-top: 1.5vh;
+    &__search {
+      background-color: $white;
+      height: 7vh;
+      border-radius: $inputBorders;
+      -webkit-border-radius: $inputBorders;
+      -moz-border-radius: $inputBorders;
+      -ms-border-radius: $inputBorders;
+      -o-border-radius: $inputBorders;
+      border: 1px solid $transparentinput;
+      border-bottom: 1px solid $black;
+    }
+    &__select {
+      font-family: $notoSans;
+      background: $white;
+      height: 7vh;
+      border-color: $transparentinput;
+      color: $black;
+      &::before {
+        border-color: chartreuse;
+      }
+    }
+  }
+}
+
+.css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root {
+  font-family: $notoSans;
+  background: $white;
+  height: 7vh;
+  border-color: $transparentinput;
+  border-bottom: 1px solid $black;
+  &::after {
+    border: 1px solid $blueButton;
+  }
+}
+
+.css-hfutr2-MuiSvgIcon-root-MuiSelect-icon {
+  color: $black;
+}
+
+.css-1480iag-MuiInputBase-root-MuiInput-root {
+  font-family: $notoSans;
+  padding-top: 1vh;
+  height: 7vh;
+  border-color: $transparentinput;
+  &::before {
+    border: none;
+  }
+  &::after {
+    border: 1px solid $blueButton;
+  }
+}

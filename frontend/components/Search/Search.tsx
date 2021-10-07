@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import { Box, InputAdornment, TextField, MenuItem } from "@mui/material"
 import { citiesEn } from "../../utils/cities"
 import SearchIcon from "@mui/icons-material/Search"
+import { borderColor } from "@mui/system"
 
 export default function Search() {
   const [city, setCity] = useState("All Finland")
@@ -11,10 +12,11 @@ export default function Search() {
   }
 
   return (
-    <Box sx={{ "& > :not(style)": { m: 1 } }}>
+    <Box className="header__searchBox">
       <TextField
-        id="input-with-icon-textfield"
-        label="TextField"
+        className="header__searchBox__search"
+        /* id="input-with-icon-textfield" */
+        label=""
         InputProps={{
           startAdornment: (
             <InputAdornment position="start">
@@ -25,12 +27,12 @@ export default function Search() {
         variant="standard"
       />
       <TextField
-        id="outlined-select-currency"
+        /* id="outlined-select-currency" */
+        className="header__searchBox__select"
         select
-        label="Select"
+        label=""
         value={city}
         onChange={handleChange}
-        helperText="Select city"
       >
         {citiesEn.map((cityname) => (
           <MenuItem key={cityname} value={cityname}>

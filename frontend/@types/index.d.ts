@@ -65,6 +65,7 @@ export interface IUserAd {
 export interface INavLink {
   imageSource: string
   imageName: string
+  variant?: string
 }
 
 interface Logo {

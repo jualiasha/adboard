@@ -1,11 +1,15 @@
 import React, { FC } from "react"
 import { INavLink } from "../../@types/"
 
-const NavLink: FC<INavLink> = ({ imageSource, imageName }) => {
+const NavLink: FC<INavLink> = ({ imageSource, imageName, variant }) => {
   return (
-    <div className="navlink">
-      <img className="navlink__image" src={imageSource} alt={imageName} />
-      <p className="navlink__name">{imageName}</p>
+    <div className={`${variant}__box`}>
+      <img
+        className={`${variant}__box__image`}
+        src={imageSource}
+        alt={imageName}
+      />
+      <p className={`${variant}__box__name`}>{imageName}</p>
     </div>
   )
 }
