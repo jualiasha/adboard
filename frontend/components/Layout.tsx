@@ -37,19 +37,28 @@ const Layout: FC<LayoutProps> = ({
       </header>
       <main>{children}</main>
       <footer>
-        <div className="footer__left">
-          <img
-            className="footer__left__logo"
-            src={logo.logo.url}
-            alt={logo.alt}
-          />
-        </div>
-        <div className="footer__right">
-          <ul className="footer__right__menu">
-            {footerMenuLinks.map((link: IFooterMenuLink) => {
-              return <li key={link._id}>{link.footerLinkName}</li>
-            })}
-          </ul>
+        <div className="footer__container">
+          <div className="footer__container__left">
+            <img
+              className="footer__container__left__logo"
+              src={logo.logo.url}
+              alt={logo.alt}
+            />
+          </div>
+          <div className="footer__container__right">
+            <ul className="footer__container__right__menu">
+              {footerMenuLinks.map((link: IFooterMenuLink) => {
+                return (
+                  <li
+                    key={link._id}
+                    className="footer__container__right__menu__list"
+                  >
+                    {link.footerLinkName}
+                  </li>
+                )
+              })}
+            </ul>
+          </div>
         </div>
         <p className="footer__copywrite">{copywrite}</p>
       </footer>

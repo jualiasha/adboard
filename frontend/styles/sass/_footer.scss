@@ -1,0 +1,20 @@
+.footer {
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    &__left {
+    }
+    &__right {
+      &__menu {
+        &__list {
+          margin-bottom: 1vh;
+          font-size: 1.12rem;
+        }
+      }
+    }
+  }
+  &__copywrite {
+    text-align: center;
+    font-size: 1rem;
+  }
+}
