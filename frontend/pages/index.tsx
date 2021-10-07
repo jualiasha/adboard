@@ -28,7 +28,7 @@ const HomePage: any = ({ homePage, categories }) => {
       </div>
       <div className="ads">
         <div className="ads__sidefeed">
-          <h3>Last Posted</h3>
+          <h2>Last Posted</h2>
           <Button
             type="button"
             variant="secondary"
@@ -36,11 +36,11 @@ const HomePage: any = ({ homePage, categories }) => {
             handleClick={() => {}}
             disabled={false}
           >
-            Filter <ArrowForwardIosIcon />
+            Filter <ArrowForwardIosIcon className="button__icon" />
           </Button>
         </div>
         <div className="ads__mainfeed">
-          <h3>Ads Feed</h3>
+          <h2>Ads Feed</h2>
         </div>
       </div>
     </>

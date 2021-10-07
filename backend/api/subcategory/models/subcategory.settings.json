@@ -24,10 +24,9 @@
       "targetField": "subCategoryName",
       "required": true
     },
-    "user_ads": {
-      "via": "subcategories",
-      "collection": "user-ads",
-      "dominant": true
+    "categories": {
+      "collection": "category",
+      "via": "subcategory"
     }
   }
 }

@@ -39,6 +39,10 @@
       "via": "categories",
       "collection": "user-ads",
       "dominant": true
+    },
+    "subcategory": {
+      "via": "categories",
+      "model": "subcategory"
     }
   }
 }

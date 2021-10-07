@@ -1,15 +1,11 @@
-.categoryLinks {
-  &__box {
-    &__image {
-    }
-    &__text {
-    }
-  }
-}
-
 .ads {
   display: flex;
-  justify-content: space-between;
+
   &__sidefeed {
+    display: flex;
+    justify-content: space-between;
+  }
+  &__mainfeed {
+    margin-left: 4vw;
   }
 }

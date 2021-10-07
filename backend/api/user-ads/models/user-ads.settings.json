@@ -62,10 +62,6 @@
       "required": true,
       "minLength": 5
     },
-    "subcategories": {
-      "via": "user_ads",
-      "collection": "subcategory"
-    },
     "categories": {
       "via": "user_ads",
       "collection": "category"
