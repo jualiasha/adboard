@@ -17,10 +17,11 @@ export default function Search() {
         className="header__searchBox__search"
         /* id="input-with-icon-textfield" */
         label=""
+        placeholder="Type here to search"
         InputProps={{
           startAdornment: (
             <InputAdornment position="start">
-              <SearchIcon />
+              <SearchIcon className="header__searchBox__icon" />
             </InputAdornment>
           ),
         }}

@@ -14,7 +14,7 @@ const HomePage: any = ({ homePage, categories }) => {
         <title>Super Awesome Ad Board</title>
       </Head>
       <h2>Pinned Categories</h2>
-      <div className="categorylinks">
+      <div className="categoryLinks">
         {categories.map((category: ICategory) => {
           return (
             <CategoryLink

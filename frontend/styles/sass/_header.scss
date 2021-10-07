@@ -29,6 +29,9 @@
       border: 1px solid $transparentinput;
       border-bottom: 1px solid $black;
     }
+    &__icon {
+      color: $black;
+    }
     &__select {
       font-family: $notoSans;
       background: $white;
