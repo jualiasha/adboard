@@ -47,6 +47,11 @@ export async function getHomePage() {
   return homePage
 }
 
+export async function getAds() {
+  const ads = await fetchAPI("/user-ads")
+  return ads
+}
+
 export async function getProduct(slug) {
   const products = await fetchAPI(`/products?slug=${slug}`)
   return products?.[0]

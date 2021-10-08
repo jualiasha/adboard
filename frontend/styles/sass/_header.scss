@@ -38,9 +38,6 @@
       height: 7vh;
       border-color: $transparentinput;
       color: $black;
-      &::before {
-        border-color: chartreuse;
-      }
     }
   }
 }

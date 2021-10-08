@@ -65,6 +65,10 @@
     "categories": {
       "via": "user_ads",
       "collection": "category"
+    },
+    "subcategories": {
+      "collection": "subcategory",
+      "via": "user_ad"
     }
   }
 }
