@@ -24,13 +24,12 @@
       "targetField": "subCategoryName",
       "required": true
     },
-    "categories": {
-      "collection": "category",
-      "via": "subcategory"
-    },
     "user_ad": {
       "via": "subcategories",
       "model": "user-ads"
+    },
+    "user_ads": {
+      "collection": "user-ads"
     }
   }
 }

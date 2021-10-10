@@ -1,62 +1,120 @@
-.ads {
-  display: flex;
-
-  &__sidefeed {
-    &__heading {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 6vh;
-    }
-    &__lastadded {
-      margin-bottom: 2vh;
-      &__headingtext {
-        font-size: 1.12rem;
-        font-family: $notoSansDisplay;
-        font-weight: 600;
-      }
-      &__descriptiontext {
-        font-family: $notoSansDisplay;
-        font-weight: 300;
-        font-size: 1.12rem;
-      }
-    }
+.homePage {
+  &__categoryheading {
+    display: flex;
+    justify-content: space-between;
   }
-  &__mainfeed {
-    margin-left: 4vw;
-    margin-bottom: 2vh;
-    &__adbox {
-      display: flex;
-      &__ad {
-        background-color: $white;
-        margin-right: 1vw;
-        padding: 1vw;
-        z-index: 10;
-        border-radius: $buttonBorders;
-        position: relative;
-        height: 25vh;
-        &__image {
-          z-index: -1;
-          object-fit: cover;
-          width: 95%;
-          height: 92%;
-          position: absolute;
-          border-radius: $inputBorders;
+  &__ads {
+    display: flex;
 
-          &::before {
-            content: "";
-            background: magenta;
-            /* background: linear-gradient(
-              90deg,
-              $white 61.43%,
-              $black 121.2%
-            ); */
+    &__sidefeed {
+      flex-grow: 4;
+      &__heading {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 6vh;
+      }
+      &__lastadded {
+        margin-bottom: 2vh;
+        &__headingtext {
+          font-size: 1.12rem;
+          font-family: $notoSansDisplay;
+          font-weight: 600;
+        }
+        &__descriptiontext {
+          font-family: $notoSansDisplay;
+          font-weight: 300;
+          font-size: 1.12rem;
+        }
+      }
+    }
+    &__mainfeed {
+      margin-left: 4vw;
+      margin-bottom: 2vh;
+      flex-grow: 8;
+      flex-flow: row wrap;
+      &__adbox {
+        display: flex;
+        &__ad {
+          background-color: $white;
+          margin-right: 1vw;
+          z-index: 10;
+          border-radius: $buttonBorders;
+          position: relative;
+          height: 25vh;
+          &__image {
+            z-index: -1;
+            object-fit: cover;
             width: 100%;
             height: 100%;
             position: absolute;
-            top: 0;
-            left: 0;
+            border-radius: $buttonBorders;
+            -webkit-border-radius: $buttonBorders;
+            -moz-border-radius: $buttonBorders;
+            -ms-border-radius: $buttonBorders;
+            -o-border-radius: $buttonBorders;
+          }
+          &__gradient {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: $buttonBorders;
+            -webkit-border-radius: $buttonBorders;
+            -moz-border-radius: $buttonBorders;
+            -ms-border-radius: $buttonBorders;
+            -o-border-radius: $buttonBorders;
+            background: linear-gradient(
+              90deg,
+              #ffffffee 50%,
+              rgba(255, 255, 255, 0) 121.2%
+            );
+            z-index: -1;
+          }
+          &__headingtext {
+            margin: 3vh 1vw;
+            font-size: 1rem;
+          }
+          &__descriptiontext {
+            margin: 0 1vw;
+            font-size: 1rem;
+            font-family: $notoSans;
           }
         }
+      }
+    }
+  }
+  &__subcategoryMenu {
+    background: $white;
+    border-radius: $inputBorders;
+    -webkit-border-radius: $inputBorders;
+    -moz-border-radius: $inputBorders;
+    -ms-border-radius: $inputBorders;
+    -o-border-radius: $inputBorders;
+    border: 0.7px solid $blueButton;
+    position: relative;
+    padding: 1vw;
+    &__close {
+      position: absolute;
+      right: 0;
+      top: 0;
+      cursor: pointer;
+    }
+    &__list {
+      display: flex;
+      justify-content: space-evenly;
+      flex-flow: wrap column;
+      max-height: 20vh;
+    }
+    &__item {
+      margin-bottom: 2vh;
+      column-count: 3;
+      &__arrow {
+        font-size: 1rem;
+        margin-top: 1vh;
+      }
+      &__link {
+        font-family: $notoSansDisplay;
+        font-weight: 200;
+        margin-bottom: 1vh;
       }
     }
   }

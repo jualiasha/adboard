@@ -36,6 +36,7 @@
       "required": true
     },
     "user_ads": {
+      "via": "ad_board_user",
       "collection": "user-ads"
     }
   }

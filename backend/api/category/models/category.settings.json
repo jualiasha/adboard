@@ -22,9 +22,6 @@
       "targetField": "categoryName",
       "required": true
     },
-    "subcategories": {
-      "collection": "subcategory"
-    },
     "imageSource": {
       "model": "file",
       "via": "related",
@@ -35,14 +32,8 @@
       "required": true,
       "pluginOptions": {}
     },
-    "user_ads": {
-      "via": "categories",
-      "collection": "user-ads",
-      "dominant": true
-    },
-    "subcategory": {
-      "via": "categories",
-      "model": "subcategory"
+    "subcategories": {
+      "collection": "subcategory"
     }
   }
 }

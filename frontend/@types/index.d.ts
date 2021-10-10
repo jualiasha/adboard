@@ -59,7 +59,17 @@ export interface IUserAd {
   title: string
   description: string
   content: string
-  city: string
+  city?: string
+  _id?: string
+  cover?: any
+}
+
+export interface ISubCategory {
+  subCategoryName: string
+  slug: string
+  _id: string
+  category?: ICategory
+  userAd?: IUserAd
 }
 
 export interface INavLink {

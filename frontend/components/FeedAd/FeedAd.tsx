@@ -1,30 +1,29 @@
 import React, { FC } from "react"
 
 interface FeedAdProps {
-  headingText: string
-  descriptionText: string
+  title: string
+  description: string
   variant: string
   imgSource?: string
 }
 
 const FeedAd: FC<FeedAdProps> = ({
-  headingText,
-  descriptionText,
+  title,
+  description,
   variant,
   imgSource,
 }) => {
   return (
     <div className={variant}>
       {variant.includes("main") ? (
-        <img
-          src={imgSource}
-          alt={headingText}
-          className={`${variant}__image`}
-        />
+        <>
+          <img src={imgSource} alt={title} className={`${variant}__image`} />
+          <div className={`${variant}__gradient`}></div>
+        </>
       ) : null}
 
-      <h4 className={`${variant}__headingtext`}>{headingText}</h4>
-      <p className={`${variant}__descriptiontext`}>{descriptionText}</p>
+      <h4 className={`${variant}__headingtext`}>{title}</h4>
+      <p className={`${variant}__descriptiontext`}>{description}</p>
     </div>
   )
 }

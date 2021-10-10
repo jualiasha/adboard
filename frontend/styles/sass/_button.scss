@@ -7,8 +7,9 @@
   -o-border-radius: $buttonBorders;
   &--secondary {
     background-color: $ligtButton;
-    padding: 0.5vh 2vw;
+    padding: 0.5vh 1vw;
     margin-left: 2vw;
+    height: 6vh;
   }
   &--sm {
     font-size: 1.2rem;
@@ -16,7 +17,8 @@
     font-weight: 700;
   }
   &__icon {
-    margin-left: 2vw;
+    margin-left: 1vw;
     width: 2vw;
+    margin-top: 0.5vh;
   }
 }

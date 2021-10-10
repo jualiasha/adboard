@@ -62,13 +62,13 @@
       "required": true,
       "minLength": 5
     },
-    "categories": {
-      "via": "user_ads",
-      "collection": "category"
-    },
     "subcategories": {
-      "collection": "subcategory",
-      "via": "user_ad"
+      "via": "user_ad",
+      "collection": "subcategory"
+    },
+    "ad_board_user": {
+      "model": "ad-board-users",
+      "via": "user_ads"
     }
   }
 }

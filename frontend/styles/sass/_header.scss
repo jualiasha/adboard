@@ -63,7 +63,7 @@
   height: 7vh;
   border-color: $transparentinput;
   &::before {
-    border: none;
+    border: none !important;
   }
   &::after {
     border: 1px solid $blueButton;
