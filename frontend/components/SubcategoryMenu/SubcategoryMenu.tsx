@@ -3,6 +3,7 @@ import React, { FC } from "react"
 import { ISubCategory } from "../../@types"
 import CloseIcon from "@mui/icons-material/Close"
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos"
+import Icon from "../Icon/Icon"
 
 interface SubcategoryMenuProps {
   subcategories: ISubCategory[]
@@ -17,10 +18,11 @@ const SubcategoryMenu: FC<SubcategoryMenuProps> = ({
 }) => {
   return (
     <div className={`${variant}__subcategoryMenu`}>
-      <CloseIcon
+      {/* <CloseIcon
         className={`${variant}__subcategoryMenu__close`}
         onClick={closeClick}
-      />
+      /> */}
+      <Icon icon="close" variant="closeIcon" click={closeClick} />
       <ul className={`${variant}__subcategoryMenu__list`}>
         {subcategories.map((subcategory) => {
           return (

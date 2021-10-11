@@ -1,5 +1,6 @@
 import React, { FC, MouseEvent } from "react"
 import { ButtonTypes, Sizes, ButtonVariants } from "../../@types"
+import styles from "./Button.module.scss"
 
 interface IButtonProps {
   type: ButtonTypes
@@ -20,7 +21,7 @@ const Button: FC<IButtonProps> = ({
   return (
     <button
       type={type}
-      className={`button button--${variant} button--${size}`}
+      className={`${styles.button} ${styles[variant]} ${styles[size]}`}
       disabled={disabled}
       onClick={handleClick}
     >

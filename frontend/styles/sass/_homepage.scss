@@ -83,6 +83,7 @@
     }
   }
   &__subcategoryMenu {
+    @include transition(all 0.08s ease-in 0.08s);
     background: $white;
     border-radius: $inputBorders;
     -webkit-border-radius: $inputBorders;

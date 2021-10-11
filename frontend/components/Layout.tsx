@@ -30,6 +30,7 @@ const Layout: FC<LayoutProps> = ({
                 imageName={navLink.imageName}
                 imageSource={navLink.imageSource.url}
                 variant="header__navLinks"
+                icon={navLink.icon}
               />
             )
           })}

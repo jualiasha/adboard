@@ -2,7 +2,8 @@
   "kind": "collectionType",
   "collectionName": "nav_links",
   "info": {
-    "name": "NavLink"
+    "name": "NavLink",
+    "description": ""
   },
   "options": {
     "increments": true,
@@ -11,20 +12,21 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "imageSource": {
-      "model": "file",
-      "via": "related",
-      "allowedTypes": [
-        "images"
-      ],
-      "plugin": "upload",
-      "required": true,
-      "pluginOptions": {}
-    },
     "imageName": {
       "type": "string",
       "required": true,
       "maxLength": 100
+    },
+    "icon": {
+      "type": "enumeration",
+      "enum": [
+        "plus",
+        "login",
+        "logout",
+        "search",
+        "arrow",
+        "close"
+      ]
     }
   }
 }

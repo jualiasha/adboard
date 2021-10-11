@@ -1,8 +1,7 @@
 import React, { useState } from "react"
 import { Box, InputAdornment, TextField, MenuItem } from "@mui/material"
 import { citiesEn } from "../../utils/cities"
-import SearchIcon from "@mui/icons-material/Search"
-import { borderColor } from "@mui/system"
+import Icon from "../Icon/Icon"
 
 export default function Search() {
   const [city, setCity] = useState("All Finland")
@@ -21,7 +20,7 @@ export default function Search() {
         InputProps={{
           startAdornment: (
             <InputAdornment position="start">
-              <SearchIcon className="header__searchBox__icon" />
+              <Icon icon="search" variant="searchIcon" />
             </InputAdornment>
           ),
         }}

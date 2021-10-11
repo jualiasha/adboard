@@ -1,0 +1,22 @@
+@import "../../styles/sass/variables";
+
+.button {
+  display: flex;
+  border-radius: $buttonBorders;
+  -webkit-border-radius: $buttonBorders;
+  -moz-border-radius: $buttonBorders;
+  -ms-border-radius: $buttonBorders;
+  -o-border-radius: $buttonBorders;
+}
+
+.secondary {
+  background-color: $ligtButton;
+  padding: 0.5vh 1vw;
+  margin-left: 2vw;
+  height: 6vh;
+}
+.sm {
+  font-size: 1.2rem;
+  font-family: $notoSansDisplay;
+  font-weight: 700;
+}

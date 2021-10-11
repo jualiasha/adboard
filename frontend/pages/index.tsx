@@ -6,8 +6,10 @@ import { ICategory, ISubCategory, IUserAd } from "../@types"
 import CategoryLink from "../components/CategoryLink/CategoryLink"
 import Button from "../components/Buttons/Button"
 import FeedAd from "../components/FeedAd/FeedAd"
-import { Grid } from "@mui/material"
+import { Collapse, Grid } from "@mui/material"
 import SubcategoryMenu from "../components/SubcategoryMenu/SubcategoryMenu"
+import styles from "../components/Icon/Icon.module.scss"
+import Icon from "../components/Icon/Icon"
 
 interface HomePageProps {
   categories: ICategory[]
@@ -16,11 +18,15 @@ interface HomePageProps {
 }
 
 const HomePage: FC<HomePageProps> = ({ categories, ads, subcategories }) => {
-  const [menuOpen, setMenuOpen] = useState(false) //open /close categories menu
+  const [menuOpen, setMenuOpen] = useState<boolean>(false) //open /close categories menu
+  const [checked, setChecked] = useState<boolean>(false)
+
   const menuOpenHandler = () => {
+    setChecked(true)
     setMenuOpen(true)
   }
   const menuCloseHandler = () => {
+    setChecked(false)
     setMenuOpen(false)
   }
 
@@ -40,7 +46,7 @@ const HomePage: FC<HomePageProps> = ({ categories, ads, subcategories }) => {
             handleClick={() => {}}
             disabled={false}
           >
-            Filter <ArrowForwardIosIcon className="button__icon" />
+            Filter <Icon icon="arrow" variant="filterIcon" />
           </Button>
         </div>
         <div className="categoryLinks">
@@ -56,11 +62,13 @@ const HomePage: FC<HomePageProps> = ({ categories, ads, subcategories }) => {
           })}
         </div>
         {menuOpen && (
-          <SubcategoryMenu
-            subcategories={subcategories}
-            variant="homePage"
-            closeClick={menuCloseHandler}
-          />
+          <Collapse in={checked}>
+            <SubcategoryMenu
+              subcategories={subcategories}
+              variant="homePage"
+              closeClick={menuCloseHandler}
+            />
+          </Collapse>
         )}
         <div className="homePage__ads">
           <div className="homePage__ads__sidefeed">
@@ -73,7 +81,8 @@ const HomePage: FC<HomePageProps> = ({ categories, ads, subcategories }) => {
                 handleClick={() => {}}
                 disabled={false}
               >
-                Filter <ArrowForwardIosIcon className="button__icon" />
+                Filter
+                <Icon icon="arrow" variant="filterIcon" />
               </Button>
             </div>
             {ads.map((ad) => {

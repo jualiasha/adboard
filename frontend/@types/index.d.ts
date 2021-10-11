@@ -18,10 +18,11 @@ export type TextInputTypes =
   | "url"
   | "search"
 export type TargetTypes = "_blank" | "_self" | "_parent" | "_top"
-export type IconNames = "close"
+
 /** User and account */
 
 export type Roles = "basic" | "admin"
+export type Icons = "plus" | "login" | "logout" | "search" | "arrow" | "close"
 export interface IUser {
   username: string
   email: string
@@ -76,6 +77,7 @@ export interface INavLink {
   imageSource: string
   imageName: string
   variant?: string
+  icon: Icons
 }
 
 interface Logo {
