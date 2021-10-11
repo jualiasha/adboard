@@ -1,6 +1,5 @@
 import React, { FC, useState } from "react"
 import Head from "next/head"
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos"
 import { getAds, getCategories, getSubCategories } from "../utils/api"
 import { ICategory, ISubCategory, IUserAd } from "../@types"
 import CategoryLink from "../components/CategoryLink/CategoryLink"
@@ -8,7 +7,6 @@ import Button from "../components/Buttons/Button"
 import FeedAd from "../components/FeedAd/FeedAd"
 import { Collapse, Grid } from "@mui/material"
 import SubcategoryMenu from "../components/SubcategoryMenu/SubcategoryMenu"
-import styles from "../components/Icon/Icon.module.scss"
 import Icon from "../components/Icon/Icon"
 
 interface HomePageProps {
@@ -20,10 +18,14 @@ interface HomePageProps {
 const HomePage: FC<HomePageProps> = ({ categories, ads, subcategories }) => {
   const [menuOpen, setMenuOpen] = useState<boolean>(false) //open /close categories menu
   const [checked, setChecked] = useState<boolean>(false)
+  const [catSubcategories, setCatSubcategories] = useState<
+    ISubCategory[] | null
+  >(null)
 
-  const menuOpenHandler = () => {
+  const menuOpenHandler = (category: ICategory) => {
     setChecked(true)
     setMenuOpen(true)
+    setCatSubcategories(category.subcategories)
   }
   const menuCloseHandler = () => {
     setChecked(false)
@@ -56,7 +58,8 @@ const HomePage: FC<HomePageProps> = ({ categories, ads, subcategories }) => {
                 categoryName={category.categoryName}
                 key={category._id}
                 imageSource={category.imageSource}
-                click={menuOpenHandler}
+                click={() => menuOpenHandler(category)}
+                category={category}
               />
             )
           })}
