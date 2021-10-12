@@ -1,6 +1,6 @@
 import React, { FC, useState } from "react"
 import Head from "next/head"
-import { getAds, getCategories, getSubCategories } from "../utils/api"
+import { getAds, getCategories } from "../utils/api"
 import { ICategory, ISubCategory, IUserAd } from "../@types"
 import CategoryLink from "../components/CategoryLink/CategoryLink"
 import Button from "../components/Buttons/Button"
@@ -15,24 +15,24 @@ interface HomePageProps {
   subcategories: ISubCategory[]
 }
 
-const HomePage: FC<HomePageProps> = ({ categories, ads, subcategories }) => {
-  const [menuOpen, setMenuOpen] = useState<boolean>(false) //open /close categories menu
-  const [checked, setChecked] = useState<boolean>(false)
-  const [catSubcategories, setCatSubcategories] = useState<
-    ISubCategory[] | null
-  >(null)
+const HomePage: FC<HomePageProps> = ({ categories, ads }) => {
+  const [menuOpen, setMenuOpen] = useState<boolean>(() => false) //open /close categories menu
+  const [checked, setChecked] = useState<boolean>(() => false) //collapsing
+  const [subcategories, setSubcategories] = useState<ISubCategory[] | null>(
+    () => null
+  ) //setting subcategories for each category in menu
 
   const menuOpenHandler = (category: ICategory) => {
-    setChecked(true)
-    setMenuOpen(true)
-    setCatSubcategories(category.subcategories)
-  }
-  const menuCloseHandler = () => {
-    setChecked(false)
-    setMenuOpen(false)
+    setSubcategories(() => category.subcategories)
+    setChecked(() => true)
+    setMenuOpen(() => true)
   }
 
-  console.log(categories)
+  const menuCloseHandler = () => {
+    setChecked(() => false)
+    setMenuOpen(() => false)
+  }
+
   return (
     <>
       <Head>
@@ -125,8 +125,8 @@ const HomePage: FC<HomePageProps> = ({ categories, ads, subcategories }) => {
 export async function getStaticProps() {
   const categories = await getCategories()
   const ads = await getAds()
-  const subcategories = await getSubCategories()
-  return { props: { categories, ads, subcategories } }
+
+  return { props: { categories, ads } }
 }
 
 export default HomePage
