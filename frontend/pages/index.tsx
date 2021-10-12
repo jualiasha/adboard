@@ -21,7 +21,7 @@ const HomePage: FC<HomePageProps> = ({ categories, ads }) => {
   const [subcategories, setSubcategories] = useState<ISubCategory[] | null>(
     () => null
   ) //setting subcategories for each category in menu
-
+  console.log(ads)
   const menuOpenHandler = (category: ICategory) => {
     setSubcategories(() => category.subcategories)
     setChecked(() => true)
@@ -32,6 +32,8 @@ const HomePage: FC<HomePageProps> = ({ categories, ads }) => {
     setChecked(() => false)
     setMenuOpen(() => false)
   }
+
+  const lastposted = 20
 
   return (
     <>
@@ -88,7 +90,7 @@ const HomePage: FC<HomePageProps> = ({ categories, ads }) => {
                 <Icon icon="arrow" variant="filterIcon" />
               </Button>
             </div>
-            {ads.map((ad) => {
+            {ads.slice(0, lastposted).map((ad) => {
               return (
                 <FeedAd
                   key={ad._id}
