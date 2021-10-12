@@ -1,8 +1,7 @@
 import Link from "next/link"
 import React, { FC } from "react"
 import { ISubCategory } from "../../@types"
-import CloseIcon from "@mui/icons-material/Close"
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos"
+
 import Icon from "../Icon/Icon"
 
 interface SubcategoryMenuProps {
@@ -32,9 +31,8 @@ const SubcategoryMenu: FC<SubcategoryMenuProps> = ({
             >
               <Link href={`/subcategories/${subcategory.slug}`}>
                 <a className={`${variant}__subcategoryMenu__item__link`}>
-                  <ArrowForwardIosIcon
-                    className={`${variant}__subcategoryMenu__item__arrow`}
-                  />
+                  <Icon icon="arrow" variant="menuIcon" />
+
                   {subcategory.subCategoryName}
                 </a>
               </Link>

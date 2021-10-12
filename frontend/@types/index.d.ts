@@ -61,6 +61,24 @@ export interface IUserAd {
   title: string
   description: string
   content: string
+  city?:
+    | "All Finland"
+    | "Helsinki"
+    | "Vantaa"
+    | "Espoo"
+    | "Oulu"
+    | "Turku"
+    | "Tampere"
+    | "Rovaniemi"
+    | "Jyväskylä"
+    | "Kuopio"
+    | "Lahti"
+    | "Pori"
+    | "Kouvola"
+    | "Joensuu"
+    | "Lappeenranta"
+    | "Hämeenlinna"
+    | "Vaasa"
   city?: string
   _id?: string
   cover?: any

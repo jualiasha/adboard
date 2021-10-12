@@ -21,6 +21,7 @@ const HomePage: FC<HomePageProps> = ({ categories, ads }) => {
   const [subcategories, setSubcategories] = useState<ISubCategory[] | null>(
     () => null
   ) //setting subcategories for each category in menu
+  const [searchInput, setSearchInput] = useState<any>(() => null)
   console.log(ads)
   const menuOpenHandler = (category: ICategory) => {
     setSubcategories(() => category.subcategories)
@@ -31,6 +32,11 @@ const HomePage: FC<HomePageProps> = ({ categories, ads }) => {
   const menuCloseHandler = () => {
     setChecked(() => false)
     setMenuOpen(() => false)
+  }
+
+  const searchValueHandler = (event: any) => {
+    setSearchInput({ searchInput: event.target.value })
+    console.log(searchInput)
   }
 
   const lastposted = 20

@@ -69,6 +69,29 @@
     "ad_board_user": {
       "model": "ad-board-users",
       "via": "user_ads"
+    },
+    "city": {
+      "type": "enumeration",
+      "enum": [
+        "Helsinki",
+        "Vantaa",
+        "Espoo",
+        "Oulu",
+        "Turku",
+        "Tampere",
+        "Rovaniemi",
+        "Jyvaskyla",
+        "Kuopio",
+        "Lahti",
+        "Pori",
+        "Kouvola",
+        "Joensuu",
+        "Lappeenranta",
+        "Hameenlinna",
+        "Vaasa"
+      ],
+      "required": false,
+      "default": "Helsinki"
     }
   }
 }
