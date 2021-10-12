@@ -8,6 +8,7 @@ import FeedAd from "../components/FeedAd/FeedAd"
 import { Collapse, Grid } from "@mui/material"
 import SubcategoryMenu from "../components/SubcategoryMenu/SubcategoryMenu"
 import Icon from "../components/Icon/Icon"
+import Link from "next/link"
 
 interface HomePageProps {
   categories: ICategory[]
@@ -85,25 +86,19 @@ const HomePage: FC<HomePageProps> = ({ categories, ads }) => {
           <div className="homePage__ads__sidefeed">
             <div className="homePage__ads__sidefeed__heading">
               <h2>Last Posted</h2>
-              <Button
-                type="button"
-                variant="secondary"
-                size="sm"
-                handleClick={() => {}}
-                disabled={false}
-              >
-                Filter
-                <Icon icon="arrow" variant="filterIcon" />
-              </Button>
             </div>
             {ads.slice(0, lastposted).map((ad) => {
               return (
-                <FeedAd
-                  key={ad._id}
-                  title={ad.title}
-                  description={ad.description}
-                  variant="homePage__ads__sidefeed__lastadded"
-                />
+                <Link href={`/ads/${ad.slug}`}>
+                  <a>
+                    <FeedAd
+                      key={ad._id}
+                      title={ad.title}
+                      description={ad.description}
+                      variant="homePage__ads__sidefeed__lastadded"
+                    />
+                  </a>
+                </Link>
               )
             })}
           </div>
@@ -113,12 +108,16 @@ const HomePage: FC<HomePageProps> = ({ categories, ads }) => {
               {ads.map((ad) => {
                 return (
                   <Grid item xs={12} sm={6} md={6} lg={4} key={ad._id}>
-                    <FeedAd
-                      title={ad.title}
-                      description={ad.description}
-                      variant="homePage__ads__mainfeed__adbox__ad"
-                      imgSource={ad.cover.url}
-                    />
+                    <Link href={`/ads/${ad.slug}`}>
+                      <a>
+                        <FeedAd
+                          title={ad.title}
+                          description={ad.description}
+                          variant="homePage__ads__mainfeed__adbox__ad"
+                          imgSource={ad.cover.url}
+                        />
+                      </a>
+                    </Link>
                   </Grid>
                 )
               })}

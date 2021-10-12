@@ -42,11 +42,6 @@ export async function getSubCategory(slug) {
   return categories?.[0]
 }
 
-export async function getProducts() {
-  const products = await fetchAPI("/products")
-  return products
-}
-
 export async function getHomePage() {
   const homePage = await fetchAPI("/home-page")
   return homePage
@@ -55,6 +50,11 @@ export async function getHomePage() {
 export async function getAds() {
   const ads = await fetchAPI("/user-ads")
   return ads
+}
+
+export async function getAd(slug) {
+  const ads = await fetchAPI(`/user-ads?slug=${slug}`)
+  return ads?.[0]
 }
 
 export async function getProduct(slug) {

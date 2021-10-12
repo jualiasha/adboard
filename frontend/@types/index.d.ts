@@ -79,9 +79,9 @@ export interface IUserAd {
     | "Lappeenranta"
     | "Hämeenlinna"
     | "Vaasa"
-  city?: string
   _id?: string
   cover?: any
+  slug?: string
 }
 
 export interface ISubCategory {

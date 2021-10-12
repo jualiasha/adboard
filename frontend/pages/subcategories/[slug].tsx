@@ -2,7 +2,7 @@ import React, { FC } from "react"
 import Head from "next/head"
 import { useRouter } from "next/router"
 import { getSubCategories, getSubCategory } from "../../utils/api"
-import { CategoryNames, ICategory, ISubCategory } from "../../@types"
+import { ISubCategory } from "../../@types"
 
 interface ISubCategoryPageProps {
   subcategory: ISubCategory
