@@ -54,6 +54,7 @@ export interface ICategory {
   imageSource: string
   slug: string
   _id: string
+  subcategories: ISubCategory[]
 }
 
 export interface IUserAd {

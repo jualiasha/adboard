@@ -1,14 +1,12 @@
 import React, { FC, useState } from "react"
 import Head from "next/head"
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos"
-import { getAds, getCategories, getSubCategories } from "../utils/api"
+import { getAds, getCategories } from "../utils/api"
 import { ICategory, ISubCategory, IUserAd } from "../@types"
 import CategoryLink from "../components/CategoryLink/CategoryLink"
 import Button from "../components/Buttons/Button"
 import FeedAd from "../components/FeedAd/FeedAd"
 import { Collapse, Grid } from "@mui/material"
 import SubcategoryMenu from "../components/SubcategoryMenu/SubcategoryMenu"
-import styles from "../components/Icon/Icon.module.scss"
 import Icon from "../components/Icon/Icon"
 
 interface HomePageProps {
@@ -17,20 +15,24 @@ interface HomePageProps {
   subcategories: ISubCategory[]
 }
 
-const HomePage: FC<HomePageProps> = ({ categories, ads, subcategories }) => {
-  const [menuOpen, setMenuOpen] = useState<boolean>(false) //open /close categories menu
-  const [checked, setChecked] = useState<boolean>(false)
+const HomePage: FC<HomePageProps> = ({ categories, ads }) => {
+  const [menuOpen, setMenuOpen] = useState<boolean>(() => false) //open /close categories menu
+  const [checked, setChecked] = useState<boolean>(() => false) //collapsing
+  const [subcategories, setSubcategories] = useState<ISubCategory[] | null>(
+    () => null
+  ) //setting subcategories for each category in menu
 
-  const menuOpenHandler = () => {
-    setChecked(true)
-    setMenuOpen(true)
+  const menuOpenHandler = (category: ICategory) => {
+    setSubcategories(() => category.subcategories)
+    setChecked(() => true)
+    setMenuOpen(() => true)
   }
+
   const menuCloseHandler = () => {
-    setChecked(false)
-    setMenuOpen(false)
+    setChecked(() => false)
+    setMenuOpen(() => false)
   }
 
-  console.log(categories)
   return (
     <>
       <Head>
@@ -56,7 +58,8 @@ const HomePage: FC<HomePageProps> = ({ categories, ads, subcategories }) => {
                 categoryName={category.categoryName}
                 key={category._id}
                 imageSource={category.imageSource}
-                click={menuOpenHandler}
+                click={() => menuOpenHandler(category)}
+                category={category}
               />
             )
           })}
@@ -122,8 +125,8 @@ const HomePage: FC<HomePageProps> = ({ categories, ads, subcategories }) => {
 export async function getStaticProps() {
   const categories = await getCategories()
   const ads = await getAds()
-  const subcategories = await getSubCategories()
-  return { props: { categories, ads, subcategories } }
+
+  return { props: { categories, ads } }
 }
 
 export default HomePage
