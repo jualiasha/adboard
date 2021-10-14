@@ -113,7 +113,7 @@ const HomePage: FC<HomePageProps> = ({ categories, ads }) => {
                         <FeedAd
                           title={ad.title}
                           description={ad.description}
-                          variant="homePage__ads__mainfeed__adbox__ad"
+                          variant="feedAd"
                           imgSource={ad.cover.url}
                         />
                       </a>

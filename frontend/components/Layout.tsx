@@ -2,6 +2,7 @@ import React, { FC } from "react"
 import NavLink from "./NavLink/NavLink"
 import Search from "./Search/Search"
 import { INavLink, IFooterMenuLink, ILogo } from "../@types/"
+import Link from "next/link"
 
 interface LayoutProps {
   logo: ILogo
@@ -20,7 +21,11 @@ const Layout: FC<LayoutProps> = ({
   return (
     <>
       <header>
-        <img className="header__logo" src={logo.logo.url} alt={logo.alt} />
+        <Link href="/">
+          <a>
+            <img className="header__logo" src={logo.logo.url} alt={logo.alt} />
+          </a>
+        </Link>
         <Search />
         <div className="header__navLinks">
           {navLinks.map((navLink: any) => {

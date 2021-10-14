@@ -82,6 +82,7 @@ export interface IUserAd {
   _id?: string
   cover?: any
   slug?: string
+  subcategories: ISubCategory[]
 }
 
 export interface ISubCategory {

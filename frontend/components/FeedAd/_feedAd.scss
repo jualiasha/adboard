@@ -1,0 +1,45 @@
+.feedAd {
+  background-color: $white;
+  margin-right: 1vw;
+  z-index: 10;
+  border-radius: $buttonBorders;
+  position: relative;
+  height: 25vh;
+  &__image {
+    z-index: -1;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    border-radius: $buttonBorders;
+    -webkit-border-radius: $buttonBorders;
+    -moz-border-radius: $buttonBorders;
+    -ms-border-radius: $buttonBorders;
+    -o-border-radius: $buttonBorders;
+  }
+  &__gradient {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: $buttonBorders;
+    -webkit-border-radius: $buttonBorders;
+    -moz-border-radius: $buttonBorders;
+    -ms-border-radius: $buttonBorders;
+    -o-border-radius: $buttonBorders;
+    background: linear-gradient(
+      90deg,
+      #ffffffee 50%,
+      rgba(255, 255, 255, 0) 121.2%
+    );
+    z-index: -1;
+  }
+  &__headingtext {
+    margin: 3vh 1vw;
+    font-size: 1rem;
+  }
+  &__descriptiontext {
+    margin: 0 1vw;
+    font-size: 1rem;
+    font-family: $notoSans;
+  }
+}

@@ -15,7 +15,7 @@ const FeedAd: FC<FeedAdProps> = ({
 }) => {
   return (
     <div className={variant}>
-      {variant.includes("main") ? (
+      {variant.includes("feedAd") ? (
         <>
           <img src={imgSource} alt={title} className={`${variant}__image`} />
           <div className={`${variant}__gradient`}></div>
