@@ -19,7 +19,11 @@ const filter: FC<FilterProps> = ({ categories }) => {
     return category.categoryName
   })
 
-  console.log(categoryValues)
+  let subcategoryValues = categories.map((category) => {
+    return category[values.category].subcategories
+  })
+
+  console.log(subcategoryValues)
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValues({ ...values, [event.target.name]: event.target.value })
@@ -71,9 +75,9 @@ const filter: FC<FilterProps> = ({ categories }) => {
             value={values.subcategory}
             onChange={handleChange}
           >
-            {categoryValues?.map((categoryName) => (
-              <MenuItem key={categoryName} value={categoryName}>
-                {categoryName}
+            {subcategoryValues?.map((subcategoryName) => (
+              <MenuItem key={subcategoryName} value={subcategoryName}>
+                {subcategoryName}
               </MenuItem>
             ))}
           </TextField>
