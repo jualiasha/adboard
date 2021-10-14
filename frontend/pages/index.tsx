@@ -89,10 +89,9 @@ const HomePage: FC<HomePageProps> = ({ categories, ads }) => {
             </div>
             {ads.slice(0, lastposted).map((ad) => {
               return (
-                <Link href={`/ads/${ad.slug}`}>
+                <Link href={`/ads/${ad.slug}`} key={ad._id}>
                   <a>
                     <FeedAd
-                      key={ad._id}
                       title={ad.title}
                       description={ad.description}
                       variant="homePage__ads__sidefeed__lastadded"

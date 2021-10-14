@@ -3,6 +3,7 @@ import Head from "next/head"
 import { useRouter } from "next/router"
 import { IUserAd } from "../../@types"
 import { getAds, getAd } from "../../utils/api"
+import Gallery from "../../components/Gallery/Gallery"
 
 interface IAdPage {
   ad: IUserAd
@@ -21,16 +22,13 @@ const AdPage: FC<IAdPage> = ({ ad }) => {
       </Head>
 
       <h4>{ad.title}</h4>
+      <p>Gallery</p>
+      {/* <Gallery /> */}
     </>
   )
 }
 
 export default AdPage
-
-export async function getStaticProps({ params }) {
-  const ad: IUserAd = await getAd(params.slug)
-  return { props: { ad } }
-}
 
 export async function getStaticPaths() {
   const ads: IUserAd[] = await getAds()
@@ -42,4 +40,9 @@ export async function getStaticPaths() {
     }),
     fallback: true,
   }
+}
+
+export async function getStaticProps({ params }) {
+  const ad: IUserAd = await getAd(params.slug)
+  return { props: { ad } }
 }
