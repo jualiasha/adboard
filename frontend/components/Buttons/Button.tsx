@@ -4,7 +4,7 @@ import styles from "./Button.module.scss"
 
 interface IButtonProps {
   type: ButtonTypes
-  handleClick: (event: any) => void
+  handleClick?: (event: any) => void
   variant: ButtonVariants
   size: Sizes
   disabled: boolean

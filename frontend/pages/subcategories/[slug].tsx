@@ -21,7 +21,7 @@ const SubCategoryPage: FC<ISubCategoryPageProps> = ({ subcategory, ads }) => {
   }
 
   return (
-    <section className="subcategories">
+    <div className="subcategories">
       <Head>
         <title>{subcategory.subCategoryName} </title>
       </Head>
@@ -34,7 +34,11 @@ const SubCategoryPage: FC<ISubCategoryPageProps> = ({ subcategory, ads }) => {
           handleClick={() => {}}
           disabled={false}
         >
-          Filter <Icon icon="arrow" variant="filterIcon" />
+          <Link href="/filter">
+            <a>
+              Filter <Icon icon="arrow" variant="filterIcon" />
+            </a>
+          </Link>
         </Button>
       </Grid>
       <Grid container justifyContent="space-between" alignItems="center">
@@ -55,7 +59,7 @@ const SubCategoryPage: FC<ISubCategoryPageProps> = ({ subcategory, ads }) => {
           )
         })}
       </Grid>
-    </section>
+    </div>
   )
 }
 

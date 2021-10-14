@@ -17,10 +17,6 @@ const SubcategoryMenu: FC<SubcategoryMenuProps> = ({
 }) => {
   return (
     <div className={`${variant}__subcategoryMenu`}>
-      {/* <CloseIcon
-        className={`${variant}__subcategoryMenu__close`}
-        onClick={closeClick}
-      /> */}
       <Icon icon="close" variant="closeIcon" click={closeClick} />
       <ul className={`${variant}__subcategoryMenu__list`}>
         {subcategories.map((subcategory) => {
