@@ -1,11 +1,12 @@
 import Link from "next/link"
 import React, { FC } from "react"
-import { ISubCategory } from "../../@types"
+import { ICategory, ISubCategory } from "../../@types"
 
 import Icon from "../Icon/Icon"
 
 interface SubcategoryMenuProps {
   subcategories: ISubCategory[]
+  categoryName: string
   variant: string
   closeClick: () => void
 }
@@ -14,6 +15,7 @@ const SubcategoryMenu: FC<SubcategoryMenuProps> = ({
   variant,
   subcategories,
   closeClick,
+  categoryName,
 }) => {
   return (
     <div className={`${variant}__subcategoryMenu`}>
@@ -25,7 +27,12 @@ const SubcategoryMenu: FC<SubcategoryMenuProps> = ({
               key={subcategory._id}
               className={`${variant}__subcategoryMenu__item`}
             >
-              <Link href={`/subcategories/${subcategory.slug}`}>
+              <Link
+                href={`/${categoryName
+                  .split(" ")
+                  .join("-")
+                  .toLocaleLowerCase()}/${subcategory.slug}`}
+              >
                 <a className={`${variant}__subcategoryMenu__item__link`}>
                   <Icon icon="arrow" variant="menuIcon" />
 

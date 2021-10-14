@@ -9,31 +9,22 @@ interface FilterProps {
 }
 
 const filter: FC<FilterProps> = ({ categories }) => {
-  const [city, setCity] = useState("All Finland")
-  const [catName, setCatName] = useState("")
-  const [subcatName, setSubcatName] = useState("")
   const [values, setValues] = useState({
     city: "All Finland",
     category: "",
     subcategory: "",
   })
 
-  const categoryValues = categories.map((category) => {
+  let categoryValues = categories.map((category) => {
     return category.categoryName
   })
+
   console.log(categoryValues)
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValues({ ...values, [event.target.name]: event.target.value })
   }
 
-  /* const handleChangeCity = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setCity(event.target.value)
-  }
-
-  const handleChangeCategory = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setCatName(event.target.value)
-  } */
   return (
     <div className="filter">
       <form>

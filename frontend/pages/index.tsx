@@ -23,9 +23,11 @@ const HomePage: FC<HomePageProps> = ({ categories, ads }) => {
     () => null
   ) //setting subcategories for each category in menu
   const [searchInput, setSearchInput] = useState<any>(() => null)
+  const [categoryName, setCategoryName] = useState<string | null>(() => null) //getting categoryName of the clicked category
   console.log(ads)
   const menuOpenHandler = (category: ICategory) => {
     setSubcategories(() => category.subcategories)
+    setCategoryName(() => category.categoryName)
     setChecked(() => true)
     setMenuOpen(() => true)
   }
@@ -76,6 +78,7 @@ const HomePage: FC<HomePageProps> = ({ categories, ads }) => {
         {menuOpen && (
           <Collapse in={checked}>
             <SubcategoryMenu
+              categoryName={categoryName}
               subcategories={subcategories}
               variant="homePage"
               closeClick={menuCloseHandler}
