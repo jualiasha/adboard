@@ -20,10 +20,12 @@ const filter: FC<FilterProps> = ({ categories }) => {
   })
 
   let subcategoryValues = categories.map((category) => {
-    return category[values.category].subcategories
+    return category.categoryName === values.category
+      ? category.subcategories
+      : null
   })
 
-  console.log(subcategoryValues)
+  console.log(categories)
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValues({ ...values, [event.target.name]: event.target.value })

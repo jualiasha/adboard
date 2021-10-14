@@ -27,12 +27,7 @@ const SubcategoryMenu: FC<SubcategoryMenuProps> = ({
               key={subcategory._id}
               className={`${variant}__subcategoryMenu__item`}
             >
-              <Link
-                href={`/${categoryName
-                  .split(" ")
-                  .join("-")
-                  .toLocaleLowerCase()}/${subcategory.slug}`}
-              >
+              <Link href={`/${categoryName}/${subcategory.slug}`}>
                 <a className={`${variant}__subcategoryMenu__item__link`}>
                   <Icon icon="arrow" variant="menuIcon" />
 

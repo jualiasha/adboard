@@ -27,7 +27,7 @@ const HomePage: FC<HomePageProps> = ({ categories, ads }) => {
   console.log(ads)
   const menuOpenHandler = (category: ICategory) => {
     setSubcategories(() => category.subcategories)
-    setCategoryName(() => category.categoryName)
+    setCategoryName(() => category.slug)
     setChecked(() => true)
     setMenuOpen(() => true)
   }
@@ -59,7 +59,11 @@ const HomePage: FC<HomePageProps> = ({ categories, ads }) => {
             handleClick={() => {}}
             disabled={false}
           >
-            Filter <Icon icon="arrow" variant="filterIcon" />
+            <Link href="/filter">
+              <a>
+                Filter <Icon icon="arrow" variant="filterIcon" />
+              </a>
+            </Link>
           </Button>
         </div>
         <div className="categoryLinks">
@@ -92,10 +96,9 @@ const HomePage: FC<HomePageProps> = ({ categories, ads }) => {
             </div>
             {ads.slice(0, lastposted).map((ad) => {
               return (
-                <Link href={`/ads/${ad.slug}`}>
+                <Link href={`/ads/${ad.slug}`} key={ad._id}>
                   <a>
                     <FeedAd
-                      key={ad._id}
                       title={ad.title}
                       description={ad.description}
                       variant="homePage__ads__sidefeed__lastadded"
