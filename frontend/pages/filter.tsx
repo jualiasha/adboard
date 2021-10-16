@@ -21,11 +21,16 @@ const filter: FC<FilterProps> = ({ categories }) => {
 
   let subcategoryValues = categories.map((category) => {
     return category?.categoryName === values.category
-      ? category.subcategories
-      : null
+      ? category.subcategories.map((subcategory) => {
+          return subcategory.subCategoryName
+        })
+      : []
   })
 
-  console.log(categories)
+  let subcategoryNames = subcategoryValues.find((el) => el.length > 0)
+
+  let subcategoryArray = subcategoryNames === undefined ? [] : subcategoryNames
+  console.log(subcategoryArray)
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValues({ ...values, [event.target.name]: event.target.value })
@@ -77,7 +82,7 @@ const filter: FC<FilterProps> = ({ categories }) => {
             value={values.subcategory}
             onChange={handleChange}
           >
-            {subcategoryValues?.map((subcategoryName) => (
+            {subcategoryArray?.map((subcategoryName) => (
               <MenuItem key={subcategoryName} value={subcategoryName}>
                 {subcategoryName}
               </MenuItem>
