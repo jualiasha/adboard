@@ -20,7 +20,7 @@ const filter: FC<FilterProps> = ({ categories }) => {
   })
 
   let subcategoryValues = categories.map((category) => {
-    return category.categoryName === values.category
+    return category?.categoryName === values.category
       ? category.subcategories
       : null
   })
