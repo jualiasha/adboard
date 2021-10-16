@@ -1,0 +1,29 @@
+@import "../../styles/sass/variables";
+
+.icon {
+  width: 2vw;
+}
+
+.filterIcon {
+  margin-left: 1vw;
+  margin-top: 0.5vh;
+}
+
+.searchIcon {
+  color: $black;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.closeIcon {
+  width: 1.5rem;
+  height: 1.5rem;
+  position: absolute;
+  right: 0;
+  top: 0;
+  cursor: pointer;
+}
+
+.menuIcon {
+  margin-top: 1vh;
+}
