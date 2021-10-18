@@ -52,19 +52,19 @@ const HomePage: FC<HomePageProps> = ({ categories, ads }) => {
       <div className="homePage">
         <div className="homePage__categoryheading">
           <h2>Pinned Categories</h2>
-          <Button
-            type="button"
-            variant="secondary"
-            size="sm"
-            handleClick={() => {}}
-            disabled={false}
-          >
-            <Link href="/filter">
-              <a>
+          <Link href="/filter">
+            <a>
+              <Button
+                type="button"
+                variant="secondary"
+                size="sm"
+                handleClick={() => {}}
+                disabled={false}
+              >
                 Filter <Icon icon="arrow" variant="filterIcon" />
-              </a>
-            </Link>
-          </Button>
+              </Button>
+            </a>
+          </Link>
         </div>
         <div className="categoryLinks">
           {categories.map((category: ICategory) => {

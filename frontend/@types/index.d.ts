@@ -102,6 +102,7 @@ export interface InputField {
   label: string
   required: boolean
   options?: string[]
+  disabled?: boolean
 }
 
 export interface IFilterForm {

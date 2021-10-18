@@ -99,21 +99,24 @@ const filter: FC<FilterProps> = ({ categories }) => {
             value={filterForm.subcategory}
             handleChange={(event: any) => handleChange(event)}
           />
+          {subSection.length > 0 ? (
+            <Select
+              inputField={{
+                id: "subSection",
+                name: "subSection",
+                label: "Section",
+                type: "select",
+                required: true,
+                options: subSection,
+              }}
+              value={filterForm.subSection}
+              handleChange={(event: any) => handleChange(event)}
+            />
+          ) : (
+            <div></div>
+          )}
         </Grid>
-        <Grid container justifyContent="space-between" mt={3}>
-          <Select
-            inputField={{
-              id: "subSection",
-              name: "subSection",
-              label: "Section",
-              type: "select",
-              required: true,
-              options: subSection,
-            }}
-            value={filterForm.subSection}
-            handleChange={(event: any) => handleChange(event)}
-          />
-        </Grid>
+        <Grid container justifyContent="space-between" mt={3}></Grid>
       </form>
     </div>
   )

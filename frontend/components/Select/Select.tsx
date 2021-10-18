@@ -9,7 +9,7 @@ interface ISelectProps {
 }
 
 const Select = ({ inputField, value, handleChange }) => {
-  const { id, type, name, label, options, required } = inputField
+  const { id, type, name, label, options, required, disabled } = inputField
   return (
     <TextField
       className="filter__category"
@@ -20,6 +20,7 @@ const Select = ({ inputField, value, handleChange }) => {
       value={value}
       onChange={handleChange}
       required={required}
+      disabled={disabled}
     >
       {options.map((option) => (
         <MenuItem key={option} value={option}>
