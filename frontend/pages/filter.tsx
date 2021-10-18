@@ -47,6 +47,9 @@ const filter: FC<FilterProps> = ({ categories }) => {
         .then((resp) => {
           setSubSection(() => resp.data[0].subSection.values)
         })
+      // axios get user ads
+      //http://localhost:1337/subcategories?subCategoryName=Appartments
+      // resp.data[0].user_ads user_ad
     }
   }
 

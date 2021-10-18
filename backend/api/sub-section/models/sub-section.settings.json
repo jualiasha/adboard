@@ -12,12 +12,9 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "subSection": {
-      "type": "json"
-    },
     "subcategoryName": {
       "type": "string",
-      "unique": true,
+      "unique": false,
       "required": true
     },
     "user_ads": {
@@ -27,6 +24,11 @@
     "subcategories": {
       "collection": "subcategory",
       "via": "sub_section"
+    },
+    "subsection": {
+      "type": "string",
+      "unique": true,
+      "required": true
     }
   }
 }
