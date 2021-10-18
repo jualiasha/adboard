@@ -1,0 +1,32 @@
+{
+  "kind": "collectionType",
+  "collectionName": "sub_sections",
+  "info": {
+    "name": "SubSection",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "subSection": {
+      "type": "json"
+    },
+    "subcategoryName": {
+      "type": "string",
+      "unique": true,
+      "required": true
+    },
+    "user_ads": {
+      "via": "sub_section",
+      "collection": "user-ads"
+    },
+    "subcategories": {
+      "collection": "subcategory",
+      "via": "sub_section"
+    }
+  }
+}

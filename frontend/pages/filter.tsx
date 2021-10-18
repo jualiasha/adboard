@@ -1,39 +1,53 @@
 import { Grid, MenuItem, TextField } from "@mui/material"
-import React, { FC, useState } from "react"
-import { ICategory } from "../@types"
+import React, { FC, useEffect, useState } from "react"
+import { ICategory, IFilterForm, ISubCategory } from "../@types"
 import { getCategories } from "../utils/api"
 import { citiesEn } from "../utils/cities"
+import Select from "../components/Select/Select"
+import { resetFilterForm } from "../utils/reset"
+import axios from "axios"
 
 interface FilterProps {
   categories: ICategory[]
 }
 
 const filter: FC<FilterProps> = ({ categories }) => {
-  const [values, setValues] = useState({
-    city: "All Finland",
-    category: "",
-    subcategory: "",
-  })
+  console.log(categories)
 
-  let categoryValues = categories.map((category) => {
-    return category.categoryName
-  })
-
-  let subcategoryValues = categories.map((category) => {
-    return category?.categoryName === values.category
-      ? category.subcategories.map((subcategory) => {
-          return subcategory.subCategoryName
-        })
-      : []
-  })
-
-  let subcategoryNames = subcategoryValues.find((el) => el.length > 0)
-
-  let subcategoryArray = subcategoryNames === undefined ? [] : subcategoryNames
-  console.log(subcategoryArray)
+  const [filterForm, setFilterForm] = useState<IFilterForm>(() =>
+    resetFilterForm()
+  )
+  const [subcategories, setSubcategories] = useState<string[]>(() => [])
+  console.log(filterForm)
+  console.log(subcategories)
+  const [subSection, setSubSection] = useState<string[]>(() => [])
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValues({ ...values, [event.target.name]: event.target.value })
+    setFilterForm({ ...filterForm, [event.target.name]: event.target.value })
+    if (event.target.name === "category") {
+      const selectedSubcategories = categories
+        .filter((category) => {
+          return category.categoryName === event.target.value
+        })
+        .map((category) => {
+          return category.subcategories
+        })
+
+      setSubcategories(() =>
+        selectedSubcategories[0].map(
+          (subcategory) => subcategory.subCategoryName
+        )
+      )
+    }
+    if (event.target.name === "subcategory") {
+      axios
+        .get(
+          `http://localhost:1337/sub-sections?subcategoryName=${event.target.value}`
+        )
+        .then((resp) => {
+          setSubSection(() => resp.data[0].subSection.values)
+        })
+    }
   }
 
   return (
@@ -41,53 +55,59 @@ const filter: FC<FilterProps> = ({ categories }) => {
       <form>
         <Grid container>
           <h1 className="filter__heading">Filter</h1>
-          <TextField
-            /* id="outlined-select-currency" */
-            className="header__searchBox__select"
-            select
-            name="city"
-            label=""
-            value={values.city}
-            onChange={handleChange}
-          >
-            {citiesEn.map((cityname) => (
-              <MenuItem key={cityname} value={cityname}>
-                {cityname}
-              </MenuItem>
-            ))}
-          </TextField>
+          <Select
+            inputField={{
+              id: "city",
+              name: "city",
+              label: "City",
+              type: "select",
+              required: true,
+              options: citiesEn,
+            }}
+            value={filterForm.city}
+            handleChange={(event: any) => handleChange(event)}
+          />
         </Grid>
         <Grid container justifyContent="space-between" mt={5}>
-          <TextField
-            /* id="outlined-select-currency" */
-            className="filter__category"
-            select
-            name="category"
-            label="...Category"
-            value={values.category}
-            onChange={handleChange}
-          >
-            {categoryValues?.map((categoryName) => (
-              <MenuItem key={categoryName} value={categoryName}>
-                {categoryName}
-              </MenuItem>
-            ))}
-          </TextField>
-          <TextField
-            /* id="outlined-select-currency" */
-            className="filter__category"
-            select
-            name="subcategory"
-            label="...Subcategory"
-            value={values.subcategory}
-            onChange={handleChange}
-          >
-            {subcategoryArray?.map((subcategoryName) => (
-              <MenuItem key={subcategoryName} value={subcategoryName}>
-                {subcategoryName}
-              </MenuItem>
-            ))}
-          </TextField>
+          <Select
+            inputField={{
+              id: "category",
+              name: "category",
+              label: "Category",
+              type: "select",
+              required: true,
+              options: categories.map((category) => category.categoryName),
+            }}
+            value={filterForm.category}
+            handleChange={(event: any) => handleChange(event)}
+          />
+
+          <Select
+            inputField={{
+              id: "subcategory",
+              name: "subcategory",
+              label: "Subcategory",
+              type: "select",
+              required: true,
+              options: subcategories,
+            }}
+            value={filterForm.subcategory}
+            handleChange={(event: any) => handleChange(event)}
+          />
+        </Grid>
+        <Grid container justifyContent="space-between" mt={3}>
+          <Select
+            inputField={{
+              id: "subsection",
+              name: "subsection",
+              label: "Section",
+              type: "select",
+              required: true,
+              options: subSection,
+            }}
+            value={filterForm.subSection}
+            handleChange={(event: any) => handleChange(event)}
+          />
         </Grid>
       </form>
     </div>

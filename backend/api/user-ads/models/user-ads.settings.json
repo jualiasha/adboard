@@ -8,26 +8,45 @@
   "options": {
     "increments": true,
     "timestamps": true,
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
-  "pluginOptions": {},
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
   "attributes": {
     "title": {
       "type": "string",
       "required": true,
-      "minLength": 5
+      "minLength": 5,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "content": {
       "type": "richtext",
       "required": true,
       "minLength": 5,
-      "maxLength": 1000
+      "maxLength": 1000,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "description": {
       "type": "text",
       "required": true,
       "minLength": 10,
-      "maxLength": 300
+      "maxLength": 300,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "cover": {
       "model": "file",
@@ -37,7 +56,11 @@
       ],
       "plugin": "upload",
       "required": false,
-      "pluginOptions": {}
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "gallery": {
       "collection": "file",
@@ -47,7 +70,11 @@
       ],
       "plugin": "upload",
       "required": false,
-      "pluginOptions": {}
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "slug": {
       "type": "uid",
@@ -55,12 +82,22 @@
       "required": true
     },
     "email": {
-      "type": "email"
+      "type": "email",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "phoneNumber": {
       "type": "string",
       "required": true,
-      "minLength": 5
+      "minLength": 5,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "subcategories": {
       "via": "user_ad",
@@ -91,7 +128,16 @@
         "Vaasa"
       ],
       "required": false,
-      "default": "Helsinki"
+      "default": "Helsinki",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "sub_section": {
+      "via": "user_ads",
+      "model": "sub-section"
     }
   }
 }

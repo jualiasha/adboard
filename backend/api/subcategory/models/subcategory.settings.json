@@ -30,6 +30,13 @@
     },
     "user_ads": {
       "collection": "user-ads"
+    },
+    "sub_sections": {
+      "collection": "sub-section"
+    },
+    "sub_section": {
+      "via": "subcategories",
+      "model": "sub-section"
     }
   }
 }
