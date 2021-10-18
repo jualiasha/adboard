@@ -1,0 +1,19 @@
+{
+  "kind": "collectionType",
+  "collectionName": "room_numbers",
+  "info": {
+    "name": "Room Number"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "rooms": {
+      "type": "string",
+      "unique": true
+    }
+  }
+}

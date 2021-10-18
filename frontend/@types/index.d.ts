@@ -105,7 +105,7 @@ export interface InputField {
 }
 
 export interface IFilterForm {
-  city: Cities
+  city: Cities | ""
   category: CategoryNames | ""
   subcategory: string
   subSection: string

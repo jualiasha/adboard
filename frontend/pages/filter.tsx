@@ -19,7 +19,7 @@ const filter: FC<FilterProps> = ({ categories }) => {
   )
   const [subcategories, setSubcategories] = useState<string[]>(() => [])
   console.log(filterForm)
-  console.log(subcategories)
+
   const [subSection, setSubSection] = useState<string[]>(() => [])
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -45,7 +45,9 @@ const filter: FC<FilterProps> = ({ categories }) => {
           `http://localhost:1337/sub-sections?subcategoryName=${event.target.value}`
         )
         .then((resp) => {
-          setSubSection(() => resp.data[0].subSection.values)
+          setSubSection(() =>
+            resp.data.map((subsections) => subsections.subsection)
+          )
         })
       // axios get user ads
       //http://localhost:1337/subcategories?subCategoryName=Appartments
@@ -101,8 +103,8 @@ const filter: FC<FilterProps> = ({ categories }) => {
         <Grid container justifyContent="space-between" mt={3}>
           <Select
             inputField={{
-              id: "subsection",
-              name: "subsection",
+              id: "subSection",
+              name: "subSection",
               label: "Section",
               type: "select",
               required: true,

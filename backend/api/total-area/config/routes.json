@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/total-areas",
+      "handler": "total-area.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/total-areas/count",
+      "handler": "total-area.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/total-areas/:id",
+      "handler": "total-area.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/total-areas",
+      "handler": "total-area.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/total-areas/:id",
+      "handler": "total-area.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/total-areas/:id",
+      "handler": "total-area.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

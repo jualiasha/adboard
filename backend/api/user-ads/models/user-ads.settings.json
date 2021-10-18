@@ -136,8 +136,11 @@
       }
     },
     "sub_section": {
-      "via": "user_ads",
-      "model": "sub-section"
+      "model": "sub-section",
+      "via": "user_ad"
+    },
+    "total_area": {
+      "model": "total-area"
     }
   }
 }

@@ -2,33 +2,36 @@
   "kind": "collectionType",
   "collectionName": "sub_sections",
   "info": {
-    "name": "SubSection",
-    "description": ""
+    "name": "SubSection"
   },
   "options": {
     "increments": true,
     "timestamps": true,
-    "draftAndPublish": false
+    "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
-    "subcategoryName": {
-      "type": "string",
-      "unique": false,
-      "required": true
-    },
-    "user_ads": {
-      "via": "sub_section",
-      "collection": "user-ads"
-    },
-    "subcategories": {
-      "collection": "subcategory",
-      "via": "sub_section"
-    },
     "subsection": {
       "type": "string",
-      "unique": true,
-      "required": true
+      "unique": true
+    },
+    "subcategoryName": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "subsection"
+    },
+    "subcategory": {
+      "model": "subcategory",
+      "via": "sub_sections"
+    },
+    "user_ads": {
+      "collection": "user-ads"
+    },
+    "user_ad": {
+      "via": "sub_section",
+      "model": "user-ads"
     }
   }
 }

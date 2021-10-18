@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "total_areas",
+  "info": {
+    "name": "Total Area",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "squareMetres": {
+      "type": "string",
+      "default": "20-30",
+      "unique": true
+    }
+  }
+}
