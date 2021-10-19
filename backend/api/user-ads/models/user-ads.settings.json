@@ -136,11 +136,24 @@
       }
     },
     "sub_section": {
-      "model": "sub-section",
+      "via": "user_ad",
+      "model": "sub-section"
+    },
+    "price": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "decimal"
+    },
+    "room_number": {
+      "model": "room-number",
       "via": "user_ad"
     },
     "total_area": {
-      "model": "total-area"
+      "model": "total-area",
+      "via": "user_ad"
     }
   }
 }

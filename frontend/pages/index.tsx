@@ -9,6 +9,7 @@ import { Collapse, Grid } from "@mui/material"
 import SubcategoryMenu from "../components/SubcategoryMenu/SubcategoryMenu"
 import Icon from "../components/Icon/Icon"
 import Link from "next/link"
+import { useSelector } from "react-redux"
 
 interface HomePageProps {
   categories: ICategory[]
@@ -16,7 +17,9 @@ interface HomePageProps {
   subcategories: ISubCategory[]
 }
 
-const HomePage: FC<HomePageProps> = ({ categories, ads }) => {
+const HomePage: FC<HomePageProps> = () => {
+  const categories = useSelector((state: any) => state.categories)
+  const ads = useSelector((state: any) => state.ads)
   const [menuOpen, setMenuOpen] = useState<boolean>(() => false) //open /close categories menu
   const [checked, setChecked] = useState<boolean>(() => false) //collapsing
   const [subcategories, setSubcategories] = useState<ISubCategory[] | null>(
@@ -135,11 +138,11 @@ const HomePage: FC<HomePageProps> = ({ categories, ads }) => {
   )
 }
 
-export async function getStaticProps() {
+/* export async function getStaticProps() {
   const categories = await getCategories()
   const ads = await getAds()
 
   return { props: { categories, ads } }
-}
+} */
 
 export default HomePage

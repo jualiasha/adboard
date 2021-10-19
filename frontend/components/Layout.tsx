@@ -1,8 +1,11 @@
-import React, { FC } from "react"
+import React, { FC, useEffect } from "react"
 import NavLink from "./NavLink/NavLink"
 import Search from "./Search/Search"
 import { INavLink, IFooterMenuLink, ILogo } from "../@types/"
 import Link from "next/link"
+import { useDispatch } from "react-redux"
+import { initializeCategories } from "./store/actions/categoryActions"
+import { initializeAds } from "./store/actions/adsActions"
 
 interface LayoutProps {
   logo: ILogo
@@ -18,6 +21,13 @@ const Layout: FC<LayoutProps> = ({
   footerMenuLinks,
   navLinks,
 }) => {
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(initializeCategories())
+    dispatch(initializeAds())
+  }, [dispatch])
+
   return (
     <>
       <header>
