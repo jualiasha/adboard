@@ -27,19 +27,13 @@ const SubCategoryPage: FC<ISubCategoryPageProps> = ({ subcategory, ads }) => {
       </Head>
       <Grid container justifyContent="space-between">
         <h1>{subcategory.subCategoryName}</h1>
-        <Link href="/filter">
-          <a>
-            <Button
-              type="button"
-              variant="secondary"
-              size="sm"
-              handleClick={() => {}}
-              disabled={false}
-            >
+        <Button type="button" variant="secondary" size="sm" disabled={false}>
+          <Link href="/filter">
+            <a>
               Filter <Icon icon="arrow" variant="filterIcon" />
-            </Button>
-          </a>
-        </Link>
+            </a>
+          </Link>
+        </Button>
       </Grid>
       <Grid container justifyContent="space-between" alignItems="center">
         {ads.map((ad) => {

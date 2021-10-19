@@ -23,9 +23,11 @@ const HomePage: FC<HomePageProps> = ({ categories, ads }) => {
     () => null
   ) //setting subcategories for each category in menu
   const [searchInput, setSearchInput] = useState<any>(() => null)
+  const [categoryName, setCategoryName] = useState<string | null>(() => null) //getting categoryName of the clicked category
   console.log(ads)
   const menuOpenHandler = (category: ICategory) => {
     setSubcategories(() => category.subcategories)
+    setCategoryName(() => category.slug)
     setChecked(() => true)
     setMenuOpen(() => true)
   }
@@ -50,15 +52,19 @@ const HomePage: FC<HomePageProps> = ({ categories, ads }) => {
       <div className="homePage">
         <div className="homePage__categoryheading">
           <h2>Pinned Categories</h2>
-          <Button
-            type="button"
-            variant="secondary"
-            size="sm"
-            handleClick={() => {}}
-            disabled={false}
-          >
-            Filter <Icon icon="arrow" variant="filterIcon" />
-          </Button>
+          <Link href="/filter">
+            <a>
+              <Button
+                type="button"
+                variant="secondary"
+                size="sm"
+                handleClick={() => {}}
+                disabled={false}
+              >
+                Filter <Icon icon="arrow" variant="filterIcon" />
+              </Button>
+            </a>
+          </Link>
         </div>
         <div className="categoryLinks">
           {categories.map((category: ICategory) => {
@@ -76,6 +82,7 @@ const HomePage: FC<HomePageProps> = ({ categories, ads }) => {
         {menuOpen && (
           <Collapse in={checked}>
             <SubcategoryMenu
+              categoryName={categoryName}
               subcategories={subcategories}
               variant="homePage"
               closeClick={menuCloseHandler}
@@ -89,10 +96,9 @@ const HomePage: FC<HomePageProps> = ({ categories, ads }) => {
             </div>
             {ads.slice(0, lastposted).map((ad) => {
               return (
-                <Link href={`/ads/${ad.slug}`}>
+                <Link href={`/ads/${ad.slug}`} key={ad._id}>
                   <a>
                     <FeedAd
-                      key={ad._id}
                       title={ad.title}
                       description={ad.description}
                       variant="homePage__ads__sidefeed__lastadded"

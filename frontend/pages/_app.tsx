@@ -6,7 +6,6 @@ import { getFooterLinks, getLogo, getNavLinks } from "../utils/api"
 import "../styles/sass/index.scss"
 
 const MyApp = ({ Component, pageProps }) => {
-  console.log(pageProps.logo)
   return (
     <Layout
       logo={pageProps.logo}

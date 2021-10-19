@@ -17,7 +17,26 @@ export type TextInputTypes =
   | "number"
   | "url"
   | "search"
+  | "select"
 export type TargetTypes = "_blank" | "_self" | "_parent" | "_top"
+export type Cities =
+  | "All Finland"
+  | "Helsinki"
+  | "Vantaa"
+  | "Espoo"
+  | "Oulu"
+  | "Turku"
+  | "Tampere"
+  | "Rovaniemi"
+  | "Jyväskylä"
+  | "Kuopio"
+  | "Lahti"
+  | "Pori"
+  | "Kouvola"
+  | "Joensuu"
+  | "Lappeenranta"
+  | "Hämeenlinna"
+  | "Vaasa"
 
 /** User and account */
 
@@ -61,24 +80,7 @@ export interface IUserAd {
   title: string
   description: string
   content: string
-  city?:
-    | "All Finland"
-    | "Helsinki"
-    | "Vantaa"
-    | "Espoo"
-    | "Oulu"
-    | "Turku"
-    | "Tampere"
-    | "Rovaniemi"
-    | "Jyväskylä"
-    | "Kuopio"
-    | "Lahti"
-    | "Pori"
-    | "Kouvola"
-    | "Joensuu"
-    | "Lappeenranta"
-    | "Hämeenlinna"
-    | "Vaasa"
+  city?: Cities
   _id?: string
   cover?: any
   slug?: string
@@ -93,11 +95,33 @@ export interface ISubCategory {
   userAd?: IUserAd
 }
 
+export interface InputField {
+  id: string
+  type: TextInputTypes
+  name: string
+  label: string
+  required: boolean
+  options?: string[]
+  disabled?: boolean
+}
+
+export interface IFilterForm {
+  city: Cities | ""
+  category: CategoryNames | ""
+  subcategory: string
+  subSection: string
+}
+
 export interface INavLink {
   imageSource: string
   imageName: string
   variant?: string
   icon: Icons
+}
+
+export interface ISubSection {
+  subSectionName: string
+  values: string[]
 }
 
 interface Logo {
