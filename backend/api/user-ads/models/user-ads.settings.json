@@ -147,13 +147,11 @@
       },
       "type": "decimal"
     },
-    "room_number": {
-      "model": "room-number",
-      "via": "user_ad"
-    },
     "total_area": {
-      "model": "total-area",
-      "via": "user_ad"
+      "model": "total-area"
+    },
+    "room_number": {
+      "model": "room-number"
     }
   }
 }

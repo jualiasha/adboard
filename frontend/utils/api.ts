@@ -51,6 +51,10 @@ export async function getAds() {
   const ads = await fetchAPI("/user-ads")
   return ads
 }
+export async function getAreas() {
+  const ads = await fetchAPI("/total-areas")
+  return ads
+}
 
 export async function getAd(slug) {
   const ads = await fetchAPI(`/user-ads?slug=${slug}`)

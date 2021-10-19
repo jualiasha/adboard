@@ -111,6 +111,11 @@ export interface IFilterForm {
   category: CategoryNames | ""
   subcategory: string
   subSection: string
+  totalArea: string
+}
+
+export interface IAreas {
+  sub_sections: any[]
 }
 
 export interface INavLink {
@@ -121,8 +126,8 @@ export interface INavLink {
 }
 
 export interface ISubSection {
-  subSectionName: string
-  values: string[]
+  sub_sections: any[]
+  squareMetres?: string
 }
 
 interface Logo {

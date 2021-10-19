@@ -1,17 +1,19 @@
 import { Grid } from "@mui/material"
 import React, { FC, useState } from "react"
-import { ICategory, IFilterForm } from "../../@types"
+import { IAreas, ICategory, IFilterForm } from "../../@types"
 
 import { citiesEn } from "../../utils/cities"
 import Select from "../../components/Select/Select"
 import { resetFilterForm } from "../../utils/reset"
 import axios from "axios"
+import { getAreas } from "../../utils/api"
 
 interface FilterFormProps {
   categories: ICategory[]
+  areas: IAreas
 }
 
-const FilterForm: FC<FilterFormProps> = ({ categories }) => {
+const FilterForm: FC<FilterFormProps> = ({ categories, areas }) => {
   console.log(categories)
 
   const [filterForm, setFilterForm] = useState<IFilterForm>(() =>
@@ -21,7 +23,8 @@ const FilterForm: FC<FilterFormProps> = ({ categories }) => {
   console.log(filterForm)
 
   const [subSection, setSubSection] = useState<string[]>(() => [])
-
+  const [totalAreas, setTotalAreas] = useState<string[]>(() => [])
+  console.log(totalAreas)
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFilterForm({ ...filterForm, [event.target.name]: event.target.value })
     if (event.target.name === "category") {
@@ -52,6 +55,12 @@ const FilterForm: FC<FilterFormProps> = ({ categories }) => {
       // axios get user ads
       //http://localhost:1337/subcategories?subCategoryName=Appartments
       // resp.data[0].user_ads user_ad
+    }
+    if (event.target.name === "subSection") {
+      let selected = areas?.sub_sections.filter(
+        (subsection) => subsection.subsection === event.target.value
+      )
+      console.log(selected)
     }
   }
 
@@ -121,5 +130,9 @@ const FilterForm: FC<FilterFormProps> = ({ categories }) => {
     </div>
   )
 }
+export async function getServerSideProps() {
+  const areas = await getAreas()
 
+  return { props: { areas } }
+}
 export default FilterForm

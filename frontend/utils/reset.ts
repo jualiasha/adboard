@@ -6,5 +6,6 @@ export function resetFilterForm(): IFilterForm {
     category: "",
     subcategory: "",
     subSection: "",
+    totalArea: "",
   }
 }
