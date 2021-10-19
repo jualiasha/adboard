@@ -1,11 +1,12 @@
-import { Grid, MenuItem, TextField } from "@mui/material"
-import React, { FC, useEffect, useState } from "react"
+import { Grid } from "@mui/material"
+import React, { FC, useState } from "react"
 import { ICategory, IFilterForm, ISubCategory } from "../@types"
 import { getCategories } from "../utils/api"
 import { citiesEn } from "../utils/cities"
 import Select from "../components/Select/Select"
 import { resetFilterForm } from "../utils/reset"
 import axios from "axios"
+import SimpleBackdrop from "../components/Backdrop/Backdrop"
 
 interface FilterProps {
   categories: ICategory[]
