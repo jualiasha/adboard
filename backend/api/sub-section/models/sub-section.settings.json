@@ -2,7 +2,8 @@
   "kind": "collectionType",
   "collectionName": "sub_sections",
   "info": {
-    "name": "SubSection"
+    "name": "SubSection",
+    "description": ""
   },
   "options": {
     "increments": true,

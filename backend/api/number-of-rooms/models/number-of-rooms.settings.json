@@ -1,9 +1,8 @@
 {
   "kind": "collectionType",
-  "collectionName": "total_areas",
+  "collectionName": "number_of_rooms",
   "info": {
-    "name": "Total Area",
-    "description": ""
+    "name": "Number of rooms"
   },
   "options": {
     "increments": true,
@@ -12,14 +11,9 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "squareMetres": {
+    "rooms": {
       "type": "string",
-      "default": "20-30",
       "unique": true
-    },
-    "user_ad": {
-      "via": "total_area",
-      "model": "user-ads"
     }
   }
 }
