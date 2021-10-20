@@ -1,0 +1,17 @@
+.newadd {
+  label {
+    display: inline-block;
+    width: 100px;
+  }
+  input {
+    display: inline-block;
+    margin: 5px;
+    max-width: 227px;
+    padding: 1vh 0;
+    border-radius: $inputBorders;
+    -webkit-border-radius: $inputBorders;
+    -moz-border-radius: $inputBorders;
+    -ms-border-radius: $inputBorders;
+    -o-border-radius: $inputBorders;
+  }
+}

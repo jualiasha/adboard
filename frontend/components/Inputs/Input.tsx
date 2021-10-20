@@ -11,6 +11,7 @@ interface IInputProps {
   errorText: string
   required: boolean
   inputHandler: () => void
+  variant: string
 }
 
 const Input: FC<IInputProps> = ({
@@ -23,10 +24,13 @@ const Input: FC<IInputProps> = ({
   inputHandler,
   errorText,
   required,
+  variant,
 }) => {
   return (
     <>
-      <label htmlFor={inputId}>{inputLabel}</label>
+      <label className={variant} htmlFor={inputId}>
+        {inputLabel}
+      </label>
       <input
         type={inputType}
         id={inputId}
