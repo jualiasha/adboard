@@ -7,13 +7,15 @@ import Select from "../../components/Select/Select"
 import { resetFilterForm } from "../../utils/reset"
 import axios from "axios"
 import { getAreas } from "../../utils/api"
+import { useSelector } from "react-redux"
 
 interface FilterFormProps {
-  categories: ICategory[]
   areas: IAreas
 }
 
-const FilterForm: FC<FilterFormProps> = ({ categories, areas }) => {
+const FilterForm: FC<FilterFormProps> = ({ areas }) => {
+  const categories = useSelector((state: any) => state.categories)
+
   console.log(categories)
 
   const [filterForm, setFilterForm] = useState<IFilterForm>(() =>
@@ -57,9 +59,10 @@ const FilterForm: FC<FilterFormProps> = ({ categories, areas }) => {
       // resp.data[0].user_ads user_ad
     }
     if (event.target.name === "subSection") {
-      let selected = areas?.sub_sections.filter(
-        (subsection) => subsection.subsection === event.target.value
-      )
+      console.log(areas, event.target.value)
+      let selected = areas?.sub_sections?.find((subsection) => {
+        return subsection.subsection === event.target.value
+      })
       console.log(selected)
     }
   }
@@ -130,9 +133,5 @@ const FilterForm: FC<FilterFormProps> = ({ categories, areas }) => {
     </div>
   )
 }
-export async function getServerSideProps() {
-  const areas = await getAreas()
 
-  return { props: { areas } }
-}
 export default FilterForm

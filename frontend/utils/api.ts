@@ -52,8 +52,8 @@ export async function getAds() {
   return ads
 }
 export async function getAreas() {
-  const ads = await fetchAPI("/total-areas")
-  return ads
+  const areas = await fetchAPI("/total-areas")
+  return areas
 }
 
 export async function getAd(slug) {
