@@ -5,6 +5,7 @@ import FeedAd from "../components/FeedAd/FeedAd"
 import Input from "../components/Inputs/Input"
 import Select from "../components/Select/Select"
 import { citiesEn } from "../utils/cities"
+import ImageUploading from "react-images-uploading"
 
 const newadd: FC = () => {
   const [postAd, setPostAd] = useState<IUserAd>({
@@ -19,6 +20,14 @@ const newadd: FC = () => {
     price: "",
   })
   const [errorText, setErrorText] = useState<string>("")
+  const [images, setImages] = useState<[]>([])
+  const maxNumber: number = 69
+
+  const onChange = (imageList, addUpdateIndex) => {
+    // data for submit
+    console.log(imageList, addUpdateIndex)
+    setImages(imageList)
+  }
 
   const errorTextHandler = (field: string) => {
     if (!postAd.title) {
@@ -132,6 +141,51 @@ const newadd: FC = () => {
               }}
             />
           </Grid>
+        </Grid>
+        <Grid container mt={3}>
+          <ImageUploading
+            multiple
+            value={images}
+            onChange={onChange}
+            maxNumber={maxNumber}
+            dataURLKey="data_url"
+          >
+            {({
+              imageList,
+              onImageUpload,
+              onImageRemoveAll,
+              onImageUpdate,
+              onImageRemove,
+              isDragging,
+              dragProps,
+            }) => (
+              // write your building UI
+              <div className="upload__image-wrapper">
+                <button
+                  style={isDragging ? { color: "red" } : undefined}
+                  onClick={onImageUpload}
+                  {...dragProps}
+                >
+                  Upload images
+                </button>
+                &nbsp;
+                <button onClick={onImageRemoveAll}>Remove all images</button>
+                {imageList.map((image, index) => (
+                  <div key={index} className="image-item">
+                    <img src={image["data_url"]} alt="" width="100" />
+                    <div className="image-item__btn-wrapper">
+                      <button onClick={() => onImageUpdate(index)}>
+                        Update
+                      </button>
+                      <button onClick={() => onImageRemove(index)}>
+                        Remove
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </ImageUploading>
         </Grid>
       </form>
     </div>

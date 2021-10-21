@@ -125,6 +125,7 @@ export interface INavLink {
   imageName: string
   variant?: string
   icon: Icons
+  link: string
 }
 
 export interface ISubSection {
