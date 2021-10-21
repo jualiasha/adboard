@@ -80,12 +80,19 @@ export interface IUserAd {
   title: string
   description: string
   content: string
-  city?: Cities
+  city?: Cities | ""
   _id?: string
   cover?: any
   slug?: string
-  subcategories: ISubCategory[]
-  price?: number
+  subcategories: ISubCategory[] | ""
+  subSection?: ISubSection | ""
+  tags?: IAdTags[] | ""
+  price?: string
+}
+
+export interface IAdTags {
+  totalArea: string
+  roomNumber: number
 }
 
 export interface ISubCategory {
@@ -121,8 +128,8 @@ export interface INavLink {
 }
 
 export interface ISubSection {
-  subSectionName: string
-  values: string[]
+  subsection: string
+  subcategoryName: string
 }
 
 interface Logo {

@@ -1,17 +1,44 @@
 .newadd {
+  /*  &__input {
+    display: flex;
+  }
   label {
     display: inline-block;
-    width: 100px;
+    width: 7vw;
   }
   input {
     display: inline-block;
-    margin: 5px;
-    max-width: 227px;
+    width: 50%;
+    font-family: $notoSans;
+    background: $white;
+    height: 7vh;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid $black;
     padding: 1vh 0;
     border-radius: $inputBorders;
     -webkit-border-radius: $inputBorders;
     -moz-border-radius: $inputBorders;
     -ms-border-radius: $inputBorders;
     -o-border-radius: $inputBorders;
+    &:focus {
+      border: 1px solid $blueButton;
+    }
+    &:hover {
+      border: 1px solid $black;
+    }
+  } */
+  &__textarea {
+    background-color: $white;
+    padding: 0 !important;
+    font-family: $notoSans !important;
+    width: 65%;
+    border-bottom: 1px solid $black;
+  }
+  &__mainarea {
+    @extend .newadd__textarea;
+    width: 83%;
+  }
+  &__leftcolon {
+    width: 65%;
   }
 }
