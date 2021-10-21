@@ -77,3 +77,17 @@ main {
 footer {
   padding: 2vw;
 }
+
+.bluebutton {
+  background-color: $blueButton;
+  padding: 1vw;
+  font-family: $notoSansDisplay;
+  box-shadow: $insetShadow;
+  font-weight: 500;
+  font-size: 1.1rem;
+  border-radius: $buttonBorders;
+  -webkit-border-radius: $buttonBorders;
+  -moz-border-radius: $buttonBorders;
+  -ms-border-radius: $buttonBorders;
+  -o-border-radius: $buttonBorders;
+}
