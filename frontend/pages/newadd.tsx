@@ -189,7 +189,7 @@ const NewAddPage: FC = () => {
             />
           </Grid>
           <Grid item xs={12} sm={6} md={6} lg={6}>
-            {subSection.length > 0 ? (
+            {subSection.length > 0 && (
               <Select
                 inputField={{
                   id: "subSection",
@@ -202,8 +202,6 @@ const NewAddPage: FC = () => {
                 value={userAdForm.subSection}
                 handleChange={(event: any) => handleChange(event)}
               />
-            ) : (
-              <div></div>
             )}
           </Grid>
           <Grid item xs={12} mt={3}>
