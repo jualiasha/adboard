@@ -63,17 +63,18 @@ const HomePage: FC<HomePageProps> = () => {
           </Link>
         </div>
         <div className="categoryLinks">
-          {categories.map((category: ICategory) => {
-            return (
-              <CategoryLink
-                categoryName={category.categoryName}
-                key={category._id}
-                imageSource={category.imageSource}
-                click={() => menuOpenHandler(category)}
-                category={category}
-              />
-            )
-          })}
+          {categories[0].imageSource &&
+            categories.map((category: ICategory) => {
+              return (
+                <CategoryLink
+                  categoryName={category.categoryName}
+                  key={category._id}
+                  imageSource={category.imageSource}
+                  click={() => menuOpenHandler(category)}
+                  category={category}
+                />
+              )
+            })}
         </div>
         {menuOpen && (
           <Collapse in={checked}>

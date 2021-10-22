@@ -12,8 +12,6 @@ interface FilterFormProps {
 }
 
 const FilterForm: FC<FilterFormProps> = ({ categories }) => {
-  console.log(categories)
-
   const [filterForm, setFilterForm] = useState<IFilterForm>(() =>
     resetFilterForm()
   )
@@ -26,7 +24,7 @@ const FilterForm: FC<FilterFormProps> = ({ categories }) => {
     setFilterForm({ ...filterForm, [event.target.name]: event.target.value })
     if (event.target.name === "category") {
       const selectedSubcategories = categories
-        .filter((category) => {
+        .filter((category: ICategory) => {
           return category.categoryName === event.target.value
         })
         .map((category) => {

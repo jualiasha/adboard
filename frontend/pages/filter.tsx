@@ -1,9 +1,10 @@
 import React, { FC } from "react"
 import { useSelector } from "react-redux"
-import FilterForm from "../components/Filter/FilterForm"
+import FilterForm from "../components/FilterForm/FilterForm"
+import { AppState } from "../store/store"
 
-const filter: FC = () => {
-  const categories = useSelector((state: any) => state.categories)
+const FilterPage: FC = () => {
+  const categories = useSelector((state: AppState) => state.categories)
 
   return (
     <>
@@ -12,4 +13,4 @@ const filter: FC = () => {
   )
 }
 
-export default filter
+export default FilterPage

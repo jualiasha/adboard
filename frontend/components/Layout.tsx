@@ -28,7 +28,7 @@ const Layout: FC<LayoutProps> = ({
 
   return (
     <>
-      <Navbar />
+      <Navbar navLinks={navLinks} logo={logo} />
       <main>{children}</main>
       <footer>
         <div className="footer__container">
