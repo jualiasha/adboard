@@ -1,6 +1,5 @@
 import React, { FC, useState } from "react"
 import Head from "next/head"
-import { getAds, getCategories } from "../utils/api"
 import { ICategory, ISubCategory, IUserAd } from "../@types"
 import CategoryLink from "../components/CategoryLink/CategoryLink"
 import Button from "../components/Buttons/Button"
@@ -25,7 +24,6 @@ const HomePage: FC<HomePageProps> = () => {
   const [subcategories, setSubcategories] = useState<ISubCategory[] | null>(
     () => null
   ) //setting subcategories for each category in menu
-  const [searchInput, setSearchInput] = useState<any>(() => null)
   const [categoryName, setCategoryName] = useState<string | null>(() => null) //getting categoryName of the clicked category
 
   const menuOpenHandler = (category: ICategory) => {
@@ -38,11 +36,6 @@ const HomePage: FC<HomePageProps> = () => {
   const menuCloseHandler = () => {
     setChecked(() => false)
     setMenuOpen(() => false)
-  }
-
-  const searchValueHandler = (event: any) => {
-    setSearchInput({ searchInput: event.target.value })
-    console.log(searchInput)
   }
 
   const lastposted = 20
@@ -123,7 +116,7 @@ const HomePage: FC<HomePageProps> = () => {
                           title={ad.title}
                           description={ad.description}
                           variant="feedAd"
-                          imgSource={ad.cover.url}
+                          imgSource={ad.cover?.url}
                         />
                       </a>
                     </Link>

@@ -1,4 +1,11 @@
-import { IFilterForm, IUserAd } from "../@types"
+import {
+  ICategory,
+  IFilterForm,
+  IMessage,
+  ISearchForm,
+  ISubCategory,
+  IUserAd,
+} from "../@types"
 
 export function resetFilterForm(): IFilterForm {
   return {
@@ -21,4 +28,51 @@ export function resetAdForm(): IUserAd {
     slug: "test",
     phoneNumber: "00000000",
   }
+}
+
+export function resetSearchForm(): ISearchForm {
+  return {
+    city: "All Finland",
+    title: "",
+  }
+}
+
+export function resetUserAds(): IUserAd[] {
+  return [
+    {
+      title: "",
+      description: "",
+      phoneNumber: "",
+      price: "",
+      subcategory: "",
+      subSection: "",
+      content: "",
+    },
+  ]
+}
+
+export function resetCategories(): ICategory[] {
+  return [
+    {
+      categoryName: "Entertainment",
+      imageSource: "",
+      slug: "",
+      _id: "",
+      subcategories: resetSubCategories(),
+    },
+  ]
+}
+
+export function resetSubCategories(): ISubCategory[] {
+  return [
+    {
+      subCategoryName: "",
+      slug: "",
+      _id: "",
+    },
+  ]
+}
+
+export function resetMessage(): IMessage {
+  return { messageText: "", bgColor: "" }
 }

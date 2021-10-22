@@ -1,11 +1,9 @@
 import React, { FC, useEffect } from "react"
-import NavLink from "./NavLink/NavLink"
-import Search from "./Search/Search"
 import { INavLink, IFooterMenuLink, ILogo } from "../@types/"
-import Link from "next/link"
 import { useDispatch } from "react-redux"
-import { initializeCategories } from "./store/actions/categoryActions"
-import { initializeAds } from "./store/actions/adsActions"
+import { initializeCategories } from "../store/actions/categoryActions"
+import { initializeAds } from "../store/actions/adsActions"
+import Navbar from "./Navbar"
 
 interface LayoutProps {
   logo: ILogo
@@ -30,28 +28,7 @@ const Layout: FC<LayoutProps> = ({
 
   return (
     <>
-      <header>
-        <Link href="/">
-          <a>
-            <img className="header__logo" src={logo.logo.url} alt={logo.alt} />
-          </a>
-        </Link>
-        <Search />
-        <div className="header__navLinks">
-          {navLinks.map((navLink: any) => {
-            return (
-              <NavLink
-                key={navLink._id}
-                imageName={navLink.imageName}
-                imageSource={navLink.imageSource.url}
-                variant="header__navLinks"
-                icon={navLink.icon}
-                link={navLink.link}
-              />
-            )
-          })}
-        </div>
-      </header>
+      <Navbar />
       <main>{children}</main>
       <footer>
         <div className="footer__container">

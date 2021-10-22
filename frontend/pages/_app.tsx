@@ -3,7 +3,7 @@ import Head from "next/head"
 import Layout from "../components/Layout"
 import { getFooterLinks, getLogo, getNavLinks } from "../utils/api"
 import { Provider } from "react-redux"
-import store from "../components/store/store"
+import store from "../store/store"
 import "../styles/sass/index.scss"
 
 const MyApp = ({ Component, pageProps }) => {

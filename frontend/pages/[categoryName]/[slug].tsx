@@ -9,7 +9,6 @@ import Icon from "../../components/Icon/Icon"
 import Link from "next/link"
 import FeedAd from "../../components/FeedAd/FeedAd"
 import { useSelector } from "react-redux"
-import store from "../../components/store/store"
 
 interface ISubCategoryPageProps {
   subcategory: ISubCategory
@@ -18,11 +17,10 @@ interface ISubCategoryPageProps {
 
 const SubCategoryPage: FC<ISubCategoryPageProps> = ({ subcategory }) => {
   const router = useRouter()
+  const ads = useSelector((state: any) => state.ads)
   if (router.isFallback) {
     return <div>Loading category...</div>
   }
-
-  const ads = useSelector((state: any) => state.ads)
   const filteredAds = ads.filter((ad) => {
     return ad.subcategories[0]?.subCategoryName === subcategory.subCategoryName
   })

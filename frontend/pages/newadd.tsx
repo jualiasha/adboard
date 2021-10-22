@@ -2,33 +2,24 @@ import { Grid, TextField } from "@mui/material"
 import React, { FC, useState } from "react"
 import { ICategory, IUserAd } from "../@types"
 import FeedAd from "../components/FeedAd/FeedAd"
-import Input from "../components/Inputs/Input"
-import Select from "../components/Select/Select"
-import { citiesEn } from "../utils/cities"
-import ImageUploading from "react-images-uploading"
 import { useSelector } from "react-redux"
 import axios from "axios"
 import Button from "../components/Buttons/Button"
 import { resetAdForm } from "../utils/reset"
 import { setHeader } from "../utils/axiosConfig"
 import { itemsToArray } from "../utils"
+import Select from "../components/Select/Select"
+import { citiesEn } from "../utils/cities"
 
-const newadd: FC = () => {
+const NewAddPage: FC = () => {
   const [userAdForm, setUserAdForm] = useState<IUserAd>(() => resetAdForm())
 
   const [images, setImages] = useState<[]>([])
-  const maxNumber: number = 69
   const categories = useSelector((state: any) => state.categories)
   const [selectedCategory, setSelectedCategory] = useState<string>("")
   const [subcategories, setSubcategories] = useState<string[]>(() => [])
   const [subSection, setSubSection] = useState<string[]>(() => [])
   const baseUrl = "http://localhost:1337"
-
-  const onChange = (imageList, addUpdateIndex) => {
-    // data for submit
-    console.log(imageList, addUpdateIndex)
-    setImages(imageList)
-  }
 
   const test = (event) => {
     if (event.target.name === "files") {
@@ -50,27 +41,17 @@ const newadd: FC = () => {
         if (galleryImages.length === arrayfiles.length) {
           setHeader("application/json", null)
           console.log(galleryImages[0])
-          /*  axios
-
+          axios
             .post(`${baseUrl}/user-ads`, {
               ...userAdForm,
               cover: galleryImages[0][0],
               gallery: galleryImages[0],
             })
-            .then((resp) => console.log(resp)) */
+            .then((resp) => console.log(resp))
         }
       })
     })
   }
-
-  /* const errorTextHandler = (field: string) => {
-        if (!userAdForm.title) {
-            setErrorText(
-                `${field.charAt(0).toUpperCase() + field.slice(1).toLowerCase()
-                } is mandatory field`
-            )
-        }
-    } */
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setUserAdForm({ ...userAdForm, [event.target.name]: event.target.value })
@@ -98,12 +79,11 @@ const newadd: FC = () => {
         .get(
           `http://localhost:1337/sub-sections?subcategoryName=${event.target.value}`
         )
-        .then((resp) => {
+        .then((resp: any) => {
           setSubSection(() =>
             resp.data.map((subsections) => subsections.subsection)
           )
         })
-      /* errorTextHandler(event.target.name) */
     }
   }
   console.log(userAdForm)
@@ -242,58 +222,6 @@ const newadd: FC = () => {
           </Grid>
         </Grid>
         <Grid container mt={3}>
-          {/* <ImageUploading
-            multiple
-            value={images}
-            onChange={onChange}
-            maxNumber={maxNumber}
-            dataURLKey="files"
-          >
-            {({
-              imageList,
-              onImageUpload,
-              onImageRemoveAll,
-              onImageUpdate,
-              onImageRemove,
-            }) => (
-              // write your building UI
-              <div className="newadd__images">
-                <button
-                  className="newadd__images__uploadbutton"
-                  onClick={onImageUpload}
-                >
-                  Upload images
-                </button>
-                &nbsp;
-                <button
-                  onClick={onImageRemoveAll}
-                  className="newadd__images__removeall"
-                >
-                  Remove all images
-                </button>
-                <div className="newadd__images__list">
-                  {imageList.map((image, index) => (
-                    <div key={index} className="newadd__images__list__item">
-                      <img
-                        className="newadd__images__list__item__img"
-                        src={image["data_url"]}
-                        alt=""
-                        width="100"
-                      />
-                      <div className="newadd__images__list__item__btn-wrapper">
-                        <button onClick={() => onImageUpdate(index)}>
-                          Update
-                        </button>
-                        <button onClick={() => onImageRemove(index)}>
-                          Remove
-                        </button>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-          </ImageUploading> */}
           <input type="file" name="files" multiple onChange={test} />
         </Grid>
         <Grid container justifyContent="center">
@@ -306,4 +234,4 @@ const newadd: FC = () => {
   )
 }
 
-export default newadd
+export default NewAddPage
