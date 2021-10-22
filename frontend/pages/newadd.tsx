@@ -1,6 +1,6 @@
 import { Grid, TextField } from "@mui/material"
 import React, { FC, useState } from "react"
-import { IUserAd } from "../@types"
+import { ICategory, IUserAd } from "../@types"
 import FeedAd from "../components/FeedAd/FeedAd"
 import Input from "../components/Inputs/Input"
 import Select from "../components/Select/Select"
@@ -9,34 +9,62 @@ import ImageUploading from "react-images-uploading"
 import { useSelector } from "react-redux"
 import axios from "axios"
 import Button from "../components/Buttons/Button"
+import { resetAdForm } from "../utils/reset"
+import { setHeader } from "../utils/axiosConfig"
+import { itemsToArray } from "../utils"
 
 const newadd: FC = () => {
-  const [postAd, setPostAd] = useState<IUserAd>({
-    title: "",
-    description: "",
-    content: "",
-    city: "",
-    cover: "",
-    subcategories: "",
-    subSection: "",
-    tags: "",
-    price: "",
-  })
+  const [userAdForm, setUserAdForm] = useState<IUserAd>(() => resetAdForm())
 
   const [images, setImages] = useState<[]>([])
   const maxNumber: number = 69
   const categories = useSelector((state: any) => state.categories)
-  const [category, setCategory] = useState<string>("")
+  const [selectedCategory, setSelectedCategory] = useState<string>("")
   const [subcategories, setSubcategories] = useState<string[]>(() => [])
   const [subSection, setSubSection] = useState<string[]>(() => [])
+  const baseUrl = "http://localhost:1337"
+
   const onChange = (imageList, addUpdateIndex) => {
     // data for submit
     console.log(imageList, addUpdateIndex)
     setImages(imageList)
   }
 
+  const test = (event) => {
+    if (event.target.name === "files") {
+      setImages(event.target.files)
+    }
+  }
+
+  const submitHandler = async (event: any) => {
+    event.preventDefault()
+    const formdata = new FormData()
+    const galleryImages = []
+    const arrayfiles = itemsToArray(images)
+    arrayfiles.forEach((file) => {
+      formdata.append("files", file)
+      setHeader("multipart/form-data", null)
+      axios.post(`${baseUrl}/upload`, formdata).then((resp) => {
+        console.log(resp.data)
+        galleryImages.push(resp.data)
+        if (galleryImages.length === arrayfiles.length) {
+          setHeader("application/json", null)
+          console.log(galleryImages[0])
+          /*  axios
+
+            .post(`${baseUrl}/user-ads`, {
+              ...userAdForm,
+              cover: galleryImages[0][0],
+              gallery: galleryImages[0],
+            })
+            .then((resp) => console.log(resp)) */
+        }
+      })
+    })
+  }
+
   /* const errorTextHandler = (field: string) => {
-        if (!postAd.title) {
+        if (!userAdForm.title) {
             setErrorText(
                 `${field.charAt(0).toUpperCase() + field.slice(1).toLowerCase()
                 } is mandatory field`
@@ -45,17 +73,17 @@ const newadd: FC = () => {
     } */
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setPostAd({ ...postAd, [event.target.name]: event.target.value })
-    setCategory(
-      event.target.name === "category" ? event.target.value : category
+    setUserAdForm({ ...userAdForm, [event.target.name]: event.target.value })
+    setSelectedCategory(
+      event.target.name === "category" ? event.target.value : selectedCategory
     )
 
     if (event.target.name === "category") {
       const selectedSubcategories = categories
-        .filter((category) => {
+        .filter((category: ICategory) => {
           return category.categoryName === event.target.value
         })
-        .map((category) => {
+        .map((category: ICategory) => {
           return category.subcategories
         })
 
@@ -65,7 +93,7 @@ const newadd: FC = () => {
         )
       )
     }
-    if (event.target.name === "subcategories") {
+    if (event.target.name === "subcategory") {
       axios
         .get(
           `http://localhost:1337/sub-sections?subcategoryName=${event.target.value}`
@@ -78,21 +106,21 @@ const newadd: FC = () => {
       /* errorTextHandler(event.target.name) */
     }
   }
-  console.log(postAd)
+  console.log(userAdForm)
   return (
     <div className="newadd">
       <Grid container>
         <Grid item xs={12} sm={4} md={4} lg={4} mb={5}>
           <h5>Preview</h5>
           <FeedAd
-            title={postAd.title}
-            description={postAd.description}
+            title={userAdForm.title}
+            description={userAdForm.description}
             variant="feedAd"
             imgSource=""
           />
         </Grid>
       </Grid>
-      <form>
+      <form onSubmit={submitHandler}>
         <Grid container justifyContent="space-between">
           <Grid item xs={12} sm={6} md={6} lg={6}>
             <TextField
@@ -104,6 +132,7 @@ const newadd: FC = () => {
               onInput={(event: any) => {
                 handleChange(event)
               }}
+              value={userAdForm.title}
             />
           </Grid>
           <Grid item xs={12} sm={6} md={6} lg={6}>
@@ -116,7 +145,7 @@ const newadd: FC = () => {
                 required: true,
                 options: citiesEn,
               }}
-              value={postAd.city}
+              value={userAdForm.city}
               handleChange={(event: any) => handleChange(event)}
             />
           </Grid>
@@ -133,6 +162,7 @@ const newadd: FC = () => {
               onInput={(event: any) => {
                 handleChange(event)
               }}
+              value={userAdForm.description}
             />
           </Grid>
           <Grid item xs={12} sm={6} md={6} lg={6}>
@@ -143,22 +173,22 @@ const newadd: FC = () => {
                 label: "Category *",
                 type: "select",
                 required: true,
-                options: categories.map((categor) => categor.categoryName),
+                options: categories.map((category) => category.categoryName),
               }}
-              value={category}
+              value={selectedCategory}
               handleChange={(event: any) => handleChange(event)}
             />
             <Grid container mt={3}>
               <Select
                 inputField={{
-                  id: "subcategories",
-                  name: "subcategories",
-                  label: "Subcategories",
+                  id: "subcategory",
+                  name: "subcategory",
+                  label: "Subcategory",
                   type: "select",
                   required: true,
                   options: subcategories,
                 }}
-                value={postAd.subcategories}
+                value={userAdForm.subcategory}
                 handleChange={(event: any) => handleChange(event)}
               />
             </Grid>
@@ -175,6 +205,7 @@ const newadd: FC = () => {
               onInput={(event: any) => {
                 handleChange(event)
               }}
+              value={userAdForm.price}
             />
           </Grid>
           <Grid item xs={12} sm={6} md={6} lg={6}>
@@ -188,7 +219,7 @@ const newadd: FC = () => {
                   required: true,
                   options: subSection,
                 }}
-                value={postAd.subSection}
+                value={userAdForm.subSection}
                 handleChange={(event: any) => handleChange(event)}
               />
             ) : (
@@ -206,16 +237,17 @@ const newadd: FC = () => {
               onInput={(event: any) => {
                 handleChange(event)
               }}
+              value={userAdForm.content}
             />
           </Grid>
         </Grid>
         <Grid container mt={3}>
-          <ImageUploading
+          {/* <ImageUploading
             multiple
             value={images}
             onChange={onChange}
             maxNumber={maxNumber}
-            dataURLKey="data_url"
+            dataURLKey="files"
           >
             {({
               imageList,
@@ -223,8 +255,6 @@ const newadd: FC = () => {
               onImageRemoveAll,
               onImageUpdate,
               onImageRemove,
-              isDragging,
-              dragProps,
             }) => (
               // write your building UI
               <div className="newadd__images">
@@ -263,7 +293,8 @@ const newadd: FC = () => {
                 </div>
               </div>
             )}
-          </ImageUploading>
+          </ImageUploading> */}
+          <input type="file" name="files" multiple onChange={test} />
         </Grid>
         <Grid container justifyContent="center">
           <Button type="submit" variant="primary" disabled={false} size="lg">

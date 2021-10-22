@@ -84,10 +84,11 @@ export interface IUserAd {
   _id?: string
   cover?: any
   slug?: string
-  subcategories: ISubCategory[] | ""
-  subSection?: ISubSection | ""
+  subcategory: string
+  subSection?: string
   tags?: IAdTags[] | ""
   price?: string
+  phoneNumber?: string
 }
 
 export interface IAdTags {

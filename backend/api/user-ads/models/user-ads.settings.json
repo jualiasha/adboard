@@ -99,10 +99,6 @@
         }
       }
     },
-    "subcategories": {
-      "via": "user_ad",
-      "collection": "subcategory"
-    },
     "ad_board_user": {
       "model": "ad-board-users",
       "via": "user_ads"
@@ -139,21 +135,21 @@
       "via": "user_ad",
       "model": "sub-section"
     },
+    "subcategory": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string"
+    },
     "price": {
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
       },
-      "type": "decimal"
-    },
-    "room_number": {
-      "model": "room-number",
-      "via": "user_ad"
-    },
-    "total_area": {
-      "model": "total-area",
-      "via": "user_ad"
+      "type": "string"
     }
   }
 }

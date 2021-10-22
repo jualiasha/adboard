@@ -6,7 +6,6 @@ import { Provider } from "react-redux"
 import store from "../components/store/store"
 import "../styles/sass/index.scss"
 
-
 const MyApp = ({ Component, pageProps }) => {
   return (
     <Provider store={store}>
@@ -17,16 +16,7 @@ const MyApp = ({ Component, pageProps }) => {
         navLinks={pageProps.navLinks}
       >
         <Head>
-          <link rel="preconnect" href="https://app.snipcart.com" />
-          <link rel="preconnect" href="https://cdn.snipcart.com" />
-          <link
-            rel="stylesheet"
-            href="https://cdn.snipcart.com/themes/v3.0.16/default/snipcart.css"
-          />
-          <script
-            async
-            src="https://cdn.snipcart.com/themes/v3.0.16/default/snipcart.js"
-          />
+          <title>Add board</title>
         </Head>
         <Component {...pageProps} />
       </Layout>

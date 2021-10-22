@@ -27,6 +27,7 @@ const SubcategoryMenu: FC<SubcategoryMenuProps> = ({
               key={subcategory._id}
               className={`${variant}__subcategoryMenu__item`}
             >
+              {console.log(categoryName, subcategory.slug)}
               <Link
                 /* href={`/${categoryName}/${subcategory.slug}`}
                 as={`${categoryName}/${subcategory.slug}`} */
