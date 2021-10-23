@@ -13,11 +13,15 @@ import { resetAdForm } from "../utils/reset"
 import { setHeader } from "../utils/axiosConfig"
 import { itemsToArray } from "../utils"
 
-const newadd: FC = () => {
+const NewAddPage: FC = () => {
   const [userAdForm, setUserAdForm] = useState<IUserAd>(() => resetAdForm())
 
   const [images, setImages] = useState<[]>([])
-  const maxNumber: number = 69
+  const [loadedImages, setLoadedImages] = useState<[]>([])
+  const inputProps = {
+    name: "files",
+  }
+  const maxNumber: number = 15
   const categories = useSelector((state: any) => state.categories)
   const [selectedCategory, setSelectedCategory] = useState<string>("")
   const [subcategories, setSubcategories] = useState<string[]>(() => [])
@@ -27,7 +31,7 @@ const newadd: FC = () => {
   const onChange = (imageList, addUpdateIndex) => {
     // data for submit
     console.log(imageList, addUpdateIndex)
-    setImages(imageList)
+    setLoadedImages(imageList)
   }
 
   const test = (event) => {
@@ -36,7 +40,37 @@ const newadd: FC = () => {
     }
   }
 
+  console.log(images)
+  console.log(loadedImages)
+  const arrayfiles = itemsToArray(images)
+  console.log(arrayfiles)
+
   const submitHandler = async (event: any) => {
+    event.preventDefault()
+    const formdata = new FormData()
+    const galleryImages = []
+
+    loadedImages.forEach((file: any) => {
+      formdata.append("files", file.file)
+      setHeader("multipart/form-data", null)
+      axios.post(`${baseUrl}/upload`, formdata).then((resp) => {
+        console.log(resp.data)
+        galleryImages.push(resp.data)
+        console.log(galleryImages)
+        if (resp.data) {
+          setHeader("application/json", null)
+          axios
+            .post(`${baseUrl}/user-ads`, {
+              ...userAdForm,
+              cover: resp.data[0],
+              gallery: resp.data,
+            })
+            .then((res) => console.log(res))
+        }
+      })
+    })
+  }
+  /* const submitHandler = async (event: any) => {
     event.preventDefault()
     const formdata = new FormData()
     const galleryImages = []
@@ -50,18 +84,17 @@ const newadd: FC = () => {
         if (galleryImages.length === arrayfiles.length) {
           setHeader("application/json", null)
           console.log(galleryImages[0])
-          /*  axios
-
+          axios
             .post(`${baseUrl}/user-ads`, {
               ...userAdForm,
               cover: galleryImages[0][0],
               gallery: galleryImages[0],
             })
-            .then((resp) => console.log(resp)) */
+            .then((res) => console.log(res))
         }
       })
     })
-  }
+  } */
 
   /* const errorTextHandler = (field: string) => {
         if (!userAdForm.title) {
@@ -98,12 +131,11 @@ const newadd: FC = () => {
         .get(
           `http://localhost:1337/sub-sections?subcategoryName=${event.target.value}`
         )
-        .then((resp) => {
+        .then((resp: any) => {
           setSubSection(() =>
             resp.data.map((subsections) => subsections.subsection)
           )
         })
-      /* errorTextHandler(event.target.name) */
     }
   }
   console.log(userAdForm)
@@ -209,7 +241,7 @@ const newadd: FC = () => {
             />
           </Grid>
           <Grid item xs={12} sm={6} md={6} lg={6}>
-            {subSection.length > 0 ? (
+            {subSection.length > 0 && (
               <Select
                 inputField={{
                   id: "subSection",
@@ -222,8 +254,6 @@ const newadd: FC = () => {
                 value={userAdForm.subSection}
                 handleChange={(event: any) => handleChange(event)}
               />
-            ) : (
-              <div></div>
             )}
           </Grid>
           <Grid item xs={12} mt={3}>
@@ -242,12 +272,13 @@ const newadd: FC = () => {
           </Grid>
         </Grid>
         <Grid container mt={3}>
-          {/* <ImageUploading
+          <ImageUploading
             multiple
-            value={images}
+            value={loadedImages}
             onChange={onChange}
             maxNumber={maxNumber}
-            dataURLKey="files"
+            dataURLKey="data_url"
+            inputProps={inputProps}
           >
             {({
               imageList,
@@ -293,7 +324,7 @@ const newadd: FC = () => {
                 </div>
               </div>
             )}
-          </ImageUploading> */}
+          </ImageUploading>
           <input type="file" name="files" multiple onChange={test} />
         </Grid>
         <Grid container justifyContent="center">
@@ -306,4 +337,4 @@ const newadd: FC = () => {
   )
 }
 
-export default newadd
+export default NewAddPage

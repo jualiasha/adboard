@@ -86,7 +86,7 @@ export interface IUserAd {
   slug?: string
   subcategory: string
   subSection?: string
-  tags?: IAdTags[] | ""
+  tags?: string
   price?: string
   phoneNumber?: string
 }
@@ -113,12 +113,21 @@ export interface InputField {
   options?: string[]
   disabled?: boolean
 }
+export interface IMessage {
+  messageText: string
+  bgColor: string
+}
 
 export interface IFilterForm {
   city: Cities | ""
   category: CategoryNames | ""
   subcategory: string
   subSection: string
+}
+
+export interface ISearchForm {
+  city: Cities
+  title: string
 }
 
 export interface INavLink {

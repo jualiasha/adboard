@@ -3,7 +3,7 @@ import React, { FC, useState } from "react"
 import { ICategory, IFilterForm } from "../../@types"
 
 import { citiesEn } from "../../utils/cities"
-import Select from "../../components/Select/Select"
+import Select from "../Select/Select"
 import { resetFilterForm } from "../../utils/reset"
 import axios from "axios"
 
@@ -12,8 +12,6 @@ interface FilterFormProps {
 }
 
 const FilterForm: FC<FilterFormProps> = ({ categories }) => {
-  console.log(categories)
-
   const [filterForm, setFilterForm] = useState<IFilterForm>(() =>
     resetFilterForm()
   )
@@ -26,7 +24,7 @@ const FilterForm: FC<FilterFormProps> = ({ categories }) => {
     setFilterForm({ ...filterForm, [event.target.name]: event.target.value })
     if (event.target.name === "category") {
       const selectedSubcategories = categories
-        .filter((category) => {
+        .filter((category: ICategory) => {
           return category.categoryName === event.target.value
         })
         .map((category) => {
@@ -44,7 +42,7 @@ const FilterForm: FC<FilterFormProps> = ({ categories }) => {
         .get(
           `http://localhost:1337/sub-sections?subcategoryName=${event.target.value}`
         )
-        .then((resp) => {
+        .then((resp: any) => {
           setSubSection(() =>
             resp.data.map((subsections) => subsections.subsection)
           )
