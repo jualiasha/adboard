@@ -12,20 +12,24 @@ import Button from "../components/Buttons/Button"
 import { resetAdForm } from "../utils/reset"
 import { setHeader } from "../utils/axiosConfig"
 import { itemsToArray } from "../utils"
+import Backdrop from "../components/Backdrop/Backdrop"
+import ImageUploadingComponent from "../components/ImageUploadingComponent/ImageUploadingComponent"
 
 const NewAddPage: FC = () => {
   const [userAdForm, setUserAdForm] = useState<IUserAd>(() => resetAdForm())
 
-  const [images, setImages] = useState<[]>([])
-  const [loadedImages, setLoadedImages] = useState<[]>([])
+  const [images, setImages] = useState<[]>(() => [])
+  const [loadedImages, setLoadedImages] = useState<any[]>(() => [])
   const inputProps = {
     name: "files",
   }
   const maxNumber: number = 15
   const categories = useSelector((state: any) => state.categories)
-  const [selectedCategory, setSelectedCategory] = useState<string>("")
+  const [selectedCategory, setSelectedCategory] = useState<string>(() => "")
   const [subcategories, setSubcategories] = useState<string[]>(() => [])
   const [subSection, setSubSection] = useState<string[]>(() => [])
+  const [loadingSpinner, setLoadingSpinner] = useState<boolean>(() => false)
+
   const baseUrl = "http://localhost:1337"
 
   const onChange = (imageList, addUpdateIndex) => {
@@ -47,16 +51,17 @@ const NewAddPage: FC = () => {
 
   const submitHandler = async (event: any) => {
     event.preventDefault()
+    setLoadingSpinner(()=>true)
     const formdata = new FormData()
-    const galleryImages = []
+    /* const galleryImages = [] */
 
     loadedImages.forEach((file: any) => {
       formdata.append("files", file.file)
       setHeader("multipart/form-data", null)
       axios.post(`${baseUrl}/upload`, formdata).then((resp) => {
-        console.log(resp.data)
-        galleryImages.push(resp.data)
-        console.log(galleryImages)
+        /* const galleryImages = resp.data
+         galleryImages.push(resp.data) 
+        console.log(galleryImages) */
         if (resp.data) {
           setHeader("application/json", null)
           axios
@@ -66,9 +71,11 @@ const NewAddPage: FC = () => {
               gallery: resp.data,
             })
             .then((res) => console.log(res))
+            setLoadingSpinner(()=>false)
         }
       })
     })
+    
   }
   /* const submitHandler = async (event: any) => {
     event.preventDefault()
@@ -148,7 +155,7 @@ const NewAddPage: FC = () => {
             title={userAdForm.title}
             description={userAdForm.description}
             variant="feedAd"
-            imgSource=""
+            imgSource={loadedImages[0]?.data_url}
           />
         </Grid>
       </Grid>
@@ -272,6 +279,11 @@ const NewAddPage: FC = () => {
           </Grid>
         </Grid>
         <Grid container mt={3}>
+          {/* <ImageUploadingComponent
+            value={loadedImages}
+            onChange={onChange}
+            maxNumber={maxNumber}
+          /> */}
           <ImageUploading
             multiple
             value={loadedImages}
@@ -325,7 +337,7 @@ const NewAddPage: FC = () => {
               </div>
             )}
           </ImageUploading>
-          <input type="file" name="files" multiple onChange={test} />
+          {/* <input type="file" name="files" multiple onChange={test} /> */}
         </Grid>
         <Grid container justifyContent="center">
           <Button type="submit" variant="primary" disabled={false} size="lg">
@@ -333,6 +345,8 @@ const NewAddPage: FC = () => {
           </Button>
         </Grid>
       </form>
+      {loadingSpinner && <Backdrop />}
+      {console.log(loadingSpinner)}
     </div>
   )
 }
