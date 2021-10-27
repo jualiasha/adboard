@@ -28,7 +28,9 @@ const NewAddPage: FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>(() => "")
   const [subcategories, setSubcategories] = useState<string[]>(() => [])
   const [subSection, setSubSection] = useState<string[]>(() => [])
-  const [loadingSpinner, setLoadingSpinner] = useState<boolean>(() => false)
+  const [spinner, setSpinner] = useState<boolean>(() => false)
+
+  const [filesrc, setFilesrc] = useState<any[]>(() => [])
 
   const baseUrl = "http://localhost:1337"
 
@@ -41,22 +43,34 @@ const NewAddPage: FC = () => {
   const test = (event) => {
     if (event.target.name === "files") {
       setImages(event.target.files)
+      console.log(event.target.files.length)
+      let keys = Object.keys(images)
+      let imagesSrc = []
+
+      keys.forEach((key) => {
+        imagesSrc.push(URL.createObjectURL(images[key]))
+      })
+
+      console.log(imagesSrc)
+
+      /* setFilesrc(URL.createObjectURL(event.target.files[0])) */
     }
   }
-
+  console.log(filesrc)
   console.log(images)
   console.log(loadedImages)
   const arrayfiles = itemsToArray(images)
   console.log(arrayfiles)
 
-  const submitHandler = async (event: any) => {
+  /* const submitHandler = async (event: any) => {
     event.preventDefault()
-    setLoadingSpinner(()=>true)
+    setSpinner(() => true)
     const formdata = new FormData()
     loadedImages.forEach((file: any) => {
       formdata.append("files", file.file)
       setHeader("multipart/form-data", null)
       axios.post(`${baseUrl}/upload`, formdata).then((resp) => {
+        console.log(resp.data)
         if (resp.data) {
           setHeader("application/json", null)
           axios
@@ -64,16 +78,17 @@ const NewAddPage: FC = () => {
               ...userAdForm,
               cover: resp.data[0],
               gallery: resp.data,
+              slug: `${userAdForm.title.split(" ").join("-")}_${Date.now()}`,
             })
             .then((res) => console.log(res))
-            setLoadingSpinner(()=>false)
         }
       })
     })
-    
-  }
-  /* const submitHandler = async (event: any) => {
+  } */
+
+  const submitHandler = async (event: any) => {
     event.preventDefault()
+    setSpinner(() => true)
     const formdata = new FormData()
     const galleryImages = []
     const arrayfiles = itemsToArray(images)
@@ -91,12 +106,15 @@ const NewAddPage: FC = () => {
               ...userAdForm,
               cover: galleryImages[0][0],
               gallery: galleryImages[0],
+              slug: `${userAdForm.title.split(" ").join("-")}_${Date.now()}`,
             })
             .then((res) => console.log(res))
         }
+        setSpinner(() => false)
+        setUserAdForm(() => resetAdForm())
       })
     })
-  } */
+  }
 
   /* const errorTextHandler = (field: string) => {
         if (!userAdForm.title) {
@@ -143,7 +161,6 @@ const NewAddPage: FC = () => {
   console.log(userAdForm)
   return (
     <div className="newadd">
-      
       <form onSubmit={submitHandler}>
         <Grid container justifyContent="space-between">
           <Grid item xs={12} sm={6} md={6} lg={6}>
@@ -269,7 +286,7 @@ const NewAddPage: FC = () => {
             onChange={onChange}
             maxNumber={maxNumber}
           /> */}
-          <ImageUploading
+          {/*  <ImageUploading
             multiple
             value={loadedImages}
             onChange={onChange}
@@ -284,7 +301,6 @@ const NewAddPage: FC = () => {
               onImageUpdate,
               onImageRemove,
             }) => (
-              // write your building UI
               <div className="newadd__images">
                 <button
                   className="newadd__images__uploadbutton"
@@ -321,28 +337,28 @@ const NewAddPage: FC = () => {
                 </div>
               </div>
             )}
-          </ImageUploading>
-          {/* <input type="file" name="files" multiple onChange={test} /> */}
+          </ImageUploading> */}
+          <input type="file" name="files" multiple onChange={test} />
+          {/* <img src={filesrc} /> */}
         </Grid>
         <Grid container>
-        <Grid item xs={12} sm={4} md={4} lg={4} mb={5}>
-          
-          <FeedAd
-            title={userAdForm.title}
-            description={userAdForm.description}
-            variant="feedAd"
-            imgSource={loadedImages[0]?.data_url}
-          />
+          <Grid item xs={12} sm={4} md={4} lg={4} mb={5}>
+            <FeedAd
+              title={userAdForm.title}
+              description={userAdForm.description}
+              variant="feedAd"
+              imgSource={loadedImages[0]?.data_url}
+            />
+          </Grid>
         </Grid>
-      </Grid>
         <Grid container justifyContent="center">
           <Button type="submit" variant="primary" disabled={false} size="lg">
             Save&Post
           </Button>
         </Grid>
       </form>
-      {loadingSpinner && <Backdrop />}
-      {console.log(loadingSpinner)}
+      {spinner && <Backdrop />}
+      {console.log(spinner)}
     </div>
   )
 }

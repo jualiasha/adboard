@@ -32,7 +32,7 @@ export function resetAdForm(): IUserAd {
     subcategory: "",
     subSection: "",
     price: "20",
-    slug: "test",
+    slug: "",
     phoneNumber: "00000000",
   }
 }

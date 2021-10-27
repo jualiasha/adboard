@@ -2,16 +2,15 @@ import axios from "axios"
 import React, { FC, useState } from "react"
 import { useSelector } from "react-redux"
 import { ICategory, IFilterForm, IUserAd } from "../@types"
-import FeedLayout from "../components/DoubleFeedLayout/DoubleFeedLayout"
 import FilterForm from "../components/FilterForm/FilterForm"
 import SimpleFeedLayout from "../components/SimpleFeedLayout/SimpleFeedLayout"
 import { AppState } from "../store/store"
+import { FilterQuery } from "../utils/filterQueryClass"
 import { resetFilterForm } from "../utils/reset"
 
 const FilterPage: FC = () => {
   const categories = useSelector((state: AppState) => state.categories)
 
-  const ads = useSelector((state: AppState) => state.ads)
   const [filteredAds, setFilteredAds] = useState<IUserAd[] | []>(() => [])
   const [filterForm, setFilterForm] = useState<IFilterForm>(() =>
     resetFilterForm()
@@ -24,6 +23,14 @@ const FilterPage: FC = () => {
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFilterForm({ ...filterForm, [event.target.name]: event.target.value })
+
+    const filterFormQuery = new FilterQuery({
+      ...filterForm,
+      [event.target.name]: event.target.value,
+    }).filterQuery()
+    const filterFormQUeryString =
+      filterFormQuery.generateQueryString(filterFormQuery)
+
     if (event.target.name === "category") {
       const selectedSubcategories = categories
         .filter((category: ICategory) => {
@@ -50,13 +57,8 @@ const FilterPage: FC = () => {
           )
         })
     }
-  }
-  console.log(filterForm.subSection)
-  if (filterForm.subSection) {
     axios
-      .get(
-        `http://localhost:1337/user-ads?city=${filterForm.city}&&subcategory=${filterForm.subcategory}&&subSection=${filterForm.subSection}`
-      )
+      .get(`http://localhost:1337/user-ads${filterFormQUeryString}`)
       .then((resp: any) => setFilteredAds(resp.data))
   }
 
