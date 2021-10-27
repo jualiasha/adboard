@@ -3,6 +3,9 @@ import Head from "next/head"
 import { useRouter } from "next/router"
 import { IUserAd } from "../../@types"
 import { getAds, getAd } from "../../utils/api"
+import Link from "next/link"
+import Icon from "../../components/Icon/Icon"
+import Button from "../../components/Buttons/Button"
 
 interface IAdPage {
   ad: IUserAd
@@ -10,6 +13,8 @@ interface IAdPage {
 
 const AdPage: FC<IAdPage> = ({ ad }) => {
   const router = useRouter()
+  /*defining previous page for "go back" button*/
+
   if (router.isFallback) {
     return <div>Loading product...</div>
   }
@@ -19,8 +24,22 @@ const AdPage: FC<IAdPage> = ({ ad }) => {
       <Head>
         <title>{ad.title} ad</title>
       </Head>
-
       <h4>{ad.title}</h4>
+      {/* <Link href="">
+        <a className="buttonlink">
+          <Icon icon="arrow" variant="backIcon" />
+          Go Back
+        </a>
+      </Link> */}
+      <Button
+        type="button"
+        variant="secondary"
+        size="sm"
+        handleClick={() => {}}
+        disabled={false}
+      >
+        <Icon icon="arrow" variant="backIcon" /> Go Back
+      </Button>
     </>
   )
 }

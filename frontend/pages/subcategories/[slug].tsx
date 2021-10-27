@@ -10,6 +10,7 @@ import Link from "next/link"
 
 import SimpleFeedLayout from "../../components/SimpleFeedLayout/SimpleFeedLayout"
 import axios from "axios"
+import CategoryMenu from "../../components/CategoryMenu/CategoryMenu"
 
 interface ISubCategoryPageProps {
   subcategory: ISubCategory
@@ -40,20 +41,16 @@ const SubCategoryPage: FC<ISubCategoryPageProps> = ({ subcategory }) => {
       ) : (
         <>
           <Grid container justifyContent="space-between">
-            <h1>{subcategory.subCategoryName}</h1>
+            <div></div>
             <Link href="/filter">
-              <a>
-                <Button
-                  type="button"
-                  variant="secondary"
-                  size="sm"
-                  handleClick={() => {}}
-                  disabled={false}
-                >
-                  Filter <Icon icon="arrow" variant="filterIcon" />
-                </Button>
+              <a className="buttonlink">
+                Filter <Icon icon="arrow" variant="filterIcon" />
               </a>
             </Link>
+          </Grid>
+          <CategoryMenu />
+          <Grid container justifyContent="space-between">
+            <h1>{subcategory.subCategoryName}</h1>
           </Grid>
           <SimpleFeedLayout ads={filteredAds} />
         </>

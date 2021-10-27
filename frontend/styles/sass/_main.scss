@@ -91,3 +91,22 @@ footer {
   -ms-border-radius: $buttonBorders;
   -o-border-radius: $buttonBorders;
 }
+
+.buttonlink {
+  background-color: $ligtButton;
+  padding: 1vh 1vw;
+  height: 6vh;
+  border-radius: $buttonBorders;
+  -webkit-border-radius: $buttonBorders;
+  -moz-border-radius: $buttonBorders;
+  -ms-border-radius: $buttonBorders;
+  -o-border-radius: $buttonBorders;
+  font-size: 1.2rem;
+  font-family: $notoSansDisplay;
+  font-weight: 700;
+  svg {
+    width: 2vw;
+    position: relative;
+    top: 0.7vh;
+  }
+}

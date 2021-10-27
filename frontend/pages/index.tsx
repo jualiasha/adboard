@@ -1,6 +1,5 @@
 import React, { FC } from "react"
 import Head from "next/head"
-import Button from "../components/Buttons/Button"
 import Icon from "../components/Icon/Icon"
 import Link from "next/link"
 import { useSelector } from "react-redux"
@@ -20,16 +19,8 @@ const HomePage: FC = () => {
         <div className="homePage__categoryheading">
           <h2>Pinned Categories</h2>
           <Link href="/filter">
-            <a>
-              <Button
-                type="button"
-                variant="secondary"
-                size="sm"
-                handleClick={() => {}}
-                disabled={false}
-              >
-                Filter <Icon icon="arrow" variant="filterIcon" />
-              </Button>
+            <a className="buttonlink">
+              Filter <Icon icon="arrow" variant="filterIcon" />
             </a>
           </Link>
         </div>

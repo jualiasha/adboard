@@ -60,7 +60,6 @@ const FilterPage: FC = () => {
       .then((resp: any) => setFilteredAds(resp.data))
   }
 
-  /* console.log(filteredAds) */
   return (
     <>
       <FilterForm
