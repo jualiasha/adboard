@@ -131,10 +131,6 @@
         }
       }
     },
-    "sub_section": {
-      "via": "user_ad",
-      "model": "sub-section"
-    },
     "subcategory": {
       "pluginOptions": {
         "i18n": {
@@ -144,6 +140,14 @@
       "type": "string"
     },
     "price": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string"
+    },
+    "subSection": {
       "pluginOptions": {
         "i18n": {
           "localized": true

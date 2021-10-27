@@ -1,33 +1,37 @@
-import React, { FC } from "react"
+import React, { FC, useState } from "react"
 import Head from "next/head"
 import { useRouter } from "next/router"
-import { getAds, getSubCategories, getSubCategory } from "../../utils/api"
+import { getSubCategories, getSubCategory } from "../../utils/api"
 import { ISubCategory, IUserAd } from "../../@types"
 import { Grid } from "@mui/material"
 import Button from "../../components/Buttons/Button"
 import Icon from "../../components/Icon/Icon"
 import Link from "next/link"
-import FeedAd from "../../components/FeedAd/FeedAd"
-import { useSelector } from "react-redux"
-import { AppState } from "../../store/store"
+
+import SimpleFeedLayout from "../../components/SimpleFeedLayout/SimpleFeedLayout"
+import axios from "axios"
 
 interface ISubCategoryPageProps {
   subcategory: ISubCategory
-  
 }
 
 const SubCategoryPage: FC<ISubCategoryPageProps> = ({ subcategory }) => {
   const router = useRouter()
-  const ads = useSelector((state: AppState) => state.ads)
-  const filteredAds = ads.filter((ad: IUserAd) => {
-    return ad.subcategory === subcategory.subCategoryName
-  })
+
+  const [filteredAds, setFilteredAds] = useState<IUserAd[] | []>(() => [])
+
+  axios
+    .get(
+      `http://localhost:1337/user-ads?subcategory=${subcategory.subCategoryName}`
+    )
+    .then((resp: any) => setFilteredAds(resp.data))
+
   if (router.isFallback) {
     return <div>Loading category...</div>
   }
 
   return (
-     <div className="subcategories">
+    <div className="subcategories">
       <Head>
         <title>{subcategory.subCategoryName} </title>
       </Head>
@@ -51,24 +55,7 @@ const SubCategoryPage: FC<ISubCategoryPageProps> = ({ subcategory }) => {
               </a>
             </Link>
           </Grid>
-          <Grid container justifyContent="space-between" alignItems="center">
-            {filteredAds.map((ad) => {
-              return (
-                <Grid item xs={6} sm={4} md={3} lg={3} key={ad._id}>
-                  <Link href={`/ads/${ad.slug}`}>
-                    <a>
-                      <FeedAd
-                        title={ad.title}
-                        description={ad.description}
-                        variant="feedAd"
-                        imgSource={ad.cover.url}
-                      />
-                    </a>
-                  </Link>
-                </Grid>
-              )
-            })}
-          </Grid>
+          <SimpleFeedLayout ads={filteredAds} />
         </>
       )}
     </div>

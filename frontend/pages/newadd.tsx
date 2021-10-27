@@ -53,15 +53,10 @@ const NewAddPage: FC = () => {
     event.preventDefault()
     setLoadingSpinner(()=>true)
     const formdata = new FormData()
-    /* const galleryImages = [] */
-
     loadedImages.forEach((file: any) => {
       formdata.append("files", file.file)
       setHeader("multipart/form-data", null)
       axios.post(`${baseUrl}/upload`, formdata).then((resp) => {
-        /* const galleryImages = resp.data
-         galleryImages.push(resp.data) 
-        console.log(galleryImages) */
         if (resp.data) {
           setHeader("application/json", null)
           axios
@@ -148,17 +143,7 @@ const NewAddPage: FC = () => {
   console.log(userAdForm)
   return (
     <div className="newadd">
-      <Grid container>
-        <Grid item xs={12} sm={4} md={4} lg={4} mb={5}>
-          <h5>Preview</h5>
-          <FeedAd
-            title={userAdForm.title}
-            description={userAdForm.description}
-            variant="feedAd"
-            imgSource={loadedImages[0]?.data_url}
-          />
-        </Grid>
-      </Grid>
+      
       <form onSubmit={submitHandler}>
         <Grid container justifyContent="space-between">
           <Grid item xs={12} sm={6} md={6} lg={6}>
@@ -339,6 +324,17 @@ const NewAddPage: FC = () => {
           </ImageUploading>
           {/* <input type="file" name="files" multiple onChange={test} /> */}
         </Grid>
+        <Grid container>
+        <Grid item xs={12} sm={4} md={4} lg={4} mb={5}>
+          
+          <FeedAd
+            title={userAdForm.title}
+            description={userAdForm.description}
+            variant="feedAd"
+            imgSource={loadedImages[0]?.data_url}
+          />
+        </Grid>
+      </Grid>
         <Grid container justifyContent="center">
           <Button type="submit" variant="primary" disabled={false} size="lg">
             Save&Post
