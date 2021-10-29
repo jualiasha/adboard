@@ -339,6 +339,10 @@ const NewAddPage: FC = () => {
             )}
           </ImageUploading> */}
           <input type="file" name="files" multiple onChange={test} />
+          {/* {images.length &&
+            images?.map((image: any) => {
+              return <img src={image} />
+            })} */}
           {/* <img src={filesrc} /> */}
         </Grid>
         <Grid container>

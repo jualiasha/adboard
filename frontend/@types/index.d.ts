@@ -83,6 +83,7 @@ export interface IUserAd {
   city?: Cities | ""
   _id?: string
   cover?: any
+  gallery?: any[]
   slug?: string
   subcategory: string
   subSection?: string
