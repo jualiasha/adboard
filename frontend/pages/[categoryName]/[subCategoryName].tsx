@@ -8,24 +8,17 @@ import Button from "../../components/Buttons/Button"
 import Icon from "../../components/Icon/Icon"
 import Link from "next/link"
 import FeedAd from "../../components/FeedAd/FeedAd"
-import { useSelector } from "react-redux"
-import { AppState } from "../../store/store"
 
 interface ISubCategoryPageProps {
   subcategory: ISubCategory
   ads: IUserAd[]
 }
 
-const SubCategoryPage: FC<ISubCategoryPageProps> = ({ subcategory }) => {
+const SubCategoryPage: FC<ISubCategoryPageProps> = ({ subcategory, ads }) => {
   const router = useRouter()
-  const ads = useSelector((state: any) => state.ads)
   if (router.isFallback) {
     return <div>Loading category...</div>
   }
-
-  const filteredAds = ads.filter((ad) => {
-    return ad.subcategories[0]?.subCategoryName === subcategory.subCategoryName
-  })
 
   return (
     <div className="subcategories">
@@ -34,22 +27,16 @@ const SubCategoryPage: FC<ISubCategoryPageProps> = ({ subcategory }) => {
       </Head>
       <Grid container justifyContent="space-between">
         <h1>{subcategory.subCategoryName}</h1>
-        <Link href="/filter">
-          <a>
-            <Button
-              type="button"
-              variant="secondary"
-              size="sm"
-              handleClick={() => {}}
-              disabled={false}
-            >
+        <Button type="button" variant="secondary" size="sm" disabled={false}>
+          <Link href="/filter">
+            <a>
               Filter <Icon icon="arrow" variant="filterIcon" />
-            </Button>
-          </a>
-        </Link>
+            </a>
+          </Link>
+        </Button>
       </Grid>
       <Grid container justifyContent="space-between" alignItems="center">
-        {filteredAds.map((ad) => {
+        {ads.map((ad) => {
           return (
             <Grid item xs={6} sm={4} md={3} lg={3} key={ad._id}>
               <Link href={`/ads/${ad.slug}`}>
@@ -73,17 +60,10 @@ const SubCategoryPage: FC<ISubCategoryPageProps> = ({ subcategory }) => {
 export default SubCategoryPage
 
 export async function getStaticProps({ params }) {
-  /*  const state = store.getState() */
-
-  const subcategory: ISubCategory = await getSubCategory(params.slug)
-
-  return { props: { subcategory } }
-}
-/* export async function getStaticProps({ params }) {
   const subcategory: ISubCategory = await getSubCategory(params.slug)
   const ads: IUserAd[] = await getAds()
   return { props: { subcategory, ads } }
-} */
+}
 
 export async function getStaticPaths() {
   const subcategories: ISubCategory[] = await getSubCategories()

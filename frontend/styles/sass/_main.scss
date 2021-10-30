@@ -30,15 +30,6 @@ h2 {
   font-weight: 600;
   font-size: 1.8rem;
 }
-h4 {
-  font-weight: 600;
-  font-size: 1.6rem;
-}
-
-h5 {
-  font-weight: 600;
-  font-size: 1.4rem;
-}
 
 button {
   cursor: pointer;
@@ -85,37 +76,4 @@ main {
 }
 footer {
   padding: 2vw;
-}
-
-.bluebutton {
-  background-color: $blueButton;
-  padding: 1vw;
-  font-family: $notoSansDisplay;
-  box-shadow: $insetShadow;
-  font-weight: 500;
-  font-size: 1.1rem;
-  border-radius: $buttonBorders;
-  -webkit-border-radius: $buttonBorders;
-  -moz-border-radius: $buttonBorders;
-  -ms-border-radius: $buttonBorders;
-  -o-border-radius: $buttonBorders;
-}
-
-.buttonlink {
-  background-color: $ligtButton;
-  padding: 1vh 1vw;
-  height: 6vh;
-  border-radius: $buttonBorders;
-  -webkit-border-radius: $buttonBorders;
-  -moz-border-radius: $buttonBorders;
-  -ms-border-radius: $buttonBorders;
-  -o-border-radius: $buttonBorders;
-  font-size: 1.2rem;
-  font-family: $notoSansDisplay;
-  font-weight: 700;
-  svg {
-    width: 2vw;
-    position: relative;
-    top: 0.7vh;
-  }
 }

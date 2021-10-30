@@ -29,6 +29,10 @@
     },
     "user_ads": {
       "collection": "user-ads"
+    },
+    "user_ad": {
+      "via": "sub_section",
+      "model": "user-ads"
     }
   }
 }

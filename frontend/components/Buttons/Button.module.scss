@@ -15,26 +15,8 @@
   margin-left: 2vw;
   height: 6vh;
 }
-.primary {
-  background-color: $pinkkyButton;
-  padding: 1vw;
-  font-family: $notoSansDisplay;
-  box-shadow: $insetShadow;
-  font-weight: 500;
-  font-size: 1.1rem;
-  border-radius: $buttonBorders;
-  -webkit-border-radius: $buttonBorders;
-  -moz-border-radius: $buttonBorders;
-  -ms-border-radius: $buttonBorders;
-  -o-border-radius: $buttonBorders;
-}
 .sm {
   font-size: 1.2rem;
   font-family: $notoSansDisplay;
   font-weight: 700;
-}
-.lg {
-  font-size: 1.5rem;
-  font-family: $notoSansDisplay;
-  font-weight: 500;
 }

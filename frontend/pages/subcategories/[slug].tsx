@@ -1,60 +1,71 @@
-import React, { FC, useState } from "react"
+import React, { FC } from "react"
 import Head from "next/head"
 import { useRouter } from "next/router"
-import { getSubCategories, getSubCategory } from "../../utils/api"
+import { getAds, getSubCategories, getSubCategory } from "../../utils/api"
 import { ISubCategory, IUserAd } from "../../@types"
 import { Grid } from "@mui/material"
 import Button from "../../components/Buttons/Button"
 import Icon from "../../components/Icon/Icon"
 import Link from "next/link"
-
-import SimpleFeedLayout from "../../components/SimpleFeedLayout/SimpleFeedLayout"
-import axios from "axios"
-import CategoryMenu from "../../components/CategoryMenu/CategoryMenu"
+import FeedAd from "../../components/FeedAd/FeedAd"
+import { useSelector } from "react-redux"
+import store from "../../components/store/store"
 
 interface ISubCategoryPageProps {
   subcategory: ISubCategory
+  ads: IUserAd[]
 }
 
 const SubCategoryPage: FC<ISubCategoryPageProps> = ({ subcategory }) => {
   const router = useRouter()
-
-  const [filteredAds, setFilteredAds] = useState<IUserAd[] | []>(() => [])
-
-  axios
-    .get(
-      `http://localhost:1337/user-ads?subcategory=${subcategory.subCategoryName}`
-    )
-    .then((resp: any) => setFilteredAds(resp.data))
-
   if (router.isFallback) {
     return <div>Loading category...</div>
   }
+
+  const ads = useSelector((state: any) => state.ads)
+  const filteredAds = ads.filter((ad) => {
+    return ad.subcategories[0]?.subCategoryName === subcategory.subCategoryName
+  })
 
   return (
     <div className="subcategories">
       <Head>
         <title>{subcategory.subCategoryName} </title>
       </Head>
-      {router.isFallback ? (
-        <div>Loading category...</div>
-      ) : (
-        <>
-          <Grid container justifyContent="space-between">
-            <div></div>
-            <Link href="/filter">
-              <a className="buttonlink">
-                Filter <Icon icon="arrow" variant="filterIcon" />
-              </a>
-            </Link>
-          </Grid>
-          <CategoryMenu />
-          <Grid container justifyContent="space-between">
-            <h1>{subcategory.subCategoryName}</h1>
-          </Grid>
-          <SimpleFeedLayout ads={filteredAds} />
-        </>
-      )}
+      <Grid container justifyContent="space-between">
+        <h1>{subcategory.subCategoryName}</h1>
+        <Link href="/filter">
+          <a>
+            <Button
+              type="button"
+              variant="secondary"
+              size="sm"
+              handleClick={() => {}}
+              disabled={false}
+            >
+              Filter <Icon icon="arrow" variant="filterIcon" />
+            </Button>
+          </a>
+        </Link>
+      </Grid>
+      <Grid container justifyContent="space-between" alignItems="center">
+        {filteredAds.map((ad) => {
+          return (
+            <Grid item xs={6} sm={4} md={3} lg={3} key={ad._id}>
+              <Link href={`/ads/${ad.slug}`}>
+                <a>
+                  <FeedAd
+                    title={ad.title}
+                    description={ad.description}
+                    variant="feedAd"
+                    imgSource={ad.cover.url}
+                  />
+                </a>
+              </Link>
+            </Grid>
+          )
+        })}
+      </Grid>
     </div>
   )
 }

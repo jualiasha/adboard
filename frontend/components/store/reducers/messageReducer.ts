@@ -1,15 +1,10 @@
-import { resetMessage } from "../../utils/reset"
-import {
-  ADD_MESSAGE,
-  MessageActionTypes,
-  REMOVE_MESSAGE,
-} from "../actions/actionTypes/messageActionTypes"
+import { ADD_MESSAGE, REMOVE_MESSAGE } from "../actions/messageActions"
 
 const DEFAULT_STATE = {
-  message: resetMessage(),
+  message: { messageText: "", bgColor: "" },
 }
 
-const messageReducer = (state = DEFAULT_STATE, action: MessageActionTypes) => {
+const messageReducer = (state = DEFAULT_STATE, action) => {
   switch (action.type) {
     case ADD_MESSAGE:
       return {

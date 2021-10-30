@@ -80,21 +80,12 @@ export interface IUserAd {
   title: string
   description: string
   content: string
-  city?: Cities | ""
+  city?: Cities
   _id?: string
   cover?: any
-  gallery?: any[]
   slug?: string
-  subcategory: string
-  subSection?: string
-  tags?: string
-  price?: string
-  phoneNumber?: string
-}
-
-export interface IAdTags {
-  totalArea: string
-  roomNumber: number
+  subcategories: ISubCategory[]
+  price?: number
 }
 
 export interface ISubCategory {
@@ -114,10 +105,6 @@ export interface InputField {
   options?: string[]
   disabled?: boolean
 }
-export interface IMessage {
-  messageText: string
-  bgColor: string
-}
 
 export interface IFilterForm {
   city: Cities | ""
@@ -126,22 +113,16 @@ export interface IFilterForm {
   subSection: string
 }
 
-export interface ISearchForm {
-  city: Cities
-  title: string
-}
-
 export interface INavLink {
   imageSource: string
   imageName: string
   variant?: string
   icon: Icons
-  link: string
 }
 
 export interface ISubSection {
-  subsection: string
-  subcategoryName: string
+  subSectionName: string
+  values: string[]
 }
 
 interface Logo {

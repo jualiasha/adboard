@@ -27,9 +27,6 @@
         "arrow",
         "close"
       ]
-    },
-    "link": {
-      "type": "string"
     }
   }
 }

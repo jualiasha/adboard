@@ -47,8 +47,8 @@ export async function getHomePage() {
   return homePage
 }
 
-export async function getAds(url: string = "/user-ads") {
-  const ads = await fetchAPI(url)
+export async function getAds() {
+  const ads = await fetchAPI("/user-ads")
   return ads
 }
 

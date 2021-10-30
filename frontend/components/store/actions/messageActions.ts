@@ -1,4 +1,5 @@
-import { ADD_MESSAGE, REMOVE_MESSAGE } from "./actionTypes/messageActionTypes"
+export const ADD_MESSAGE = "ADD_MESSAGE"
+export const REMOVE_MESSAGE = "REMOVE_MESSAGE"
 
 export function addMessage(message) {
   return {

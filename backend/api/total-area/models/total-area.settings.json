@@ -16,6 +16,10 @@
       "type": "string",
       "default": "20-30",
       "unique": true
+    },
+    "user_ad": {
+      "via": "total_area",
+      "model": "user-ads"
     }
   }
 }
