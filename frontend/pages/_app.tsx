@@ -3,13 +3,15 @@ import Head from "next/head"
 import Layout from "../components/Layout"
 import { getFooterLinks, getLogo, getNavLinks } from "../utils/api"
 import { Provider } from "react-redux"
-import store from "../components/store/store"
+import store from "../store/store"
 import "../styles/sass/index.scss"
-
+import React from "react"
+import Navbar from "../components/Navbar"
 
 const MyApp = ({ Component, pageProps }) => {
   return (
     <Provider store={store}>
+      <Navbar logo={pageProps.logo} navLinks={pageProps.navLinks} />
       <Layout
         logo={pageProps.logo}
         copywrite="Copywrite-2021"
@@ -17,16 +19,7 @@ const MyApp = ({ Component, pageProps }) => {
         navLinks={pageProps.navLinks}
       >
         <Head>
-          <link rel="preconnect" href="https://app.snipcart.com" />
-          <link rel="preconnect" href="https://cdn.snipcart.com" />
-          <link
-            rel="stylesheet"
-            href="https://cdn.snipcart.com/themes/v3.0.16/default/snipcart.css"
-          />
-          <script
-            async
-            src="https://cdn.snipcart.com/themes/v3.0.16/default/snipcart.js"
-          />
+          <title>Add board</title>
         </Head>
         <Component {...pageProps} />
       </Layout>

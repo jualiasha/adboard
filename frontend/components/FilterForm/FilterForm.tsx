@@ -1,60 +1,25 @@
 import { Grid } from "@mui/material"
-import React, { FC, useState } from "react"
+import React, { FC } from "react"
 import { ICategory, IFilterForm } from "../../@types"
 
 import { citiesEn } from "../../utils/cities"
-import Select from "../../components/Select/Select"
-import { resetFilterForm } from "../../utils/reset"
-import axios from "axios"
+import Select from "../Select/Select"
 
 interface FilterFormProps {
   categories: ICategory[]
+  filterForm: IFilterForm
+  handleChange: (event: any) => void
+  subcategories: string[]
+  subSection: string[]
 }
 
-const FilterForm: FC<FilterFormProps> = ({ categories }) => {
-  console.log(categories)
-
-  const [filterForm, setFilterForm] = useState<IFilterForm>(() =>
-    resetFilterForm()
-  )
-  const [subcategories, setSubcategories] = useState<string[]>(() => [])
-  console.log(filterForm)
-
-  const [subSection, setSubSection] = useState<string[]>(() => [])
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setFilterForm({ ...filterForm, [event.target.name]: event.target.value })
-    if (event.target.name === "category") {
-      const selectedSubcategories = categories
-        .filter((category) => {
-          return category.categoryName === event.target.value
-        })
-        .map((category) => {
-          return category.subcategories
-        })
-
-      setSubcategories(() =>
-        selectedSubcategories[0].map(
-          (subcategory) => subcategory.subCategoryName
-        )
-      )
-    }
-    if (event.target.name === "subcategory") {
-      axios
-        .get(
-          `http://localhost:1337/sub-sections?subcategoryName=${event.target.value}`
-        )
-        .then((resp) => {
-          setSubSection(() =>
-            resp.data.map((subsections) => subsections.subsection)
-          )
-        })
-      // axios get user ads
-      //http://localhost:1337/subcategories?subCategoryName=Appartments
-      // resp.data[0].user_ads user_ad
-    }
-  }
-
+const FilterForm: FC<FilterFormProps> = ({
+  categories,
+  filterForm,
+  handleChange,
+  subcategories,
+  subSection,
+}) => {
   return (
     <div className="filter">
       <form>

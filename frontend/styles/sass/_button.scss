@@ -11,6 +11,9 @@
     margin-left: 2vw;
     height: 6vh;
   }
+  &--primary {
+    background-color: $pinkkyButton;
+  }
   &--sm {
     font-size: 1.2rem;
     font-family: $notoSansDisplay;
