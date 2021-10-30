@@ -1,0 +1,19 @@
+.adInfo {
+  display: flex;
+  margin-top: 1.5vh;
+  &__title {
+    width: 12vw;
+  }
+  &__value {
+    margin: 0.5vh 0 0 2vw;
+  }
+}
+.adPage {
+  &__img {
+    border-radius: $buttonBorders;
+    -webkit-border-radius: $buttonBorders;
+    -moz-border-radius: $buttonBorders;
+    -ms-border-radius: $buttonBorders;
+    -o-border-radius: $buttonBorders;
+  }
+}

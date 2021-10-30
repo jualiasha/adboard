@@ -1,17 +1,17 @@
+import Link from "next/link"
 import React, { FC } from "react"
 import { INavLink } from "../../@types/"
 import Icon from "../Icon/Icon"
 
-const NavLink: FC<INavLink> = ({ imageSource, imageName, variant, icon }) => {
+const NavLink: FC<INavLink> = ({ imageName, variant, icon, link }) => {
   return (
     <div className={`${variant}__box`}>
-      {/* <img
-        className={`${variant}__box__image`}
-        src={imageSource}
-        alt={imageName}
-      /> */}
-      {icon && <Icon icon={icon} />}
-      <p className={`${variant}__box__name`}>{imageName}</p>
+      <Link href={link}>
+        <a>
+          {icon && <Icon icon={icon} />}
+          <p className={`${variant}__box__name`}>{imageName}</p>
+        </a>
+      </Link>
     </div>
   )
 }

@@ -10,7 +10,8 @@ interface IInputProps {
   readOnly: boolean
   errorText: string
   required: boolean
-  inputHandler: () => void
+  inputHandler: (event) => void
+  variant?: string
 }
 
 const Input: FC<IInputProps> = ({
@@ -23,19 +24,23 @@ const Input: FC<IInputProps> = ({
   inputHandler,
   errorText,
   required,
+  variant,
 }) => {
   return (
     <>
-      <label htmlFor={inputId}>{inputLabel}</label>
-      <input
-        type={inputType}
-        id={inputId}
-        name={inputName}
-        disabled={disabled}
-        readOnly={readOnly}
-        required={required}
-        onInput={inputHandler}
-      />
+      <div className={variant}>
+        <label htmlFor={inputId}>{inputLabel}</label>
+        <input
+          type={inputType}
+          id={inputId}
+          name={inputName}
+          disabled={disabled}
+          readOnly={readOnly}
+          required={required}
+          onInput={inputHandler}
+          className="filter__category"
+        />
+      </div>
       {errorText && <p>{errorText}</p>}
     </>
   )

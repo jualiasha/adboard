@@ -14,10 +14,6 @@
     "rooms": {
       "type": "string",
       "unique": true
-    },
-    "user_ad": {
-      "via": "room_number",
-      "model": "user-ads"
     }
   }
 }

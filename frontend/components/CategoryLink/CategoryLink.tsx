@@ -1,6 +1,6 @@
 import React, { FC } from "react"
 import { CategoryNames, ICategory } from "../../@types"
-import NextImage from "../Image"
+import Image from "../Image"
 
 interface ICategoryLinkProps {
   categoryName: CategoryNames
@@ -17,7 +17,7 @@ const CategoryLink: FC<ICategoryLinkProps> = ({
   return (
     <div className="categoryLinks__box" onClick={() => click(category)}>
       <div className="categoryLinks__box__image">
-        <NextImage media={imageSource} src={imageSource} alt={categoryName} />
+        <Image media={imageSource} src={imageSource} alt={categoryName} />
       </div>
       <p className="categoryLinks__box__text">{categoryName}</p>
     </div>
