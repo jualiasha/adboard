@@ -81,6 +81,10 @@ const AdPage: FC<IAdPage> = ({ ad }) => {
           </Button>
         </Grid>
       </Grid>
+      <Grid container mt={2}>
+        <h5>Content:</h5>
+        <div className="adPage__content">{ad.content}</div>
+      </Grid>
     </>
   )
 }

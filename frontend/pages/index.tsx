@@ -9,7 +9,8 @@ import CategoryMenu from "../components/CategoryMenu/CategoryMenu"
 
 const HomePage: FC = () => {
   const ads = useSelector((state: AppState) => state.ads)
-
+  const searchAds = ads.map((ad) => ad.content.includes(""))
+  console.log(ads)
   return (
     <>
       <Head>

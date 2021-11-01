@@ -16,7 +16,7 @@ const DoubleFeedLayout: FC<IFeedLAyout> = ({ ads }) => {
         <div className="adsFeed__sidefeed__heading">
           <h2>Last Posted</h2>
         </div>
-        {ads.slice(0, lastposted).map((ad) => {
+        {ads?.slice(0, lastposted).map((ad) => {
           return (
             <Link href={`/ads/${ad.slug}`} key={ad._id}>
               <a>
@@ -33,7 +33,7 @@ const DoubleFeedLayout: FC<IFeedLAyout> = ({ ads }) => {
       <div className="adsFeed__mainfeed">
         <h2>Ads Feed</h2>
         <Grid container justifyContent="space-between" alignItems="center">
-          {ads.map((ad) => {
+          {ads?.map((ad) => {
             return (
               <Grid item xs={12} sm={6} md={6} lg={4} key={ad._id}>
                 <Link href={`/ads/${ad.slug}`}>
