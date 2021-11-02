@@ -77,7 +77,7 @@ export async function getStaticProps({ params }) {
   return { props: { subcategory, ads } }
 } */
 
-export async function getStaticPaths() {
+/* export async function getStaticPaths() {
   const subcategories: ISubCategory[] = await getSubCategories()
   return {
     paths: subcategories.map((_subcategory) => {
@@ -87,4 +87,4 @@ export async function getStaticPaths() {
     }),
     fallback: true,
   }
-}
+} */
