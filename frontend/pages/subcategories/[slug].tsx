@@ -4,7 +4,6 @@ import { useRouter } from "next/router"
 import { getSubCategories, getSubCategory } from "../../utils/api"
 import { ISubCategory, IUserAd } from "../../@types"
 import { Grid } from "@mui/material"
-import Button from "../../components/Buttons/Button"
 import Icon from "../../components/Icon/Icon"
 import Link from "next/link"
 
