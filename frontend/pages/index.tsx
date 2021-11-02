@@ -14,6 +14,10 @@ const HomePage: FC = () => {
     <>
       <Head>
         <title>Super Awesome Ad Board</title>
+        <meta
+          name="description"
+          content="Categorized and easy to use adBoard with different options"
+        />
       </Head>
       <div className="homePage">
         <div className="homePage__categoryheading">

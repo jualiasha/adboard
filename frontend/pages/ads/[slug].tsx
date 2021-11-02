@@ -41,6 +41,7 @@ const AdPage: FC<IAdPage> = ({ ad }) => {
     <>
       <Head>
         <title>{ad.title} ad</title>
+        <meta name="description" content={`${ad.title}" ads in adboard`} />
       </Head>
       <Grid container justifyContent="space-between" className="adPage">
         <h4>{ad.title}</h4>
@@ -80,6 +81,10 @@ const AdPage: FC<IAdPage> = ({ ad }) => {
             <Icon icon="arrow" variant="backIcon" /> Go Back
           </Button>
         </Grid>
+      </Grid>
+      <Grid container mt={2}>
+        <h5>Content:</h5>
+        <div className="adPage__content">{ad.content}</div>
       </Grid>
     </>
   )

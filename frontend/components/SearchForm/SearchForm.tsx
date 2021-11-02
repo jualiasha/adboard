@@ -5,6 +5,7 @@ import { ISearchForm } from "../../@types"
 import { initializeAds } from "../../store/actions/adsActions"
 import { citiesEn } from "../../utils/cities"
 import { resetSearchForm } from "../../utils/reset"
+import { SearchQuery } from "../../utils/searchQueryClass"
 import Icon from "../Icon/Icon"
 
 const SearchForm: FC = () => {
@@ -12,17 +13,38 @@ const SearchForm: FC = () => {
   const [searchForm, updateSearchForm] = useState<ISearchForm>(() =>
     resetSearchForm()
   )
-  const handleSubmit = (event: FormEvent) => {
+
+  const handleSubmit = (event: any) => {
     event.preventDefault()
-    // dispatch(getUserAds());
+    const searchFormQuery = new SearchQuery({
+      ...searchForm,
+      [event.target.name]: event.target.value,
+    }).searchQuery()
+    const searchFormQUeryString =
+      searchFormQuery.generateQueryString(searchFormQuery)
+
     dispatch(
-      initializeAds(
+      /* initializeAds(
         `/user-ads?title=${searchForm.title}&city=${searchForm.city}`
-      )
+      ) */
+      initializeAds(`/user-ads${searchFormQUeryString}`)
     )
   }
   const handleChange = (event: any) => {
     updateSearchForm({ ...searchForm, [event.target.name]: event.target.value })
+    const searchFormQuery = new SearchQuery({
+      ...searchForm,
+      [event.target.name]: event.target.value,
+    }).searchQuery()
+    const searchFormQUeryString =
+      searchFormQuery.generateQueryString(searchFormQuery)
+    console.log(searchFormQUeryString)
+    dispatch(
+      /* initializeAds(
+        `/user-ads?title=${searchForm.title}&city=${searchForm.city}`
+      ) */
+      initializeAds(`/user-ads${searchFormQUeryString}`)
+    )
   }
   return (
     <form onSubmit={(event: FormEvent) => handleSubmit(event)}>

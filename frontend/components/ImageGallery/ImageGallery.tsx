@@ -1,7 +1,16 @@
-import { ImageList, ImageListItem, Pagination, Stack } from "@mui/material"
+import {
+  Backdrop,
+  Fade,
+  ImageList,
+  ImageListItem,
+  Modal,
+  Pagination,
+  Stack,
+} from "@mui/material"
 import React, { FC, useState } from "react"
 import { IUserAd } from "../../@types"
 import usePagination from "./Pagination"
+/* import { Swiper, SwiperSlide } from "swiper/react" */
 
 interface IImageGallery {
   ad: IUserAd
@@ -9,6 +18,9 @@ interface IImageGallery {
 
 const ImageGallery: FC<IImageGallery> = ({ ad }) => {
   let [slide, setSlide] = useState(1)
+  /* const [open, setOpen] = React.useState(false)
+  const handleOpen = () => setOpen(true)
+  const handleClose = () => setOpen(false) */
   const PER_PAGE = 4
   const images = ad.gallery?.map((image) => {
     return {
@@ -29,6 +41,7 @@ const ImageGallery: FC<IImageGallery> = ({ ad }) => {
         sx={{ height: "55vh", /* overflowY: "hidden", */ gap: "1vh" }}
         rowHeight={164}
         cols={2}
+
         /* rowHeight={100} */
       >
         {_DATA?.currentData().map((item) => (
@@ -50,8 +63,32 @@ const ImageGallery: FC<IImageGallery> = ({ ad }) => {
           color="primary"
           onChange={handleChange}
           page={slide}
+          style={{ margin: "0 auto" }}
         />
       </Stack>
+      {/*  <Modal
+        aria-labelledby="transition-modal-title"
+        aria-describedby="transition-modal-description"
+        open={open}
+        onClose={handleClose}
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500,
+        }}
+      >
+        <Fade in={open}>
+          <Swiper
+            watchSlidesProgress={true}
+            slidesPerView={3}
+            className="mySwiper"
+          >
+            <SwiperSlide>Slide 1</SwiperSlide>
+            <SwiperSlide>Slide 2</SwiperSlide>
+            <SwiperSlide>Slide 3</SwiperSlide>
+          </Swiper>
+        </Fade>
+      </Modal> */}
     </>
   )
 }

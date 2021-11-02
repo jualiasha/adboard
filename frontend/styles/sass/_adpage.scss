@@ -16,4 +16,7 @@
     -ms-border-radius: $buttonBorders;
     -o-border-radius: $buttonBorders;
   }
+  &__content {
+    margin-top: 2vh;
+  }
 }

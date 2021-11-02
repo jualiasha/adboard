@@ -1,6 +1,6 @@
 export function getStrapiURL(path) {
   return `${
-    process.env.NEXT_PUBLIC_STRAPI_API_URL || "http://localhost:1337"
+    process.env.NEXT_PUBLIC_STRAPI_API_URL || "http://13.51.47.132:1337"
   }${path}`
 }
 
@@ -49,6 +49,7 @@ export async function getHomePage() {
 
 export async function getAds(url: string = "/user-ads") {
   const ads = await fetchAPI(url)
+
   return ads
 }
 
