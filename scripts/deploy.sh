@@ -3,6 +3,6 @@ sudo yum update -y
 cd adboard
 git checkout .
 git pull origin master
-npm ci
+yarn --frozen-lockfile
 pm2 restart all
 ENDSSH
