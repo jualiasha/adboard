@@ -32,7 +32,7 @@ const NewAddPage: FC = () => {
 
   const [filesrc, setFilesrc] = useState<any[]>(() => [])
 
-  const baseUrl = "http://localhost:1337"
+  const baseUrl = "http://13.51.47.132:1337"
 
   const onChange = (imageList, addUpdateIndex) => {
     // data for submit
@@ -149,7 +149,7 @@ const NewAddPage: FC = () => {
     if (event.target.name === "subcategory") {
       axios
         .get(
-          `http://localhost:1337/sub-sections?subcategoryName=${event.target.value}`
+          `http://13.51.47.132:1337/sub-sections?subcategoryName=${event.target.value}`
         )
         .then((resp: any) => {
           setSubSection(() =>

@@ -49,7 +49,7 @@ const FilterPage: FC = () => {
     if (event.target.name === "subcategory") {
       axios
         .get(
-          `http://localhost:1337/sub-sections?subcategoryName=${event.target.value}`
+          `http://13.51.47.132:1337/sub-sections?subcategoryName=${event.target.value}`
         )
         .then((resp: any) => {
           setSubSection(() =>
@@ -58,7 +58,7 @@ const FilterPage: FC = () => {
         })
     }
     axios
-      .get(`http://localhost:1337/user-ads${filterFormQUeryString}`)
+      .get(`http://13.51.47.132:1337/user-ads${filterFormQUeryString}`)
       .then((resp: any) => setFilteredAds(resp.data))
   }
 

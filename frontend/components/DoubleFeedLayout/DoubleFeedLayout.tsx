@@ -9,31 +9,32 @@ interface IFeedLAyout {
 }
 
 const DoubleFeedLayout: FC<IFeedLAyout> = ({ ads }) => {
-  const lastposted = 20
+  const lastposted = 10
   return (
     <div className="adsFeed">
       <div className="adsFeed__sidefeed">
         <div className="adsFeed__sidefeed__heading">
           <h2>Last Posted</h2>
         </div>
-        {ads?.slice(0, lastposted).map((ad) => {
-          return (
-            <Link href={`/ads/${ad.slug}`} key={ad._id}>
-              <a>
-                <FeedAd
-                  title={ad.title}
-                  description={ad.description}
-                  variant="adsFeed__sidefeed__lastadded"
-                />
-              </a>
-            </Link>
-          )
-        })}
+        {ads &&
+          ads?.slice(0, lastposted).map((ad: IUserAd) => {
+            return (
+              <Link href={`/ads/${ad.slug}`} key={ad._id}>
+                <a>
+                  <FeedAd
+                    title={ad.title}
+                    description={ad.description}
+                    variant="adsFeed__sidefeed__lastadded"
+                  />
+                </a>
+              </Link>
+            )
+          })}
       </div>
       <div className="adsFeed__mainfeed">
         <h2>Ads Feed</h2>
         <Grid container justifyContent="space-between" alignItems="center">
-          {ads?.map((ad) => {
+          {ads?.map((ad: IUserAd) => {
             return (
               <Grid item xs={12} sm={6} md={6} lg={4} key={ad._id}>
                 <Link href={`/ads/${ad.slug}`}>

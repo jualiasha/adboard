@@ -5,8 +5,13 @@ export class SearchQuery implements ISearchForm {
   public title: string
 
   public constructor(data: ISearchForm) {
-    this.city = data.city || undefined
-    this.title = undefined
+    this.city =
+      data.city === "All Finland"
+        ? undefined
+        : data.city
+        ? data.city
+        : undefined
+    this.title = data.title || undefined
   }
   /*Filter out undefined values*/
   public searchQuery(): this {

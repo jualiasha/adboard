@@ -9,12 +9,15 @@ import CategoryMenu from "../components/CategoryMenu/CategoryMenu"
 
 const HomePage: FC = () => {
   const ads = useSelector((state: AppState) => state.ads)
-  const searchAds = ads.map((ad) => ad.content.includes(""))
-  console.log(ads)
+
   return (
     <>
       <Head>
         <title>Super Awesome Ad Board</title>
+        <meta
+          name="description"
+          content="Categorized and easy to use adBoard with different options"
+        />
       </Head>
       <div className="homePage">
         <div className="homePage__categoryheading">

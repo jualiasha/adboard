@@ -27,7 +27,7 @@ const SearchForm: FC = () => {
       /* initializeAds(
         `/user-ads?title=${searchForm.title}&city=${searchForm.city}`
       ) */
-      initializeAds(`/user-ads?${searchFormQUeryString}`)
+      initializeAds(`/user-ads${searchFormQUeryString}`)
     )
   }
   const handleChange = (event: any) => {

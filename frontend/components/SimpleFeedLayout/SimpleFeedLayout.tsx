@@ -10,10 +10,10 @@ interface ISimpleFeedLayout {
 
 const SimpleFeedLayout: FC<ISimpleFeedLayout> = ({ ads }) => {
   return (
-    <Grid container justifyContent="space-between" alignItems="center">
+    <Grid container alignItems="center">
       {ads?.map((ad) => {
         return (
-          <Grid item xs={6} sm={4} md={3} lg={3} key={ad._id}>
+          <Grid item xs={6} sm={4} md={3} lg={3} key={ad._id} mr={2}>
             <Link href={`/ads/${ad.slug}`}>
               <a>
                 <FeedAd
