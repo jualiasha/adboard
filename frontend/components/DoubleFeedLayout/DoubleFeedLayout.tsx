@@ -9,7 +9,7 @@ interface IFeedLAyout {
 }
 
 const DoubleFeedLayout: FC<IFeedLAyout> = ({ ads }) => {
-  const lastposted = 10
+  const lastposted = 5
   return (
     <div className="adsFeed">
       <div className="adsFeed__sidefeed">

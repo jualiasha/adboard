@@ -25,15 +25,15 @@ export function resetFilterForm(): IFilterForm {
 
 export function resetAdForm(): IUserAd {
   return {
-    title: "test title",
-    description: "test dexcription",
-    content: "test content",
+    title: "",
+    description: "",
+    content: "",
     city: "Helsinki",
     subcategory: "",
     subSection: "",
-    price: "20",
+    price: "",
     slug: "",
-    phoneNumber: "00000000",
+    phoneNumber: "0000000",
   }
 }
 

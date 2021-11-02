@@ -55,10 +55,6 @@ export async function getAds(url: string = "/user-ads") {
 
 export async function getAd(slug) {
   const ads = await fetchAPI(`/user-ads?slug=${slug}`)
+  console.log("hello" + slug)
   return ads?.[0]
-}
-
-export async function getProduct(slug) {
-  const products = await fetchAPI(`/products?slug=${slug}`)
-  return products?.[0]
 }

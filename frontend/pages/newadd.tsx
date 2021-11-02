@@ -82,6 +82,7 @@ const NewAddPage: FC = () => {
             })
             .then((res) => console.log(res))
         }
+        setSpinner(() => false)
       })
     })
   } */
@@ -115,15 +116,6 @@ const NewAddPage: FC = () => {
       })
     })
   }
-
-  /* const errorTextHandler = (field: string) => {
-        if (!userAdForm.title) {
-            setErrorText(
-                `${field.charAt(0).toUpperCase() + field.slice(1).toLowerCase()
-                } is mandatory field`
-            )
-        }
-    } */
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setUserAdForm({ ...userAdForm, [event.target.name]: event.target.value })
@@ -286,7 +278,7 @@ const NewAddPage: FC = () => {
             onChange={onChange}
             maxNumber={maxNumber}
           /> */}
-          {/*  <ImageUploading
+          {/* <ImageUploading
             multiple
             value={loadedImages}
             onChange={onChange}

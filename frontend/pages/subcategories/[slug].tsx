@@ -65,17 +65,10 @@ const SubCategoryPage: FC<ISubCategoryPageProps> = ({ subcategory }) => {
 export default SubCategoryPage
 
 export async function getStaticProps({ params }) {
-  /*  const state = store.getState() */
-
   const subcategory: ISubCategory = await getSubCategory(params.slug)
 
   return { props: { subcategory } }
 }
-/* export async function getStaticProps({ params }) {
-  const subcategory: ISubCategory = await getSubCategory(params.slug)
-  const ads: IUserAd[] = await getAds()
-  return { props: { subcategory, ads } }
-} */
 
 export async function getStaticPaths() {
   const subcategories: ISubCategory[] = await getSubCategories()
