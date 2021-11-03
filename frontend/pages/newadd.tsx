@@ -6,7 +6,7 @@ import Input from "../components/Inputs/Input"
 import Select from "../components/Select/Select"
 import { citiesEn } from "../utils/cities"
 import ImageUploading from "react-images-uploading"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import axios from "axios"
 import Button from "../components/Buttons/Button"
 import { resetAdForm } from "../utils/reset"
@@ -14,6 +14,7 @@ import { setHeader } from "../utils/axiosConfig"
 import { itemsToArray } from "../utils"
 import Backdrop from "../components/Backdrop/Backdrop"
 import ImageUploadingComponent from "../components/ImageUploadingComponent/ImageUploadingComponent"
+import { initializeAds } from "../store/actions/adsActions"
 
 const NewAddPage: FC = () => {
   const [userAdForm, setUserAdForm] = useState<IUserAd>(() => resetAdForm())
@@ -31,6 +32,8 @@ const NewAddPage: FC = () => {
   const [spinner, setSpinner] = useState<boolean>(() => false)
 
   const [filesrc, setFilesrc] = useState<any[]>(() => [])
+
+  const dispatch = useDispatch()
 
   const baseUrl = "http://13.51.47.132:1337"
 
@@ -112,6 +115,7 @@ const NewAddPage: FC = () => {
             .then((res) => console.log(res))
         }
         setSpinner(() => false)
+        dispatch(initializeAds(`/user-ads`))
         setUserAdForm(() => resetAdForm())
       })
     })
