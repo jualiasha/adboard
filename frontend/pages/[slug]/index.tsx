@@ -1,6 +1,7 @@
 import React, { FC, useState } from "react"
 import Head from "next/head"
 import { useRouter } from "next/router"
+import { getSubCategories, getSubCategory } from "../../utils/api"
 import { ISubCategory, IUserAd } from "../../@types"
 import { Grid } from "@mui/material"
 import Icon from "../../components/Icon/Icon"
@@ -63,20 +64,13 @@ const SubCategoryPage: FC<ISubCategoryPageProps> = ({ subcategory }) => {
 
 export default SubCategoryPage
 
-/* export async function getStaticProps({ params }) {
-   const state = store.getState()
-
+export async function getStaticProps({ params }) {
   const subcategory: ISubCategory = await getSubCategory(params.slug)
 
   return { props: { subcategory } }
-} */
-/* export async function getStaticProps({ params }) {
-  const subcategory: ISubCategory = await getSubCategory(params.slug)
-  const ads: IUserAd[] = await getAds()
-  return { props: { subcategory, ads } }
-} */
+}
 
-/* export async function getStaticPaths() {
+export async function getStaticPaths() {
   const subcategories: ISubCategory[] = await getSubCategories()
   return {
     paths: subcategories.map((_subcategory) => {
@@ -86,4 +80,4 @@ export default SubCategoryPage
     }),
     fallback: true,
   }
-} */
+}
