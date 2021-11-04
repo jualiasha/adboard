@@ -38,18 +38,20 @@ const Layout: FC<LayoutProps> = ({
             />
           </div>
           <div className="footer__container__right">
-            <ul className="footer__container__right__menu">
-              {footerMenuLinks.map((link: IFooterMenuLink) => {
-                return (
-                  <li
-                    key={link._id}
-                    className="footer__container__right__menu__list"
-                  >
-                    {link.footerLinkName}
-                  </li>
-                )
-              })}
-            </ul>
+            {
+              <ul className="footer__container__right__menu">
+                {footerMenuLinks.map((link: IFooterMenuLink) => {
+                  return (
+                    <li
+                      key={link._id}
+                      className="footer__container__right__menu__list"
+                    >
+                      {link.footerLinkName}
+                    </li>
+                  )
+                })}
+              </ul>
+            }
           </div>
         </div>
         <p className="footer__copywrite">{copywrite}</p>

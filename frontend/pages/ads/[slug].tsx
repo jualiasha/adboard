@@ -94,6 +94,7 @@ export default AdPage
 
 export async function getStaticProps({ params }) {
   const ad: IUserAd = await getAd(params.slug)
+  console.log(params.slug)
   return { props: { ad } }
 }
 

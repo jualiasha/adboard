@@ -17,9 +17,9 @@ const DoubleFeedLayout: FC<IFeedLAyout> = ({ ads }) => {
           <h2>Last Posted</h2>
         </div>
         {ads &&
-          ads?.slice(0, lastposted).map((ad: IUserAd) => {
+          ads?.slice(0, lastposted).map((ad: IUserAd, index: number) => {
             return (
-              <Link href={`/ads/${ad.slug}`} key={ad._id}>
+              <Link key={index} href={`/ads/${ad.slug}`}>
                 <a>
                   <FeedAd
                     title={ad.title}
@@ -34,22 +34,23 @@ const DoubleFeedLayout: FC<IFeedLAyout> = ({ ads }) => {
       <div className="adsFeed__mainfeed">
         <h2>Ads Feed</h2>
         <Grid container justifyContent="space-between" alignItems="center">
-          {ads?.map((ad: IUserAd) => {
-            return (
-              <Grid item xs={12} sm={6} md={6} lg={4} key={ad._id}>
-                <Link href={`/ads/${ad.slug}`}>
-                  <a>
-                    <FeedAd
-                      title={ad.title}
-                      description={ad.description}
-                      variant="feedAd"
-                      imgSource={ad.cover?.url}
-                    />
-                  </a>
-                </Link>
-              </Grid>
-            )
-          })}
+          {ads &&
+            ads?.map((ad: IUserAd, index: number) => {
+              return (
+                <Grid item xs={12} sm={6} md={6} lg={4} key={index}>
+                  <Link href={`/ads/${ad.slug}`}>
+                    <a>
+                      <FeedAd
+                        title={ad.title}
+                        description={ad.description}
+                        variant="feedAd"
+                        imgSource={ad.cover?.url}
+                      />
+                    </a>
+                  </Link>
+                </Grid>
+              )
+            })}
         </Grid>
       </div>
     </div>
