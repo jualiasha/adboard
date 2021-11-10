@@ -99,7 +99,7 @@ export async function getStaticProps({ params }) {
 }
 
 export async function getStaticPaths() {
-  const ads: IUserAd[] = await getAds()
+  const ads: IUserAd[] = await getAds("/user-ads")
   return {
     paths: ads.map((_ad) => {
       return {
