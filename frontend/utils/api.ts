@@ -1,3 +1,6 @@
+import axios from "axios"
+import { IUser } from "../@types"
+
 export function getStrapiURL(path: string) {
   return `${
     process.env.NEXT_PUBLIC_STRAPI_API_URL || "http://13.51.47.132:1337"
@@ -56,4 +59,19 @@ export async function getAds(url: string = "/user-ads") {
 export async function getAd(slug: string) {
   const ads = await fetchAPI(`/user-ads?slug=${slug}`)
   return ads?.[0]
+}
+
+/** Login user auth */
+export function authUser(user: IUser) {
+  return axios.create({
+    baseURL: process.env.NEXT_PUBLIC_API_URL,
+    headers: user && {
+      Authorization: `Bearer ${user?.strapiToken}`,
+    },
+  })
+}
+
+export async function getLoginPage() {
+  const loginPage = await fetchAPI("/login-page")
+  return loginPage
 }

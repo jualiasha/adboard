@@ -44,6 +44,7 @@ export type Roles = "basic" | "admin"
 export type Icons = "plus" | "login" | "logout" | "search" | "arrow" | "close"
 export interface IUser {
   username: string
+  strapiToken: string;
   email: string
   password: string
   id: number
@@ -165,4 +166,20 @@ export interface IConnectionSettings {
   port: number
   host: string
   database: string
+}
+
+export interface IFormField {
+  type: TextInputTypes
+  name: string
+  id: string
+  label: string
+  errorText?: string
+  required?: boolean
+  disabled?: boolean
+  readonly?: boolean
+  options?: string[]
+}
+export interface ILoginFormStateProps {
+  email: string
+  password: string
 }
