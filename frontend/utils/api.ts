@@ -1,11 +1,11 @@
-export function getStrapiURL(path) {
+export function getStrapiURL(path: string) {
   return `${
     process.env.NEXT_PUBLIC_STRAPI_API_URL || "http://13.51.47.132:1337"
   }${path}`
 }
 
 // Helper to make GET requests to Strapi
-export async function fetchAPI(path) {
+export async function fetchAPI(path: string) {
   const requestUrl = getStrapiURL(path)
   const response = await fetch(requestUrl)
   const data = await response.json()
@@ -37,7 +37,7 @@ export async function getLogo() {
   return logo
 }
 
-export async function getSubCategory(slug) {
+export async function getSubCategory(slug: string) {
   const categories = await fetchAPI(`/subcategories?slug=${slug}`)
   return categories?.[0]
 }
@@ -53,7 +53,7 @@ export async function getAds(url: string = "/user-ads") {
   return ads
 }
 
-export async function getAd(slug) {
+export async function getAd(slug: string) {
   const ads = await fetchAPI(`/user-ads?slug=${slug}`)
   return ads?.[0]
 }

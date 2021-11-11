@@ -16,7 +16,6 @@ const Layout: FC<LayoutProps> = ({
   logo,
   copywrite,
   footerMenuLinks,
-  navLinks,
 }) => {
   const dispatch = useDispatch()
 
@@ -33,23 +32,24 @@ const Layout: FC<LayoutProps> = ({
           <div className="footer__container__left">
             <img
               className="footer__container__left__logo"
-              src={logo.logo.url}
-              alt={logo.alt}
+              src={logo?.logo.url}
+              alt={logo?.alt}
             />
           </div>
           <div className="footer__container__right">
             {
               <ul className="footer__container__right__menu">
-                {footerMenuLinks.map((link: IFooterMenuLink) => {
-                  return (
-                    <li
-                      key={link._id}
-                      className="footer__container__right__menu__list"
-                    >
-                      {link.footerLinkName}
-                    </li>
-                  )
-                })}
+                {footerMenuLinks &&
+                  footerMenuLinks.map((link: IFooterMenuLink) => {
+                    return (
+                      <li
+                        key={link._id}
+                        className="footer__container__right__menu__list"
+                      >
+                        {link.footerLinkName}
+                      </li>
+                    )
+                  })}
               </ul>
             }
           </div>
