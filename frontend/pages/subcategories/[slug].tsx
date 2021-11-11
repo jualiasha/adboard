@@ -22,27 +22,25 @@ const SubCategoryPage: FC<ISubCategoryPageProps> = ({ subcategory }) => {
 
   axios
     .get(
-      `http://13.51.47.132:1337/user-ads?subcategory=${subcategory.subCategoryName}`
+      `http://13.51.47.132:1337/user-ads?subcategory=${
+        subcategory ? subcategory.subCategoryName : ""
+      }`
     )
     .then((resp: any) => setFilteredAds(resp.data))
 
-  if (router.isFallback) {
-    return <div>Loading category...</div>
-  }
-
   return (
     <div className="subcategories">
-      <Head>
-        <title>{subcategory.subCategoryName} </title>
-        <meta
-          name="description"
-          content={`${subcategory.subCategoryName} ads in AdBoard`}
-        />
-      </Head>
-      {router.isFallback ? (
+      {router.isFallback || !subcategory ? (
         <div>Loading category...</div>
       ) : (
         <>
+          <Head>
+            <title>{subcategory.subCategoryName} </title>
+            <meta
+              name="description"
+              content={`${subcategory.subCategoryName} ads in AdBoard`}
+            />
+          </Head>
           <Grid container justifyContent="space-between">
             <div></div>
             <Link href="/filter">
@@ -66,7 +64,6 @@ export default SubCategoryPage
 
 export async function getStaticProps({ params }) {
   const subcategory: ISubCategory = await getSubCategory(params.slug)
-
   return { props: { subcategory } }
 }
 

@@ -11,12 +11,12 @@ import Navbar from "../components/Navbar"
 const MyApp = ({ Component, pageProps }) => {
   return (
     <Provider store={store}>
-      <Navbar logo={pageProps.logo} navLinks={pageProps.navLinks} />
+      <Navbar logo={pageProps?.logo} navLinks={pageProps?.navLinks} />
       <Layout
-        logo={pageProps.logo}
+        logo={pageProps?.logo}
         copywrite="Copywrite-2021"
-        footerMenuLinks={pageProps.footerLinks}
-        navLinks={pageProps.navLinks}
+        footerMenuLinks={pageProps?.footerLinks}
+        navLinks={pageProps?.navLinks}
       >
         <Head>
           <title>Add board</title>
