@@ -14,23 +14,24 @@ const Navbar: FC<INavbarProps> = ({ logo, navLinks }) => {
     <header>
       <Link href="/">
         <a>
-          <img className="header__logo" src={logo.logo.url} alt={logo.alt} />
+          <img className="header__logo" src={logo?.logo.url} alt={logo?.alt} />
         </a>
       </Link>
       <SearchForm />
       <div className="header__navLinks">
-        {navLinks.map((navLink: any) => {
-          return (
-            <NavLink
-              key={navLink._id}
-              imageName={navLink.imageName}
-              imageSource={navLink.imageSource.url}
-              variant="header__navLinks"
-              icon={navLink.icon}
-              link={navLink.link}
-            />
-          )
-        })}
+        {navLinks &&
+          navLinks.map((navLink: any) => {
+            return (
+              <NavLink
+                key={navLink._id}
+                imageName={navLink.imageName}
+                imageSource={navLink.imageSource.url}
+                variant="header__navLinks"
+                icon={navLink.icon}
+                link={navLink.link}
+              />
+            )
+          })}
       </div>
     </header>
   )
