@@ -179,7 +179,19 @@ export interface IFormField {
   readonly?: boolean
   options?: string[]
 }
+
 export interface ILoginFormStateProps {
   email: string
   password: string
+}
+
+interface ILoginForm {
+  _id: string
+  
+}
+
+export interface ILoginPage {
+  _id: string
+  title: string
+  LoginForm: ILoginForm
 }

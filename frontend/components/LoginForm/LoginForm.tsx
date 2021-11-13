@@ -1,4 +1,5 @@
 import { Box } from "@mui/material"
+import { useRouter } from "next/router"
 import React, { FormEvent, useState } from "react"
 import { IFormField, ILoginFormStateProps } from "../../@types"
 import Button from "../Buttons/Button"
@@ -7,6 +8,7 @@ import Input from "../Input/Input"
 import { loginFormFields } from "./loginFormFields"
 
 const LoginForm = () => {
+  const router = useRouter()
   const [loginFormState, updateLoginFormState] = useState<ILoginFormStateProps>(
     {
       email: "",
@@ -23,6 +25,8 @@ const LoginForm = () => {
 
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault()
+
+    router.push("/")
   }
   return (
     <Form handleSubmit={(event: FormEvent) => handleSubmit(event)}>
