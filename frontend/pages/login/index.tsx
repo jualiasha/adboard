@@ -8,6 +8,11 @@ import CategoryMenu from "../../components/CategoryMenu/CategoryMenu"
 import Icon from "../../components/Icon/Icon"
 import LoginForm from "../../components/LoginForm/LoginForm"
 import { getLoginPage } from "../../utils/api"
+import { ILoginPage } from "../../@types"
+
+interface ILoginPageProps {
+  loginPage: ILoginPage
+}
 
 const LoginPage: FC = () => {
   const ads = useSelector((state: AppState) => state.ads)
