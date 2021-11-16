@@ -12,21 +12,15 @@
       "required": false,
       "minLength": 2
     },
-    "email": {
-      "type": "component",
-      "repeatable": false,
-      "component": "reusable.input",
-      "required": true
-    },
-    "password": {
-      "type": "component",
-      "repeatable": false,
-      "component": "reusable.input",
-      "required": true
-    },
-    "submitButton": {
+    "input": {
       "type": "component",
       "repeatable": true,
+      "component": "reusable.input",
+      "required": true
+    },
+    "button": {
+      "type": "component",
+      "repeatable": false,
       "component": "reusable.button",
       "required": true
     }

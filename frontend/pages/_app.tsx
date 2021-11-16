@@ -7,6 +7,7 @@ import store from "../store/store"
 import "../styles/sass/index.scss"
 import React from "react"
 import Navbar from "../components/Navbar"
+import { withSession } from "../middlewares/session"
 
 const MyApp = ({ Component, pageProps }) => {
   return (
@@ -43,5 +44,14 @@ MyApp.getInitialProps = async (ctx) => {
     pageProps: { navLinks, footerLinks, logo, path: ctx.pathname },
   }
 }
+
+export const getServerSideProps = withSession((context) => {
+  const { req } = context
+  return {
+    props: {
+      user: req.session.get("user") || null,
+    },
+  }
+})
 
 export default MyApp

@@ -1,8 +1,8 @@
 import { Grid } from "@mui/material"
-import React, { FC } from "react"
+import React, { FC, FormEvent } from "react"
 import { ICategory, IFilterForm } from "../../@types"
-
 import { citiesEn } from "../../utils/cities"
+import Form from "../Form/Form"
 import Select from "../Select/Select"
 
 interface FilterFormProps {
@@ -20,9 +20,12 @@ const FilterForm: FC<FilterFormProps> = ({
   subcategories,
   subSection,
 }) => {
+  const handleSubmit = (event: FormEvent) => {
+    event.preventDefault()
+  }
   return (
     <div className="filter">
-      <form>
+      <Form handleSubmit={(event: FormEvent) => handleSubmit(event)}>
         <Grid container>
           <h1 className="filter__heading">Filter</h1>
           <Select
@@ -82,7 +85,7 @@ const FilterForm: FC<FilterFormProps> = ({
           )}
         </Grid>
         <Grid container justifyContent="space-between" mt={3}></Grid>
-      </form>
+      </Form>
     </div>
   )
 }
