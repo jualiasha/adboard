@@ -31,9 +31,7 @@ const LoginForm = () => {
     <Form handleSubmit={(event: FormEvent) => handleSubmit(event)}>
       <Box p={2}>
         {loginFormFields.map((formField: IFormField) => {
-          return (
-            <TextField  />
-          )
+          return <TextField key={formField.id} />
         })}
         <Button type="submit" variant="primary" size={"sm"} disabled={false}>
           Login
