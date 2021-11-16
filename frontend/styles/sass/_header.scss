@@ -28,6 +28,10 @@
       -o-border-radius: $inputBorders;
       border: 1px solid $transparentinput;
       border-bottom: 1px solid $black;
+      input {
+        height: 3rem !important;
+      }
+      content: none !important;
     }
     &__icon {
       color: $black;

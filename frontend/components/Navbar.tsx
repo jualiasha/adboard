@@ -11,7 +11,7 @@ interface INavbarProps {
 
 const Navbar: FC<INavbarProps> = ({ logo, navLinks }) => {
   return (
-    <header>
+    <header className="header">
       <Link href="/">
         <a>
           <img className="header__logo" src={logo?.logo.url} alt={logo?.alt} />

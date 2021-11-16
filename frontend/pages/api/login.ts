@@ -4,7 +4,7 @@ import { authUser } from "../../utils/api"
 
 export default nc()
   .use(sessionMiddleware)
-  .post(async (req, res) => {
+  .post(async (req: any, res: any) => {
     const { email, password } = req?.body
 
     try {
