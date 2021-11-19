@@ -58,6 +58,8 @@ jobs:
         run: cd frontend && yarn install
       - name: Run build
         run: cd frontend && yarn build
+        env: 
+          SECRET_COOKIE_PASSWORD: ogjdgdfj5656_=ddfdf45445fddfd007909095094095jriureh
 
       # Install AWS CLI 2
       - name: Install AWS CLI 2
