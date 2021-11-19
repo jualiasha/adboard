@@ -40,7 +40,7 @@ jobs:
       matrix:
         python-version: [3.8]
         node-version: ['12.x']
-        appname: ['doskaboard-codedeploy']
+        appname: ['deploy-doskaborad']
         deploy-group: ['production']
         s3-bucket: ['code-deploy-doskaboard']
         s3-filename: ['code-deploy-doskaboard-${{ github.sha }}']
