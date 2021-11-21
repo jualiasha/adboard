@@ -1,46 +1,100 @@
-# This is a basic workflow to help you get started with Actions
+name: CI/CD
 
-name: CI-adboard
-
-# Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the master branch
   push:
-    branches: [ master ]
-
+    branches:
+      - master
   pull_request:
-    branches: [ master ]
-    
-    
+    branches:
+      - master
 
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
+  buildAndTest:
+    name: CI Pipeline
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: ['12.x']
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-        
-         # Runs npm install
-      - name: Install 🏗️
-        run: |
-          cd frontend
-          npm install
+      # Initialize Node.js
+      - name: Install Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
 
-      # Runs a build
-      - name: Build 🏗️
+      # Install project dependencies, test and build
+      - name: Install dependencies
+        run: cd frontend && yarn
+      - name: Run build
+        run: cd frontend && yarn build
+        env: 
+          SECRET_COOKIE_PASSWORD: ogjdgdfj5656_=ddfdf45445fddfd007909095094095jriureh
+
+  deploy:
+    name: CD Pipeline
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+        node-version: ['12.x']
+        appname: ['deploy-doskaborad']
+        deploy-group: ['production']
+        s3-bucket: ['code-deploy-doskaboard']
+        s3-filename: ['code-deploy-doskaboard-${{ github.sha }}']
+
+    needs: buildAndTest
+    steps:
+      - uses: actions/checkout@v2
+
+      # Initialize Node.js
+      - name: Install Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      # Install project dependencies and build
+      - name: Install dependencies
+        run: cd frontend && yarn install
+      - name: Run build
+        run: cd frontend && yarn build
+        env: 
+          SECRET_COOKIE_PASSWORD: ogjdgdfj5656_=ddfdf45445fddfd007909095094095jriureh
+
+      # Install AWS CLI 2
+      - name: Install AWS CLI 2
         run: |
-          cd frontend
-          npm run build
+          curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+          unzip awscliv2.zip
+          sudo ./aws/install --update
+
+      # Configure AWS credentials
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: eu-west-1
+
+      # Deploy push to AWS S3
+      - name: AWS Deploy push
+        run: |
+          aws deploy push \
+          --application-name ${{ matrix.appname }} \
+          --description "This is a revision for the ${{ matrix.appname }}-${{ github.sha }}" \
+          --ignore-hidden-files \
+          --s3-location s3://${{ matrix.s3-bucket }}/${{ matrix.s3-filename }}.zip \
+          --source .
+
+      # Create deployment to CodeDeploy
+      - name: AWS Create Deployment
+        run: |
+          aws deploy create-deployment \
+           --application-name ${{ matrix.appname }} \
+           --deployment-config-name CodeDeployDefault.OneAtATime \
+           --deployment-group-name ${{ matrix.deploy-group }} \
+           --file-exists-behavior OVERWRITE \
+           --s3-location bucket=${{ matrix.s3-bucket }},key=${{ matrix.s3-filename }}.zip,bundleType=zip \
+
