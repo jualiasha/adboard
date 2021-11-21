@@ -4,24 +4,20 @@ import { ICategory, IUserAd } from "../@types"
 import FeedAd from "../components/FeedAd/FeedAd"
 import Select from "../components/Select/Select"
 import { citiesEn } from "../utils/cities"
-import { useDispatch, useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 import axios from "axios"
 import Button from "../components/Buttons/Button"
 import { resetAdForm } from "../utils/reset"
 import { setHeader } from "../utils/axiosConfig"
 import { itemsToArray } from "../utils"
 import Backdrop from "../components/Backdrop/Backdrop"
-import ImageUploadingComponent from "../components/ImageUploadingComponent/ImageUploadingComponent"
-import { initializeAds } from "../store/actions/adsActions"
+import ImageInput from "../components/ImageInput/ImageInput"
 
 const NewAddPage: FC = () => {
   const [userAdForm, setUserAdForm] = useState<IUserAd>(() => resetAdForm())
 
-  const [images, setImages] = useState<[]>(() => [])
+  const [images, setImages] = useState<any>(() => [])
   const [loadedImages, setLoadedImages] = useState<any[]>(() => [])
-  const inputProps = {
-    name: "files",
-  }
   const maxNumber: number = 15
   const categories = useSelector((state: any) => state.categories)
   const [selectedCategory, setSelectedCategory] = useState<string>(() => "")
@@ -29,64 +25,7 @@ const NewAddPage: FC = () => {
   const [subSection, setSubSection] = useState<string[]>(() => [])
   const [spinner, setSpinner] = useState<boolean>(() => false)
 
-  const [filesrc, setFilesrc] = useState<any[]>(() => [])
-
-  const dispatch = useDispatch()
-
-  const baseUrl = "http://13.51.47.132:1337"
-
-  const onChange = (imageList, addUpdateIndex) => {
-    // data for submit
-    console.log(imageList, addUpdateIndex)
-    setLoadedImages(imageList)
-  }
-
-  const test = (event) => {
-    if (event.target.name === "files") {
-      setImages(event.target.files)
-      console.log(event.target.files.length)
-      let keys = Object.keys(images)
-      let imagesSrc = []
-
-      keys.forEach((key) => {
-        imagesSrc.push(URL.createObjectURL(images[key]))
-      })
-
-      console.log(imagesSrc)
-
-      /* setFilesrc(URL.createObjectURL(event.target.files[0])) */
-    }
-  }
-  console.log(filesrc)
-  console.log(images)
-  console.log(loadedImages)
-  const arrayfiles = itemsToArray(images)
-  console.log(arrayfiles)
-
-  /* const submitHandler = async (event: any) => {
-    event.preventDefault()
-    setSpinner(() => true)
-    const formdata = new FormData()
-    loadedImages.forEach((file: any) => {
-      formdata.append("files", file.file)
-      setHeader("multipart/form-data", null)
-      axios.post(`${baseUrl}/upload`, formdata).then((resp) => {
-        console.log(resp.data)
-        if (resp.data) {
-          setHeader("application/json", null)
-          axios
-            .post(`${baseUrl}/user-ads`, {
-              ...userAdForm,
-              cover: resp.data[0],
-              gallery: resp.data,
-              slug: `${userAdForm.title.split(" ").join("-")}_${Date.now()}`,
-            })
-            .then((res) => console.log(res))
-        }
-        setSpinner(() => false)
-      })
-    })
-  } */
+  const baseUrl = "http://localhost:1337"
 
   const submitHandler = async (event: any) => {
     event.preventDefault()
@@ -113,11 +52,19 @@ const NewAddPage: FC = () => {
             .then((res) => console.log(res))
         }
         setSpinner(() => false)
-        dispatch(initializeAds(`/user-ads`))
         setUserAdForm(() => resetAdForm())
       })
     })
   }
+
+  /* const errorTextHandler = (field: string) => {
+        if (!userAdForm.title) {
+            setErrorText(
+                `${field.charAt(0).toUpperCase() + field.slice(1).toLowerCase()
+                } is mandatory field`
+            )
+        }
+    } */
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setUserAdForm({ ...userAdForm, [event.target.name]: event.target.value })
@@ -143,7 +90,7 @@ const NewAddPage: FC = () => {
     if (event.target.name === "subcategory") {
       axios
         .get(
-          `http://13.51.47.132:1337/sub-sections?subcategoryName=${event.target.value}`
+          `http://localhost:1337/sub-sections?subcategoryName=${event.target.value}`
         )
         .then((resp: any) => {
           setSubSection(() =>
@@ -152,7 +99,6 @@ const NewAddPage: FC = () => {
         })
     }
   }
-  console.log(userAdForm)
   return (
     <div className="newadd">
       <form onSubmit={submitHandler}>
@@ -275,69 +221,7 @@ const NewAddPage: FC = () => {
           </Grid>
         </Grid>
         <Grid container mt={3}>
-          {/* <ImageUploadingComponent
-            value={loadedImages}
-            onChange={onChange}
-            maxNumber={maxNumber}
-          /> */}
-          {/* <ImageUploading
-            multiple
-            value={loadedImages}
-            onChange={onChange}
-            maxNumber={maxNumber}
-            dataURLKey="data_url"
-            inputProps={inputProps}
-          >
-            {({
-              imageList,
-              onImageUpload,
-              onImageRemoveAll,
-              onImageUpdate,
-              onImageRemove,
-            }) => (
-              <div className="newadd__images">
-                <button
-                  className="newadd__images__uploadbutton"
-                  onClick={onImageUpload}
-                >
-                  Upload images
-                </button>
-                &nbsp;
-                <button
-                  onClick={onImageRemoveAll}
-                  className="newadd__images__removeall"
-                >
-                  Remove all images
-                </button>
-                <div className="newadd__images__list">
-                  {imageList.map((image, index) => (
-                    <div key={index} className="newadd__images__list__item">
-                      <img
-                        className="newadd__images__list__item__img"
-                        src={image["data_url"]}
-                        alt=""
-                        width="100"
-                      />
-                      <div className="newadd__images__list__item__btn-wrapper">
-                        <button onClick={() => onImageUpdate(index)}>
-                          Update
-                        </button>
-                        <button onClick={() => onImageRemove(index)}>
-                          Remove
-                        </button>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-          </ImageUploading> */}
-          <input type="file" name="files" multiple onChange={test} />
-          {/* {images.length &&
-            images?.map((image: any) => {
-              return <img src={image} />
-            })} */}
-          {/* <img src={filesrc} /> */}
+          <ImageInput handleFileChange={() => {}} />
         </Grid>
         <Grid container>
           <Grid item xs={12} sm={4} md={4} lg={4} mb={5}>
